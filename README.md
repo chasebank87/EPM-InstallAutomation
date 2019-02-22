@@ -28,6 +28,7 @@ The goal of this utility was to make the installation and configuration of Hyper
    * From the powershell folder in the InstallAutomation path and right click start.ps1, and run with powershell.
 4. Follow the prompts
 
-### See it in Action:
+### See it in Action
 
-[![Alt text](../../Notes/Images/Screen-Shot-2019-02-21-at-3.54.05-PM.png)](https://vimeo.com/318823905)
+<a href="https://vimeo.com/318823905" target="_blank"><img src="https://kb.chaseelder.com/wp-content/uploads/2019/02/Screen-Shot-2019-02-21-at-3.54.05-PM.png" 
+alt="EPM InstallAutomation" width="300" height="200"/></a>
