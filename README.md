@@ -1,1 +1,33 @@
 # EPM InstallAutomation
+
+### Summary:
+
+The goal of this utility was to make the installation and configuration of Hyperion EPM easier and quicker for Hyperion Administrators. While the project is young and in early development this very early version has a lot to offer for very specific situations. 
+
+### Limitations:
+
+1. Oracle DB is not ___currently___ supported
+2. SOA is not ___currently___ supported
+3. Individual database usernames are not ___currently___ supported
+
+### Requirements:
+
+1. IIS must be installed manually before running utility
+2. .Net Framework 3.5 must be installed manually before running utility
+3. Logged in as a local Administrator
+4. UAC disabled
+
+### Steps:
+
+1. Clone this repository to a folder on your server(s)
+2. Edit the variables.ps1 file in the Variables folder
+   * Update the $installerPath variable to the directory you cloned the repository (ex. C:\InstallAutomation)
+
+3. Edit the start.ps1, install.ps1, configure.ps1
+   * Update the top region where we call our global functions and variables files
+   * From the powershell folder in the InstallAutomation path and right click start.ps1, and run with powershell.
+4. Follow the prompts
+
+### See it in Action:
+
+[![Alt text](../../Notes/Images/Screen-Shot-2019-02-21-at-3.54.05-PM.png)](https://vimeo.com/318823905)
