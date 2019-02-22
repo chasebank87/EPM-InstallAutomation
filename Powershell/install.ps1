@@ -97,18 +97,18 @@
             $_ | Out-File "$($installerPath)\Logs\Unzip.Error.log" -Append
         }
 
-        
-    While((get-process -id $7zipProcess.id -ErrorAction SilentlyContinue) -ne $null){
-        $unzippedFiles = Get-ChildItem -Path "$($installerPath)\EPM\Unzipped\" -Recurse -ErrorAction SilentlyContinue
-        $unzippedFilesSize = "{0:N2}" -f ((Get-ChildItem "$($installerPath)\EPM\Unzipped\" -Recurse  -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
-        $unzippedFilesSizeCompPercent = 100 /  19733.84 * [int]$unzippedFilesSize
-        $unzippedFilesSizeCompPercent = [math]::floor($unzippedFilesSizeCompPercent)
-        $unzipCompPercent = ((100 / 29880 * $unzippedFiles.count) + $unzippedFilesSizeCompPercent) / 2
-        $unzipCompPercent = [math]::floor($unzipCompPercent) 
-        Write-Host "Unzipping.. $($unzipCompPercent)% Completed." -ForegroundColor Cyan
-        Sleep -Seconds 15
+    if($7zipProcess) {
+        While((get-process -id $7zipProcess.id -ErrorAction SilentlyContinue) -ne $null){
+            $unzippedFiles = Get-ChildItem -Path "$($installerPath)\EPM\Unzipped\" -Recurse -ErrorAction SilentlyContinue
+            $unzippedFilesSize = "{0:N2}" -f ((Get-ChildItem "$($installerPath)\EPM\Unzipped\" -Recurse  -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum -ErrorAction Stop).Sum / 1MB)
+            $unzippedFilesSizeCompPercent = 100 /  19733.84 * [int]$unzippedFilesSize
+            $unzippedFilesSizeCompPercent = [math]::floor($unzippedFilesSizeCompPercent)
+            $unzipCompPercent = ((100 / 29880 * $unzippedFiles.count) + $unzippedFilesSizeCompPercent) / 2
+            $unzipCompPercent = [math]::floor($unzipCompPercent) 
+            Write-Host "Unzipping.. $($unzipCompPercent)% Completed." -ForegroundColor Cyan
+            Sleep -Seconds 15
         }
-
+     }
 #endregion
 
 #region start epm install
@@ -601,18 +601,18 @@
                     Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
                     Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
                     $break = 'break'
-                }
+                    }
                 "N" {
                     ""
                     Write-Host "Skipping $($epmStatus.name) configuration.." -ForegroundColor Yellow
                     Exit
-                }
+                    }
                 Default {
                     ""
                     Write-Host "Invalid entry. Please try again.." -ForegroundColor Red
+                    }
                 }
             }
-        }
         Clear-Variable break
 
 #endregion

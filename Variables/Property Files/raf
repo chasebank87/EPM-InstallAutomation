@@ -1,0 +1,100 @@
+<product productXML="raframework">
+    <tasks>
+      <task>applicationServerDeployment</task>
+      <task>FrameworkServicesConfiguration</task>
+      <task>hubRegistration</task>
+      <task>preConfiguration</task>
+      <task>relationalStorageConfiguration</task>
+      <task>rmiPortConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($fqdn)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">RA Framework</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>raframework</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">45000</property>
+                <property name="serverName">RaFramework</property>
+                <property name="sslPort">45043</property>
+                <property name="validationContext">raframework/index.jsp</property>
+              </bean>
+            </listItem>
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">Financial Reporting</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>hr</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">8200</property>
+                <property name="serverName">FinancialReporting</property>
+                <property name="sslPort">8243</property>
+                <property name="validationContext">hr/status.jsp</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="BEA_HOME">$($epmInstallPath)</property>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">false</property>
+          <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
+        </bean>
+      </bean>
+      <bean name="customConfiguration">
+        <property name="frRmiPortRange">8205-8228</property>
+        <property name="port">6860</property>
+        <property name="relativePaths"/>
+        <property name="relativePathsInstance">repositoryLocation</property>
+        <property name="repositoryLocation">ReportingAnalysis\data\RM1</property>
+        <property name="rmiPort">6861</property>
+        <property name="workspacePortRange">6800-6805</property>
+      </bean>
+      <bean name="httpServerConfiguration">
+        <property name="contextRoot">workspace</property>
+        <property name="host">null</property>
+        <property name="port">$($workspacePort)</property>
+        <property name="protocol">http</property>
+      </bean>
+      <bean name="lwaConfiguration">
+        <beanList name="batchUpdateLWAComponents"/>
+        <beanList name="deploymentLWAComponents"/>
+      </bean>
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">create</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($rafDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($rafDB);loadLibraryPath=$($epmInstallPath)\wlserver_10.3\server\lib</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">false</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">Reporting and Analysis</property>
+    </bean>
+  </product>
