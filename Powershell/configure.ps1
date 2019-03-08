@@ -796,7 +796,7 @@
             $inputWrkspcPassword = $wkspcAdminPassword
             $inputWrkspcPort = $weblogicPort
             $inputWeblogicPort = $weblogicPort
-            $inputWeblogicHostname = 
+            $inputWeblogicHostname = $weblogicHostname
             $inputWeblogicAdmin = $weblogicAdmin
             $inputEPMDomain = $epmDomain
             $inputWrkspcAdmin = $wkspcAdmin
