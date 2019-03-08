@@ -113,6 +113,19 @@ Param (
 
 #endregion
 
+#region increase powershell memory limit
+    
+    $currentPSMemoryLimit = Get-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB
+    $currentPSPluginMemoryLimit = Get-Item WSMan:\localhost\Plugin\Microsoft.PowerShell\Quotas\MaxMemoryPerShellMB
+    if($currentPSMemoryLimit.value -lt 6144 -or $currentPSPluginMemoryLimit.value -lt 6144){
+        Write-Host "Powershell max memory per shell limit too low, raising limit.." -ForegroundColor Cyan
+        Set-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB 6144
+        Set-Item WSMan:\localhost\Plugin\Microsoft.PowerShell\Quotas\MaxMemoryPerShellMB 6144
+        Restart-Service -Name WinRM -Verbose
+    }
+
+#endregion
+
 #region set mainVariables and mainFunctions
 
     . 'C:\InstallAutomation\Variables\mainVariables.ps1'

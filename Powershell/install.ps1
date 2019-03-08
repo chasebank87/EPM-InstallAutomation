@@ -45,7 +45,8 @@
                                 Write-Host "Downloading $($i.name).." -ForegroundColor Cyan
                                 $fileToDownload = $downloads | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                                 $ProgressPreference = 'SilentlyContinue'
-                                wget $fileToDownload -MaximumRedirection 20 -OutFile "$($installerPath)\EPM\$($i.name)"
+                                #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
+                                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\$($i.name)")
                                 $ProgressPreference = 'Continue'
                                 $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\$($i.name)"
                                 if($downloadedFileHash.hash -notin $downloadHashs){
@@ -141,7 +142,8 @@
                 Write-Host "Downloading $($i.name).." -ForegroundColor Cyan
                 $fileToDownload = $downloads | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                 $ProgressPreference = 'SilentlyContinue'
-                wget $fileToDownload -MaximumRedirection 20 -OutFile "$($installerPath)\EPM\$($i.name)"
+                #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
+                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\$($i.name)")
                 $ProgressPreference = 'Continue'
                 $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\$($i.name)"
                 if($downloadedFileHash.hash -notin $downloadHashs){
