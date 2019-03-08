@@ -47,6 +47,8 @@ The goal of this utility was to make the installation and configuration of Hyper
 
 ### Command Line Options:
 
+Use only one of the following main options: -superSilentInstall, -superSilentConfig, -superSilentAll. To do a silent config, and install use the -superSilentAll option and all of its required and optional options. If you want to do just a silent install use the -superSilentInstall and all of its required options and optional options. Do the same thing for a silent configuration.
+
   #### -superSilentInstall
       * Required Sub Options:
           * -install7zip ($true | $false)
