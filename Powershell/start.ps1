@@ -52,6 +52,8 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$weblogicPort,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$weblogicHostname,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$wkspcPort,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$epmDomain,
@@ -76,7 +78,11 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$profitDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$strategic
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$strategic,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$startEPM,
+    [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
 #region parse silent params

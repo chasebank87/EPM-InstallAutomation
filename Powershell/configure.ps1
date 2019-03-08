@@ -404,6 +404,21 @@
             if($break){Clear-Variable break}
             Write-Host ""
             if($inputRecommended -eq 1) {
+                Write-Host "============== Weblogic Hostname ==============="
+                Write-Host "What is the hostname of the server where weblogic"
+                Write-Host "is installed?"
+                Write-Host ""
+                Write-Host "Type Quit to Exit the Installer" -ForegroundColor Yellow
+                Write-Host "================================================"
+                $inputWeblogicHostname = Read-Host
+                if ($inputWeblogicHostname -like "*quit*") {Exit}
+            
+            
+            }
+
+            if($break){Clear-Variable break}
+            Write-Host ""
+            if($inputRecommended -eq 1) {
                 Write-Host "========== Email Configuration =========="
                 Write-Host "Would you like to setup email for EPM?"
                 #Write-Host ""
@@ -779,10 +794,12 @@
             if($break){Clear-Variable break}
         } elseif($superSilentConfig -and $superSilentConfig -eq $true){
             $inputWrkspcPassword = $wkspcAdminPassword
+            $inputWrkspcPort = $weblogicPort
             $inputWeblogicPort = $weblogicPort
+            $inputWeblogicHostname = 
             $inputWeblogicAdmin = $weblogicAdmin
             $inputEPMDomain = $epmDomain
-            $inputWrkspcAdmin = $wkspcPort
+            $inputWrkspcAdmin = $wkspcAdmin
             $inputDBHostname = $dbServer
             $inputDBPort = $dbPort
             $inputDBUsername = $dbUser
@@ -807,6 +824,7 @@
 
     $password = $inputWrkspcPassword
     $wlPort = $inputWeblogicPort
+    $wlHost = $inputWeblogicHostname
     $wlAdmin = $inputWeblogicAdmin
     $epmDomain = $inputEPMDomain
     $email = $inputEmailAddress
@@ -1016,6 +1034,33 @@ if($inputEPMADB -eq $null) {
         Get-Content "$($installerPath)\Logs\configTool.Error.log" | Write-Host -ForegroundColor Red
         Read-Host "Click enter to exit"
         Exit
+    }
+
+#endregion
+
+#region start epm and validate
+
+    if($startEPM -eq $true){
+        try {
+            Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\start.bat" -Wait -Verb RunAs
+        }
+        catch {
+            $_ | Out-File "$($installerPath)\Logs\startEPM.Error.log" -Append
+            Get-Content "$($installerPath)\Logs\startEPM.Error.log" | Write-Host -ForegroundColor Red
+            Read-Host "Click enter to exit"
+            Exit
+        }
+        if($validate -eq $true){
+            try {
+                Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\validate.bat" -Wait -Verb RunAs
+            }
+            catch {
+                $_ | Out-File "$($installerPath)\Logs\validate.Error.log" -Append
+                Get-Content "$($installerPath)\Logs\validate.Error.log" | Write-Host -ForegroundColor Red
+                Read-Host "Click enter to exit"
+                Exit
+            }
+        }
     }
 
 #endregion

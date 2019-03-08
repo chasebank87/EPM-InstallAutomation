@@ -10,7 +10,7 @@
     <bean name="main">
       <bean name="applicationServerDeployment">
         <bean name="WebLogic 10">
-          <property name="adminHost">$($fqdn)</property>
+          <property name="adminHost">$($wlHost)</property>
           <property name="adminPassword">$($password)</property>
           <property name="adminPort">$($wlPort)</property>
           <property name="adminUser">$($wlAdmin)</property>
