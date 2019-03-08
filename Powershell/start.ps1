@@ -81,15 +81,21 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$strategic,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$startEPM,
-    [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
-#region parse silent params
+#region parse silent params and validate
 
     if($superSilentAll.IsPresent -eq $true){
         $superSilentInstall = $true
         $superSilentConfig = $true
+    }
+
+    if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\d+.*" -or $wkspcAdminPassword -notmatch ".*\w+.*"){
+       Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
+       Read-Host "Click enter to exit"
+       exit
     }
 
 #endregion

@@ -326,19 +326,24 @@
                 Write-Host ""
                 #Write-Host ""
                 Write-Host "Type Quit to Exit the Installer" -ForegroundColor Yellow
-                $inputWrkspcAdmin = Read-Host
                 Write-Host "============================================"
+                $inputWrkspcAdmin = Read-Host
                 if ($inputWrkspcAdmin -like "*quit*") {Exit}
+                while($inputWrkspcPassword.Length -lt 8 -or $inputWrkspcPassword -notmatch ".*\d+.*" -or $inputWrkspcPassword -notmatch ".*\w+.*"){
                 Write-Host ""
-                Write-Host ""
+                Write-Host "============================================"
                 Write-Host "What do you want your workspace admin password"
                 Write-Host "to be?"
                 Write-Host ""
                 Write-Host "Type Quit to Exit the Installer" -ForegroundColor Yellow
-                $inputWrkspcPassword = Read-Host
-                Write-Host "============================================"
-                if ($inputWrkspcPassword -like "*quit*") {Exit}
-            
+                    Write-Host "============================================"
+                    $inputWrkspcPassword = Read-Host
+                    if($inputWrkspcPassword -like "*quit*") {Exit}
+                    if($inputWrkspcPassword.Length -lt 8 -or $inputWrkspcPassword -notmatch ".*\d+.*" -or $inputWrkspcPassword -notmatch ".*\w+.*"){
+                        Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
+                        Read-Host "Click enter to retry"
+                    }
+                }
             }
 
             if($break){Clear-Variable break}
