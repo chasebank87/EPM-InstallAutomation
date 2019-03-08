@@ -28,6 +28,99 @@ The goal of this utility was to make the installation and configuration of Hyper
    * From the powershell folder in the InstallAutomation path and right click start.ps1, and run with powershell.
 4. Follow the prompts
 
+### Command Line Options:
+
+Use only one of the following main options: -superSilentInstall, -superSilentConfig, -superSilentAll. To do a silent config, and install use the -superSilentAll option and all of its required and optional options. If you want to do just a silent install use the -superSilentInstall and all of its required options and optional options. Do the same thing for a silent configuration. If you specify a database for any of the modules the utility will configure that module. If a database name is not specified for a module that module will not be configured.
+
+  #### -superSilentInstall
+      * Required Sub Options:
+          * -install7zip ($true | $false)
+          * -installNotepadPlus ($true | $false)
+          * -installFirefox ($true | $false)
+          * -installEPM ($true | $false)
+          * -epmPath (String | Example: C:\Oracle\Middleware)
+          * -installFoundation ($true | $false)
+          * -installEssbase ($true | $false)
+          * -installRAF ($true | $false)
+          * -installPlanning ($true | $false)
+          * -installDisclosure ($true | $false)
+          * -installHFM ($true | $false)
+          * -installFDM ($true | $false)
+          * -installProfit ($true | $false)
+          * -installFCM ($true | $false)
+          * -installTax ($true | $false)
+          * -installStrategic ($true | $false)
+  #### -superSilentConfig
+      * Required Sub Options:
+          * -dbServer (String | Example: server.domain.local)
+          * -dbPort (String | Example: 1433)
+          * -dbUser (String | Example: Hypadmin)
+          * -dbpassword (String | Example: password!)
+          * -wkspcAdmin (String | Example: Admin)
+          * -wkspcAdminPassword (String | Example: password!)
+          * -wkspcPort (String | Example: 19000)
+          * -weblogicAdmin (String | Example: epm_admin)
+          * -weblogicPort (String | Example: 7001)
+          * -weblogicHostname (String | Example: server.domain.local)
+          * -epmDomain (String | Example: EPMSystem)
+          * -strategic ($true | $false)
+      * Optional Sub Options:
+          * -foundationDB (String | Example: EPMS_FND)
+          * -epmaDB (String | Example: EPMS_BPM)
+          * -calcDB (String | Example: EPMS_CAL)
+          * -essbaseDB (String | Example: EPMS_ESB)
+          * -rafDB (String | Example: EPMS_RAF)
+          * -planningDB (String | Example: EPMS_PLN)
+          * -disclosureDB (String | Example: EPMS_DMA)
+          * -hfmDB (String | Example: EPMS_HFM)
+          * -fdmDB (String | Example: EPMS_FDM)
+          * -profitDB (String | Example: EPMS_PCM)
+          * -startEPM ($true | $false)
+          * -validate ($true | $false)
+   #### -superSilentAll
+       * Required Sub Options:
+          * -install7zip ($true | $false)
+          * -installNotepadPlus ($true | $false)
+          * -installFirefox ($true | $false)
+          * -installEPM ($true | $false)
+          * -epmPath (String | Example: C:\Oracle\Middleware)
+          * -installFoundation ($true | $false)
+          * -installEssbase ($true | $false)
+          * -installRAF ($true | $false)
+          * -installPlanning ($true | $false)
+          * -installDisclosure ($true | $false)
+          * -installHFM ($true | $false)
+          * -installFDM ($true | $false)
+          * -installProfit ($true | $false)
+          * -installFCM ($true | $false)
+          * -installTax ($true | $false)
+          * -installStrategic ($true | $false)
+          * -dbServer (String | Example: server.domain.local)
+          * -dbPort (String | Example: 1433)
+          * -dbUser (String | Example: Hypadmin)
+          * -dbpassword (String | Example: password!)
+          * -wkspcAdmin (String | Example: Admin)
+          * -wkspcAdminPassword (String | Example: password!)
+          * -wkspcPort (String | Example: 19000)
+          * -weblogicAdmin (String | Example: epm_admin)
+          * -weblogicPort (String | Example: 7001)
+          * -weblogicHostname (String | Example: server.domain.local)
+          * -epmDomain (String | Example: EPMSystem)
+          * -strategic ($true | $false)
+       * Optional Sub Options:
+          * -foundationDB (String | Example: EPMS_FND)
+          * -epmaDB (String | Example: EPMS_BPM)
+          * -calcDB (String | Example: EPMS_CAL)
+          * -essbaseDB (String | Example: EPMS_ESB)
+          * -rafDB (String | Example: EPMS_RAF)
+          * -planningDB (String | Example: EPMS_PLN)
+          * -disclosureDB (String | Example: EPMS_DMA)
+          * -hfmDB (String | Example: EPMS_HFM)
+          * -fdmDB (String | Example: EPMS_FDM)
+          * -profitDB (String | Example: EPMS_PCM)
+          * -startEPM ($true | $false)
+          * -validate ($true | $false)
+          
 ### Features:
 
 1. Super Silent Install
