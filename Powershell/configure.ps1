@@ -1031,7 +1031,7 @@ if($inputEPMADB -eq $null) {
     [System.IO.File]::WriteAllLines("$($installerPath)\Temp\silentConfigure", $silentConfigureFile, $Utf8NoBomEncoding)
 
     try {
-    Write-Host "Configuring EPM. This may take 10 - 20 Minutes." -ForegroundColor Cyan
+    Write-Host "Configuring EPM. This may take 30 - 45 Minutes." -ForegroundColor Cyan
     Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\config\11.1.2.0\configtool.bat" -Wait -ArgumentList "-silent $($installerPath)\Temp\silentConfigure" -Verb RunAs
     }
     catch {
