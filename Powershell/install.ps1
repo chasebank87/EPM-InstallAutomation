@@ -747,7 +747,7 @@
                     switch(Read-Host "Would you like to configure EPM now? Y or N"){
                         "Y" {
                             ""
-                            Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
+                            Write-Host "Starting $($epmStatus.name) configuration procedure" -ForegroundColor Cyan
                             Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
                             $break = 'break'
                             }

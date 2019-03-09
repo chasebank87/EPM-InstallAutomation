@@ -1047,6 +1047,7 @@ if($inputEPMADB -eq $null) {
 
     if($startEPM -eq $true){
         try {
+            Write-Host "Starting EPM." -ForegroundColor Cyan
             Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\start.bat" -Wait -Verb RunAs
         }
         catch {
@@ -1057,6 +1058,7 @@ if($inputEPMADB -eq $null) {
         }
         if($validate -eq $true){
             try {
+                Write-Host "Validating EPM." -ForegroundColor Cyan
                 Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\validate.bat" -Wait -Verb RunAs
             }
             catch {

@@ -49,9 +49,9 @@
       <bean name="customConfiguration">
         <property name="AdminEmail"></property>
         <property name="adminPassword">Daisygirl!</property>
-        <property name="adminUserName">19000</property>
+        <property name="adminUserName">admin</property>
         <property name="common_lwa_host">WIN-8MD9SMM692R.momo.local</property>
-        <property name="common_lwa_port"></property>
+        <property name="common_lwa_port">7001</property>
         <property name="common_lwa_set">true</property>
         <property name="common_lwa_ssl_port">19443</property>
         <property name="enable_SMTPServer_Authentication"></property>
@@ -79,10 +79,10 @@
         <property name="displayVersion">11.1.1.7</property>
         <bean name="OracleHTTPserver">
           <property name="path">c:\Oracle\Middleware\ohs</property>
-          <property name="port"></property>
+          <property name="port">7001</property>
           <property name="useSSL">false</property>
         </bean>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
         <property name="sharedLocation">use_local_instance</property>
       </bean>
@@ -151,7 +151,7 @@
       <bean name="httpServerConfiguration">
         <property name="contextRoot">workspace</property>
         <property name="host">null</property>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
       </bean>
       <bean name="lwaConfiguration">
@@ -652,7 +652,7 @@
       <bean name="httpServerConfiguration">
         <property name="contextRoot">workspace</property>
         <property name="host">null</property>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
       </bean>
       <bean name="lwaConfiguration">
@@ -720,7 +720,7 @@
       <bean name="httpServerConfiguration">
         <property name="contextRoot">workspace</property>
         <property name="host">null</property>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
       </bean>
       <bean name="lwaConfiguration">
@@ -1002,9 +1002,9 @@
       <bean name="customConfiguration">
         <property name="AdminEmail"></property>
         <property name="adminPassword">Daisygirl!</property>
-        <property name="adminUserName">19000</property>
+        <property name="adminUserName">admin</property>
         <property name="common_lwa_host">WIN-8MD9SMM692R.momo.local</property>
-        <property name="common_lwa_port"></property>
+        <property name="common_lwa_port">7001</property>
         <property name="common_lwa_set">true</property>
         <property name="common_lwa_ssl_port">19443</property>
         <property name="enable_SMTPServer_Authentication"></property>
@@ -1032,10 +1032,10 @@
         <property name="displayVersion">11.1.1.7</property>
         <bean name="OracleHTTPserver">
           <property name="path">c:\Oracle\Middleware\ohs</property>
-          <property name="port"></property>
+          <property name="port">7001</property>
           <property name="useSSL">false</property>
         </bean>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
         <property name="sharedLocation">use_local_instance</property>
       </bean>
@@ -1104,7 +1104,7 @@
       <bean name="httpServerConfiguration">
         <property name="contextRoot">workspace</property>
         <property name="host">null</property>
-        <property name="port"></property>
+        <property name="port">7001</property>
         <property name="protocol">http</property>
       </bean>
       <bean name="lwaConfiguration">
