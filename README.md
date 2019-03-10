@@ -9,6 +9,7 @@ The goal of this utility was to make the installation and configuration of Hyper
 1. Oracle DB is not ___currently___ supported
 2. SOA is not ___currently___ supported
 3. Individual database usernames are not ___currently___ supported
+4. 11.1.2.4 Only version __currently__ supported
 
 ### Requirements:
 
