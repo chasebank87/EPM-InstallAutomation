@@ -85,6 +85,27 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
+#region check current directory
+
+    $currentPath = pwd
+    $currentPathChildItems = Get-ChildItem -Path $currentPath
+    if($currentPathChildItems.name -notcontains "start.ps1" -and $currentPathChildItems.name -notcontains "install.ps1" -and $currentPathChildItems.name -notcontains "configure.ps1") {
+        Write-Host "Working directory is incorrect. Please start script from the powershell folder in the utility directory." -ForegroundColor Red
+        Read-Host "Press enter to exit"
+        Exit
+    } else {
+        Write-Host "Working directory is correct. Continuing.." -ForegroundColor Green
+        $installerPath = "$currentPath\..\"
+    }
+
+#endregion
+
+#region start transcript
+
+    Start-Transcript -Path "$($installerPath)\Logs\transcript.log"
+
+#endregion
+
 #region test if ran as admin
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -93,7 +114,7 @@ Param (
         Read-Host "Click enter to exit."
         exit
     } else {
-        Write-Host "Utillity running as administrator. Continuing.." -ForegroundColor Green
+        Write-Host "Utility running as administrator. Continuing.." -ForegroundColor Green
     }
 
 #endregion
@@ -147,21 +168,6 @@ Param (
 
 #endregion
 
-#region check current directory
-
-    $currentPath = pwd
-    $currentPathChildItems = Get-ChildItem -Path $currentPath
-    if($currentPathChildItems.name -notcontains "start.ps1" -and $currentPathChildItems.name -notcontains "install.ps1" -and $currentPathChildItems.name -notcontains "configure.ps1") {
-        Write-Host "Working directory is incorrect. Please start script from the powershell folder in the utility directory." -ForegroundColor Red
-        Read-Host "Press enter to exit"
-        Exit
-    } else {
-        Write-Host "Working directory is correct. Continuing.." -ForegroundColor Green
-        $installerPath = "$currentPath\..\"
-    }
-
-#endregion
-
 #region increase powershell memory limit
     
     $currentPSMemoryLimit = Get-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB
@@ -171,6 +177,30 @@ Param (
         Set-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB 6144
         Set-Item WSMan:\localhost\Plugin\Microsoft.PowerShell\Quotas\MaxMemoryPerShellMB 6144
         Restart-Service -Name WinRM -Verbose
+    }
+
+#endregion
+
+#region install .net framework 3.5
+
+    $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
+    if($netFrameworkInstall.Installed -ne $true){
+        Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
+        Install-WindowsFeature -Name Net-Framework-Core -Source "$($installerPath)\SXS"
+    } else {
+        Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
+    }
+
+#endregion
+
+#region install iis
+
+    $iisInstall = Get-WindowsFeature -Name Web-server
+    if($iisInstall.Installed -ne $true){ 
+        Write-Host "IIS is not installed. Installing now.." -ForegroundColor Cyan
+        Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
+    } else {
+        Write-Host "IIS is already installed. Continuing" -ForegroundColor Green
     }
 
 #endregion
@@ -266,6 +296,7 @@ Param (
 #endregion
 
 #region prompt user
+
     if(!$superSilentInstall){
         $softwareStatus = @($7zipStatus,$firefoxStatus,$notepadStatus)
         foreach($j in $softwareStatus){
@@ -370,6 +401,7 @@ Param (
             Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1"
         }
     }
+
 #endregion
 
 #region cleanup variables
@@ -378,5 +410,11 @@ Param (
         Clear-Variable break
     }
     Clear-Variable 7zipStatus,firefoxStatus,notepadStatus,epmStatus
+
+#endregion
+
+#region stop transcript
+
+    Stop-Transcript
 
 #endregion
