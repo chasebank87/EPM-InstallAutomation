@@ -13,9 +13,7 @@ The goal of this utility was to make the installation and configuration of Hyper
 
 ### Requirements:
 
-1. IIS must be installed manually before running utility
-2. .Net Framework 3.5 must be installed manually before running utility
-3. Logged in as a local Administrator
+1. Logged in as a local Administrator
 
 ### Steps:
 
@@ -123,7 +121,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -profitDB (String | Example: EPMS_PCM)
           * -startEPM ($true | $false)
           * -validate ($true | $false)
-          
+
 ### Features:
 
 1. Super Silent Install
@@ -133,8 +131,8 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
     
 ```bash
 .\start.ps1 -superSilentAll -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath <path> -installFoundation $true -installEssbase $true -installRAF $true -installPlanning $true -installDisclosure $true -installHFM $true -installfdm $true -installProfit $true -installFCM $false -installTax $false -installStrategic $true -dbServer <hostname> -dbPort <port> -dbUser <user> -dbPassword <password> -wkspcAdmin <user> -wkspcAdminPassword <password> -weblogicAdmin <user> -weblogicPort <port> -weblogicHostname <hostname> -wkspcPort <port> -epmDomain <domain> -foundationDB <db> -epmaDB <db>  -calcDB <db>  -essbaseDB <db>  -rafDB <db> -planningDB <db> -disclosureDB <db> -hfmDB <db> -fdmDB <db> -profitDB <db> -strategic $true
- ```  
-    
+```
+
 
 
 ```bash
