@@ -85,21 +85,6 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
-#region parse silent params and validate
-
-    if($superSilentAll.IsPresent -eq $true){
-        $superSilentInstall = $true
-        $superSilentConfig = $true
-    }
-
-    if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\w+.*" -or $wkspcAdminPassword -notmatch '[^a-zA-Z]|.*\d+.*'){
-       Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
-       Read-Host "Click enter to exit"
-       exit
-    }
-
-#endregion
-
 #region test if ran as admin
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -109,6 +94,70 @@ Param (
         exit
     } else {
         Write-Host "Utillity running as administrator. Continuing.." -ForegroundColor Green
+    }
+
+#endregion
+
+#region check execution policy
+
+    $executionPolicy = Get-ExecutionPolicy
+    if($executionPolicy -ne 'RemoteSigned'){
+        Write-Host "Execution Policy is not set correctly. Changing to RemoteSigned.." -ForegroundColor Cyan
+        Set-ExecutionPolicy RemoteSigned -Force
+    } else {
+        Write-Host "Execution Policy is correct. Continuing" -ForegroundColor Green
+    }
+
+#endregion
+
+#region parse silent params and validate
+
+    if($superSilentAll.IsPresent -eq $true){
+        $superSilentInstall = $true
+        $superSilentConfig = $true
+    }
+
+    if($superSilentAll.IsPresent -eq $true -or $superSilentInstall.IsPresent -eq $true -or $superSilentConfig -eq $true){
+        if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\w+.*" -or $wkspcAdminPassword -notmatch '[^a-zA-Z]|.*\d+.*'){
+           Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
+           Read-Host "Click enter to exit"
+           exit
+        }
+    }
+
+#endregion
+
+#region check if UAC is disabled
+   
+    $uacSetting = Get-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin
+    if($uacSetting.ConsentPromptBehaviorAdmin -ne 0){
+        Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
+        Write-Host "UAC is not disabled. Disabling now... Reboot required to commit change. Please rerun utility after your server restarts." -ForegroundColor Cyan
+        $restartPrompt = Read-Host "Restart (Y or N)"
+        if($restartPrompt -like '*y*'){
+            Write-Host "Restarting server.." -ForegroundColor Cyan
+            Restart-Computer
+        } elseif($restartPrompt -like '*n*'){
+            Write-Host "Exiting.." -ForegroundColor Cyan
+            Exit
+        }
+    } else {
+        Write-Host "UAC is already disabled. Continuing.." -ForegroundColor Green
+    }
+
+#endregion
+
+#region check current directory
+
+    $currentPath = pwd
+    $currentPathChildItems = Get-ChildItem -Path $currentPath
+    if($currentPathChildItems.name -notcontains "start.ps1" -and $currentPathChildItems.name -notcontains "install.ps1" -and $currentPathChildItems.name -notcontains "configure.ps1") {
+        Write-Host "Working directory is incorrect. Please start script from the powershell folder in the utility directory." -ForegroundColor Red
+        Read-Host "Press enter to exit"
+        Exit
+    } else {
+        Write-Host "Working directory is correct. Continuing.." -ForegroundColor Green
+        $installerPath = "$currentPath\..\"
     }
 
 #endregion
@@ -128,8 +177,8 @@ Param (
 
 #region set mainVariables and mainFunctions
 
-    . 'C:\InstallAutomation\Variables\mainVariables.ps1'
-    . 'C:\InstallAutomation\Functions\mainfunctions.ps1'
+    . "$($installerPath)\Variables\mainVariables"
+    . "$($installerPath)\Functions\mainfunctions.ps1"
 
 #endregion
 

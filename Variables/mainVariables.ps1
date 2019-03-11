@@ -1,6 +1,5 @@
 ﻿#region variables
-    
-    $installerPath = "C:\InstallAutomation"
+
     $7zip = "C:\Program Files\7-Zip\7z.exe"
     $timestamp = Get-Date -Format MM-dd-yyyy-h:m:ss
     $computername = (Get-WmiObject Win32_ComputerSystem).name

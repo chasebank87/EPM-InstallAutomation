@@ -1,7 +1,7 @@
 ﻿#region set mainVariables and mainFunctions
 
-    . 'C:\InstallAutomation\Variables\mainVariables.ps1'
-    . 'C:\InstallAutomation\Functions\mainfunctions.ps1'
+    . "$($installerPath)\Variables\mainVariables"
+    . "$($installerPath)\Functions\mainfunctions.ps1"
 
 #endregion
 
