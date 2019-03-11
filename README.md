@@ -16,7 +16,6 @@ The goal of this utility was to make the installation and configuration of Hyper
 1. IIS must be installed manually before running utility
 2. .Net Framework 3.5 must be installed manually before running utility
 3. Logged in as a local Administrator
-4. UAC disabled
 
 ### Steps:
 
