@@ -20,12 +20,11 @@ The goal of this utility was to make the installation and configuration of Hyper
 ### Steps:
 
 1. Clone this repository to a folder on your server(s)
-2. Edit the variables.ps1 file in the Variables folder
-   * Update the $installerPath variable to the directory you cloned the repository (ex. C:\InstallAutomation)
-
-3. Edit the start.ps1, install.ps1, configure.ps1
-   * Update the top region where we call our global functions and variables files
-   * From the powershell folder in the InstallAutomation path and right click start.ps1, and run with powershell.
+2. Open Powershell as Administrator
+3. Browse to utility powershell path
+  * Example: cd c:\InstallAutomation\Powershell
+4. Run start.ps1
+  * Example: .\start.ps1
 4. Follow the prompts
 
 ### Command Line Options:
