@@ -22,9 +22,13 @@ The goal of this utility was to make the installation and configuration of Hyper
 1. Clone this repository to a folder on your server(s)
 2. Open Powershell as Administrator
 3. Browse to utility powershell path
-  * Example: cd c:\InstallAutomation\Powershell
+  ```
+  cd c:\InstallAutomation\Powershell
+  ```
 4. Run start.ps1
-  * Example: .\start.ps1
+  ```
+  .\start.ps1
+  ```
 4. Follow the prompts
 
 ### Command Line Options:
