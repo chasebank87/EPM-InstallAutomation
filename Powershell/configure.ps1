@@ -799,7 +799,7 @@
             if($break){Clear-Variable break}
         } elseif($superSilentConfig -and $superSilentConfig -eq $true){
             $inputWrkspcPassword = $wkspcAdminPassword
-            $inputWrkspcPort = $weblogicPort
+            $inputWrkspcPort = $wkspcPort
             $inputWeblogicPort = $weblogicPort
             $inputWeblogicHostname = $weblogicHostname
             $inputWeblogicAdmin = $weblogicAdmin
@@ -865,6 +865,9 @@
     }
     if($configFoundation -ne $false){
         $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\aps" -Raw
+        $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
+    } else {
+        $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\apsDistributed" -Raw
         $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
     }
     if($configEPMA -ne $false){
