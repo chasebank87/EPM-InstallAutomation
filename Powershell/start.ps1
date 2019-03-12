@@ -60,6 +60,8 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$foundationDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$distributedEssbase,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$isolated,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
@@ -150,6 +152,10 @@ Param (
 
     if($isolated -eq $true){
         $configFoundation = $false
+    }
+
+    if($distributedEssbase -eq $true){
+        $configEssbase = $false
     }
 
     if(!$epmaDB){
