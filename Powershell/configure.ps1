@@ -1,4 +1,4 @@
-﻿#region set mainVariables and mainFunctions
+#region set mainVariables and mainFunctions
 
     . "$($installerPath)\Variables\mainVariables"
     . "$($installerPath)\Functions\mainfunctions.ps1"
@@ -859,35 +859,35 @@
 
     #region configure EPM variables
 
-    if($foundationDB -ne $null){
+    if($configFoundation -ne $false){
         $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\foundation" -Raw
         $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
     }
-    if($foundationDB -ne $null){
+    if($configFoundation -ne $false){
         $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\aps" -Raw
         $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
     }
-    if($bpmaDB -ne $null){
+    if($configEPMA -ne $false){
         $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\epma" -Raw
         $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
     }
-    if($esbDB -ne $null){
+    if($configEssbase -ne $false){
         $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbaseStudio" -Raw
         $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
     }
-    if($calcDB -ne $null){
+    if($configCALC -ne $false){
         $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\calc" -Raw
         $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
     }
-    if($disclosureDB -ne $null){
+    if($configDisclosure -ne $false){
         $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\disclosure" -Raw
         $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
     }
-    if($easDB -ne $null){
+    if($configEssbase -ne $false){
         $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\eas" -Raw
         $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
     }
-    if($esbDB -ne $null){
+    if($configEssbase -ne $false){
         $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbase" -Raw
         $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
     }
@@ -895,27 +895,27 @@
         $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\strategic" -Raw
         $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
     }
-    if($plnDB -ne $null){
+    if($configPlanning -ne $false){
         $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\planning" -Raw
         $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
     }
-    if($profDB -ne $null){
+    if($configProfit -ne $false){
         $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\profit" -Raw
         $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
     }
-    if($rafDB -ne $null){
+    if($configRAF -ne $false){
         $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\raf" -Raw
         $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
     }
-    if($foundationDB -ne $null){
+    if($configFoundation -ne $false){
         $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\workspace" -Raw 
         $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
     }
-    if($fdmDB -ne $null){
+    if($configFDM -ne $false){
         $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\fdm" -Raw 
         $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
     }
-    if($hfmDB -ne $null){
+    if($configHFM -ne $false){
         $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\hfm" -Raw
         $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
     }
@@ -1032,7 +1032,7 @@ if($inputEPMADB -eq $null) {
 
     try {
     Write-Host "Configuring EPM. This may take 30 - 45 Minutes." -ForegroundColor Cyan
-    Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\config\11.1.2.0\configtool.bat" -Wait -ArgumentList "-silent $($installerPath)\Temp\silentConfigure" -Verb RunAs
+    Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\config\11.1.2.0\configtool.bat" -Wait -ArgumentList "-silent $($installerPath)\Temp\silentConfigure" -Verb RunAs -Verbose
     }
     catch {
         $_ | Out-File "$($installerPath)\Logs\configTool.Error.log" -Append
@@ -1048,7 +1048,7 @@ if($inputEPMADB -eq $null) {
     if($startEPM -eq $true){
         try {
             Write-Host "Starting EPM." -ForegroundColor Cyan
-            Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\start.bat" -Wait -Verb RunAs
+            Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\start.bat" -Wait -Verb RunAs -Verbose
         }
         catch {
             $_ | Out-File "$($installerPath)\Logs\startEPM.Error.log" -Append
@@ -1059,7 +1059,7 @@ if($inputEPMADB -eq $null) {
         if($validate -eq $true){
             try {
                 Write-Host "Validating EPM." -ForegroundColor Cyan
-                Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\validate.bat" -Wait -Verb RunAs
+                Start-Process -FilePath "$($epmInstallPath)\user_projects\epmsystem1\bin\validate.bat" -Wait -Verb RunAs -Verbose
             }
             catch {
                 $_ | Out-File "$($installerPath)\Logs\validate.Error.log" -Append
