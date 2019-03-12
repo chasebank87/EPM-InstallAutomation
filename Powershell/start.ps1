@@ -1,4 +1,4 @@
-﻿[CmdletBinding(DefaultParametersetName='none')] 
+[CmdletBinding(DefaultParametersetName='none')] 
 Param (
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [switch]$superSilentInstall,
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$superSilentConfig,
@@ -146,6 +146,43 @@ Param (
         }
     }
 
+    if(!$foundationDB){
+        $configFoundation = $false
+    }
+
+    if(!$epmaDB){
+        $configEPMA = $false
+    }
+
+    if(!$calcDB){
+        $configCALC = $false
+    }
+
+    if(!$essbaseDB){
+        $configEssbase = $false
+    }
+
+    if(!$rafDB){
+        $configRAF = $false
+    }
+
+    if(!$planningDB){
+        $configPlanning = $false
+    }
+
+    if(!$disclosureDB){
+        $configDisclosure = $false
+    }
+    if(!$hfmDB){
+        $configHFM = $false
+    }
+    if(!$fdmDB){
+        $configFDM = $false
+    }
+    if(!$profitDB){
+        $configProfit = $false
+    }
+    
 #endregion
 
 #region check if UAC is disabled
@@ -345,7 +382,7 @@ Param (
                     "Y" {
                         ""
                         Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
-                        Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
+                        Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1" -Verbose
                         $break = 'break'
                     }
                     "N" {
@@ -370,7 +407,7 @@ Param (
                     "Y" {
                         ""
                         Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
-                        Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1"
+                        Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
                         $break = 'break'
                     }
                     "N" {
@@ -400,7 +437,7 @@ Param (
         }
         if($installEPM -eq $true){
             Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
-            Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1"
+            Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
         }
     }
 
