@@ -122,9 +122,9 @@ Param (
 #region check execution policy
 
     $executionPolicy = Get-ExecutionPolicy
-    if($executionPolicy -ne 'RemoteSigned'){
-        Write-Host "Execution Policy is not set correctly. Changing to RemoteSigned.." -ForegroundColor Cyan
-        Set-ExecutionPolicy RemoteSigned -Force
+    if($executionPolicy -ne 'Unrestricted'){
+        Write-Host "Execution Policy is not set correctly. Changing to Unrestricted.." -ForegroundColor Cyan
+        Set-ExecutionPolicy Unrestricted -Force
     } else {
         Write-Host "Execution Policy is correct. Continuing" -ForegroundColor Green
     }
@@ -206,8 +206,10 @@ Param (
 #endregion
 
 #region set mainVariables and mainFunctions
-
-    . "$($installerPath)\Variables\mainVariables"
+    
+    Unblock-File -Path "$($installerPath)\Variables\mainVariables.ps1"
+    Unblock-File -Path "$($installerPath)\Functions\mainfunctions.ps1"
+    . "$($installerPath)\Variables\mainVariables.ps1"
     . "$($installerPath)\Functions\mainfunctions.ps1"
 
 #endregion
