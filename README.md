@@ -107,9 +107,10 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -weblogicPort (String | Example: 7001)
           * -weblogicHostname (String | Example: server.domain.local)
           * -epmDomain (String | Example: EPMSystem)
-          * -strategic ($true | $false)
-       * Optional Sub Options:
           * -foundationDB (String | Example: EPMS_FND)
+          * -strategic ($true | $false)
+          * -isolated ($true | $false)
+       * Optional Sub Options:
           * -epmaDB (String | Example: EPMS_BPM)
           * -calcDB (String | Example: EPMS_CAL)
           * -essbaseDB (String | Example: EPMS_ESB)
