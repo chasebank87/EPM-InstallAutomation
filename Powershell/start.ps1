@@ -57,8 +57,10 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$wkspcPort,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$epmDomain,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$foundationDB,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$foundationDB,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$isolated,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
@@ -146,7 +148,7 @@ Param (
         }
     }
 
-    if(!$foundationDB){
+    if($isolated -eq $true){
         $configFoundation = $false
     }
 
