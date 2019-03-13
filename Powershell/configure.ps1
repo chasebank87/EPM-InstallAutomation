@@ -938,8 +938,7 @@
 
     if($inputCALCDB -eq $null -and $inputEPMADB -eq $null) {
 
-    $data = "
-  $($headerConfigureSilent)
+    $data = "$($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmsConfigureSilent)
@@ -959,8 +958,7 @@
 
 if($inputCALCDB -eq $null) {
 
-    $data = "
-  $($headerConfigureSilent)
+    $data = "$($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmaConfigureSilent)
@@ -982,8 +980,7 @@ $data
 
 if($inputEPMADB -eq $null) {
 
-    $data = "
-  $($headerConfigureSilent)
+    $data = "$($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmsConfigureSilent)
@@ -1002,8 +999,7 @@ if($inputEPMADB -eq $null) {
 "
 }
 
-    $data = "
-  $($headerConfigureSilent)
+    $data = "$($headerConfigureSilent)
   $($fndConfigureSilent)
   $($bpmsConfigureSilent)
   $($disclosureConfigureSilent)
