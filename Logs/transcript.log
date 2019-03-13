@@ -1,0 +1,167 @@
+**********************
+Windows PowerShell transcript start
+Start time: 20190312204351
+Username: ESSBASE\Administrator
+RunAs User: ESSBASE\Administrator
+Machine: ESSBASE (Microsoft Windows NT 6.3.9600.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2828
+**********************
+Transcript started, output file is C:\EPM\EPMSilent-InstallAutomation-master\Powershell\..\\Logs\transcript.log
+
+PS>TerminatingError(Add-Type): "The file or directory is corrupted and unreadable.
+"
+Chocolatey v0.10.11
+Uninstalling the following packages:
+7zip
+[NuGet] 'chocolatey-core.extension 1.3.3' skipped, because it is in use by 'Firefox 65.0.2, notepadplusplus.install 7.6.
+4'.
+
+7zip v19.0
+ Skipping auto uninstaller - No registry snapshot.
+ 7zip has been successfully uninstalled.
+
+7zip.install v19.0
+Uninstalling 7zip.install...
+0
+7zip.install has been uninstalled.
+Removing bash file C:\ProgramData\chocolatey\bin\7z.exe which pointed to 'c:\program files\7-zip\uninstall.exe'.
+ Running auto uninstaller...
+ Skipping auto uninstaller - '7-Zip 19.00 (x64)' appears to have been uninstalled already by other means.
+ 7zip.install has been successfully uninstalled.
+
+Chocolatey uninstalled 2/2 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Installing the following packages:
+7zip
+By installing you accept licenses for the packages.
+Progress: Downloading 7zip 19.0... 100%
+
+7zip.install v19.0 (forced) [Approved]
+7zip.install package files install completed. Performing other installation steps.
+Installing 64 bit version
+Installing 7zip.install...
+7zip.install has been installed.
+7zip installed to 'C:\Program Files\7-Zip'
+WARNING: An error occurred generating shim, using old method.
+Adding C:\ProgramData\chocolatey\bin\7z.bat and pointing to '%DIR%c:\program files\7-zip\7z.exe'.
+Adding C:\ProgramData\chocolatey\bin\7z and pointing to '%DIR%c:\program files\7-zip\7z.exe'.
+ERROR: The file or directory is corrupted and unreadable.
+
+  7zip.install may be able to be automatically uninstalled.
+The install of 7zip.install was NOT successful.
+Error while running 'C:\ProgramData\chocolatey\lib\7zip.install\tools\chocolateyInstall.ps1'.
+ See log for details.
+This is try 1/3. Retrying after 300 milliseconds.
+ Error converted to warning:
+ (1392) The file or directory is corrupted and unreadable: [\\?\C:\ProgramData\chocolatey\lib-bad]
+7zip not installed. An error occurred during installation:
+ The file or directory is corrupted and unreadable.
+
+7zip package files install completed. Performing other installation steps.
+The install of 7zip was NOT successful.
+7zip not installed. An error occurred during installation:
+ The file or directory is corrupted and unreadable.
+
+
+Chocolatey installed 0/2 packages. 2 packages failed.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+Failures
+ - 7zip (exited 1) - 7zip not installed. An error occurred during installation:
+ The file or directory is corrupted and unreadable.
+
+ - 7zip.install (exited -1) - Error while running 'C:\ProgramData\chocolatey\lib\7zip.install\tools\chocolateyInstall.ps
+1'.
+ See log for details.
+Chocolatey v0.10.11
+Uninstalling the following packages:
+notepadplusplus
+[NuGet] 'chocolatey-core.extension 1.3.3' skipped, because it is in use by 'Firefox 65.0.2'.
+
+notepadplusplus v7.6.4
+ Skipping auto uninstaller - No registry snapshot.
+ notepadplusplus has been successfully uninstalled.
+
+notepadplusplus.install v7.6.4
+Uninstalling notepadplusplus.install...
+0
+notepadplusplus.install has been uninstalled.
+ Running auto uninstaller...
+ Skipping auto uninstaller - 'Notepad++ (64-bit x64)' appears to have been uninstalled already by other means.
+ notepadplusplus.install has been successfully uninstalled.
+
+Chocolatey uninstalled 2/2 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Installing the following packages:
+notepadplusplus
+By installing you accept licenses for the packages.
+Progress: Downloading notepadplusplus 7.6.4... 100%
+
+notepadplusplus.install v7.6.4 (forced) [Approved]
+notepadplusplus.install package files install completed. Performing other installation steps.
+Installing 64-bit notepadplusplus.install...
+notepadplusplus.install has been installed.
+notepadplusplus.install installed to 'C:\Program Files\Notepad++'
+Added C:\ProgramData\chocolatey\bin\notepad++.exe shim pointed to 'c:\program files\notepad++\notepad++.exe'.
+  notepadplusplus.install may be able to be automatically uninstalled.
+ The install of notepadplusplus.install was successful.
+  Software installed as 'exe', install location is likely default.
+
+notepadplusplus v7.6.4 (forced) [Approved]
+notepadplusplus package files install completed. Performing other installation steps.
+ The install of notepadplusplus was successful.
+  Software install location not explicitly set, could be in package or
+  default install location if installer.
+
+Chocolatey installed 2/2 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Uninstalling the following packages:
+firefox
+[NuGet] 'chocolatey-core.extension 1.3.3' skipped, because it is in use by 'notepadplusplus.install 7.6.4'.
+
+Firefox v65.0.2
+Uninstalling Firefox...
+0
+Firefox has been uninstalled.
+WARNING: Auto Uninstaller may detect Mozilla Maintenance Service.
+WARNING: This should not be uninstalled if any other Mozilla product is installed.
+ Running auto uninstaller...
+ Skipping auto uninstaller - 'Mozilla Firefox 65.0.2 (x64 en-US)' appears to have been uninstalled already by other mean
+s.
+ Skipping auto uninstaller - 'Mozilla Maintenance Service' appears to have been uninstalled already by other means.
+ Firefox has been successfully uninstalled.
+
+Chocolatey uninstalled 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Installing the following packages:
+firefox
+By installing you accept licenses for the packages.
+Progress: Downloading Firefox 65.0.2... 100%
+
+Firefox v65.0.2 (forced) [Approved]
+firefox package files install completed. Performing other installation steps.
+Downloading Firefox 64 bit
+  from 'https://download.mozilla.org/?product=firefox-65.0.2-ssl&os=win64&lang=en-US'
+Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\chocolatey\Firefox\65.0.2\Firefox Setup
+ 65.0.2.exe (43.58 MB).
+Download of Firefox Setup 65.0.2.exe (43.58 MB) completed.
+Hashes match.
+Installing Firefox...
+Firefox has been installed.
+  firefox may be able to be automatically uninstalled.
+ The install of firefox was successful.
+  Software installed to 'C:\Program Files\Mozilla Firefox'
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+PS>TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."

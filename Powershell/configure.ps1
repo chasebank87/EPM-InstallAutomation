@@ -863,7 +863,7 @@
         $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\foundation" -Raw
         $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
     }
-    if($configEssbase -ne $false -or $distributedEssbase -ne $true){
+    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
         $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\aps" -Raw
         $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
     } 
@@ -871,7 +871,7 @@
         $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\epma" -Raw
         $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
     }
-    if($configEssbase -ne $false -or $distributedEssbase -ne $true){
+    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
         $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbaseStudio" -Raw
         $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
     }
@@ -883,14 +883,14 @@
         $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\disclosure" -Raw
         $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
     }
-    if($configEssbase -ne $false -or $distributedEssbase -ne $true){
+    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
         $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\eas" -Raw
         $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
     }
-    if($configEssbase -ne $false){
+    if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
         $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbase" -Raw
         $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
-    } elseif($configEssbase -eq $false -and $isolated -eq $true) {
+    } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
         $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbaseDistributed" -Raw
         $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
     }

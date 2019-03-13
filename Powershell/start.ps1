@@ -62,7 +62,7 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$distributedEssbase,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$isolated,
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$remoteDeployment,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
@@ -150,7 +150,7 @@ Param (
         }
     }
 
-    if($isolated -eq $true){
+    if($remoteDeployment -eq $true){
         $configFoundation = $false
     }
 
