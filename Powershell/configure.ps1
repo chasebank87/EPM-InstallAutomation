@@ -859,10 +859,10 @@
 
     #region configure EPM variables
 
-    if($remoteDeployment -eq $true){
+    if($remoteDeployment -and $remoteDeployment -eq $true){
         $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\headerRemote" -Raw
         $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
-    } else {
+    } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
         $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\header" -Raw
         $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
     }
