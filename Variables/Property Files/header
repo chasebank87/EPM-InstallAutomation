@@ -1,4 +1,4 @@
-<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <products>
   <instance>$($epmInstallPath)\user_projects\epmsystem1</instance>
   <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
