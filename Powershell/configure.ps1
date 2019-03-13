@@ -1002,11 +1002,8 @@ if($inputEPMADB -eq $null) {
 "
 }
 
-    $data = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>
-<products>
-  <instance>$($epmInstallPath)\user_projects\epmsystem1</instance>
-  <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
-  <auto_port_tick>true</auto_port_tick>
+    $data = "
+  $($headerConfigureSilent)
   $($fndConfigureSilent)
   $($bpmsConfigureSilent)
   $($disclosureConfigureSilent)
