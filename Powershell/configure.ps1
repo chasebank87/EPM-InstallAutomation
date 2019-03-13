@@ -859,6 +859,13 @@
 
     #region configure EPM variables
 
+    if($remoteDeployment -eq $true){
+        $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\headerRemote" -Raw
+        $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+    } else {
+        $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\header" -Raw
+        $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+    }
     if($configFoundation -ne $false){
         $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\foundation" -Raw
         $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
@@ -931,11 +938,8 @@
 
     if($inputCALCDB -eq $null -and $inputEPMADB -eq $null) {
 
-    $data = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>
-<products>
-  <instance>$($epmInstallPath)\user_projects\epmsystem1</instance>
-  <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
-  <auto_port_tick>true</auto_port_tick>
+    $data = "
+  $($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmsConfigureSilent)
@@ -955,11 +959,8 @@
 
 if($inputCALCDB -eq $null) {
 
-    $data = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>
-<products>
-  <instance>$($epmInstallPath)\user_projects\epmsystem1</instance>
-  <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
-  <auto_port_tick>true</auto_port_tick>
+    $data = "
+  $($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmaConfigureSilent)
@@ -981,11 +982,8 @@ $data
 
 if($inputEPMADB -eq $null) {
 
-    $data = "<?xml version=""1.0"" encoding=""UTF-8"" standalone=""no""?>
-<products>
-  <instance>$($epmInstallPath)\user_projects\epmsystem1</instance>
-  <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
-  <auto_port_tick>true</auto_port_tick>
+    $data = "
+  $($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmsConfigureSilent)
