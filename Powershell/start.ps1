@@ -59,10 +59,10 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$epmDomain,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$foundationDB,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$distributedEssbase,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [bool]$remoteDeployment,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedEssbase,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$remoteDeployment,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
