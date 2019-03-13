@@ -18,16 +18,21 @@ The goal of this utility was to make the installation and configuration of Hyper
 ### Steps:
 
 1. Clone this repository to a folder on your server(s)
-2. Open Powershell as Administrator
-3. Browse to utility powershell path
+2. Unblock the three scripts in the powershell folder
+3. Open Powershell as Administrator
+4. Set ExecutionPolicy to Unrestricted
+```
+Set-ExecutionPolicy Unrestricted
+```
+5. Browse to utility powershell path
   ```
   cd c:\InstallAutomation\Powershell
   ```
-4. Run start.ps1
+6. Run start.ps1
   ```
   .\start.ps1
   ```
-4. Follow the prompts
+7. Follow the prompts (if silent parameters where not used)
 
 ### Command Line Options:
 
