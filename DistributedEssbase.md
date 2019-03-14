@@ -49,3 +49,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
   * -remoteDeployment __$true__ tells the script that this is a remote server, and only installs __Essbase Server__
   * Changing the -install switches to __$false__ tells the script not to install those products
   * Ommiting the different productDB switches tells the script not to try and configure the products we chose not to install
+
+### See the above steps in action:
+
+https://vimeo.com/user95380262/review/323622992/f2655afd6c
