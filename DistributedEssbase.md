@@ -52,4 +52,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
 
 ### See the above steps in action:
 
-https://vimeo.com/user95380262/review/323622992/f2655afd6c
+<a href="https://vimeo.com/323622992" target="_blank"><img src="https://kb.chaseelder.com/wp-content/uploads/2019/02/Screen-Shot-2019-02-21-at-4.06.28-PM.png" 
+alt="EPM InstallAutomation" width="600" height="350"/></a>
+
+
