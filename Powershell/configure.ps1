@@ -925,8 +925,11 @@
         $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\fdm" -Raw 
         $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
     }
-    if($configHFM -ne $false){
+    if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
         $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\hfm" -Raw
+        $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
+    } elseif($configHFM -eq $false -and $remoteDeployment -eq $true -and $distributedHFM -eq $true){
+        $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\hfmDistributed" -Raw
         $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
     }
 
