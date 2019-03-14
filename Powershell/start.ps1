@@ -162,6 +162,8 @@ Param (
     
     if($distributedHFM -eq $true){
         $configHFM = $false
+    } elseif(!$hfmDB){
+        $configHFM = $false
     }
 
     if(!$epmaDB){
@@ -186,9 +188,6 @@ Param (
 
     if(!$disclosureDB){
         $configDisclosure = $false
-    }
-    if(!$hfmDB){
-        $configHFM = $false
     }
     if(!$fdmDB){
         $configFDM = $false
