@@ -144,7 +144,7 @@ Param (
         $superSilentConfig = $true
     }
 
-    if($superSilentAll.IsPresent -eq $true -or $superSilentInstall.IsPresent -eq $true -or $superSilentConfig -eq $true){
+    if($superSilentAll.IsPresent -eq $true -or $superSilentConfig -eq $true){
         if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\w+.*" -or $wkspcAdminPassword -notmatch '[^a-zA-Z]|.*\d+.*'){
            Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
            Read-Host "Click enter to exit"
