@@ -62,6 +62,8 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedEssbase,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedHFM,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$remoteDeployment,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
@@ -156,6 +158,10 @@ Param (
 
     if($distributedEssbase -eq $true){
         $configEssbase = $false
+    }
+    
+    if($distributedHFM -eq $true){
+        $configHFM = $false
     }
 
     if(!$epmaDB){
