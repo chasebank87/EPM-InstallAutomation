@@ -26,7 +26,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
 .\start.ps1 -superSilentAll -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installEssbase $true -installRAF $true -installPlanning $true -installDisclosure $true -installHFM $false -installfdm $true -installProfit $true -installFCM $false -installTax $false -installStrategic $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -epmaDB EPMS_BPM -calcDB EPMS_CAL -essbaseDB EPMS_ESB -rafDB EPMS_RAF -planningDB EPMS_PLN -disclosureDB EPMS_DMA -fdmDB EPMS_FDM -profitDB EPMS_PCM -strategic $true -distributedEssbase $true -remoteDeployment $false 
 ```
   * Reference the command line options on the home page of this repo for help
-    7. Start __Weblogic Admin Server__ (VERY IMPORTANT)
+  7. Start __Weblogic Admin Server__ (VERY IMPORTANT)
   #### Essbase Server: (Second)
   1. Clone repo to a folder on your ***Essbase Server*** __(make sure it is as close to the base drive as possible, or you may get file path too long errors)__
   2. Unblock the __three__ powershell files in the powershell folder. __(Right click file.. Select Properties.. Click unblock)__
