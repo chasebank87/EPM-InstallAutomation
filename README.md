@@ -134,6 +134,8 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
 ### Environment Instructions:
 
 1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Standalone.md">Standalone EPM __(Single Server Environment)__</a>
+2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedEssbase.md">Distributed Essbase __(Two Server Environment)__</a>
+
 
 ### Features:
 
