@@ -130,6 +130,10 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -validate ($true | $false)
           * -distributedEssbase ($true | $false)
           * -remoteDeployment ($true | $false)
+          
+### Environment Instructions:
+
+1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Standalone.md">Standalone EPM __(Single Server Environment)__</a>
 
 ### Features:
 
