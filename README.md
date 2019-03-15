@@ -71,7 +71,6 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -epmDomain (String | Example: EPMSystem)
           * -strategic ($true | $false)
       * Optional Sub Options:
-          * -foundationDB (String | Example: EPMS_FND)
           * -epmaDB (String | Example: EPMS_BPM)
           * -calcDB (String | Example: EPMS_CAL)
           * -essbaseDB (String | Example: EPMS_ESB)
@@ -84,6 +83,13 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -startEPM ($true | $false)
           * -validate ($true | $false)
           * -distributedEssbase ($true | $false)
+          * -essbaseServer (String | Example: hfm.domain.local)
+          * -distributedHFM ($true | $false)
+          * -hfmServer (String | Example: hfm.domain.local)
+          * -distributedPlanning ($true | $false)
+          * -planningServer (String | Example: hfm.domain.local)
+          * -distributedFDM ($true | $false)
+          * -fdmServer (String | Example: hfm.domain.local)
           * -remoteDeployment ($true | $false)
    #### -superSilentAll
        * Required Sub Options:
@@ -129,7 +135,16 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -startEPM ($true | $false)
           * -validate ($true | $false)
           * -distributedEssbase ($true | $false)
+          * -essbaseServer (String | Example: hfm.domain.local)
+          * -distributedHFM ($true | $false)
+          * -hfmServer (String | Example: hfm.domain.local)
+          * -distributedPlanning ($true | $false)
+          * -planningServer (String | Example: hfm.domain.local)
+          * -distributedFDM ($true | $false)
+          * -fdmServer (String | Example: hfm.domain.local)
           * -remoteDeployment ($true | $false)
+          * -secondStage (switch)
+          * -firstStage (switch)
           
 ### Environment Instructions:
 
