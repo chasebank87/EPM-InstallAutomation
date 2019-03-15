@@ -2,11 +2,7 @@
 # Distributed HFM | Two Server Environment
 ___Note: Interactive mode not supported yet for multiple server deployments. Silent only___
 
-___Note: An important concept to know about when doing a distributed silent install of any of the following products is very important: HFM, FDM, Planning..
-Since you have to first install, and configure all of the non distributed products on the foundation server, then install and configure the distributed products on 
-their respective servers, and finally come back to the foundation server and deploy the distributed applications and reconfigure the webserver. To handle this
-procedure there are two command line switches: -firstStage, and -secondStage. -firstStage would onbviously be for the first step on the foundation server, and 
--secondStage would be for the last step on the foundation server. You will not use this switch for the distributed servers.___
+___Note: An important concept to know about when doing a distributed silent install of any of the following products is very important: HFM, FDM, Planning.. Since you have to first install, and configure all of the non distributed products on the foundation server, then install and configure the distributed products on their respective servers, and finally come back to the foundation server and deploy the distributed applications and reconfigure the webserver. To handle this procedure there are two command line switches: -firstStage, and -secondStage. -firstStage would onbviously be for the first step on the foundation server, and -secondStage would be for the last step on the foundation server. You will not use this switch for the distributed servers.___
 
 ### Steps:
   #### Foundation Server: (First)
@@ -25,7 +21,7 @@ procedure there are two command line switches: -firstStage, and -secondStage. -f
   * Determine what products you want __(SOA: Tax, and FCM are not supported)__
   * Modify the following command to fit your needs:
 ```powershell
-.\start.ps1 -superSilentAll -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installEssbase $false -installRAF $true -installPlanning $false -installDisclosure $false -installHFM $true -installfdm $true -installProfit $false -installFCM $false -installTax $false -installStrategic $false -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -calcDB EPMS_CAL -rafDB EPMS_RAF -hfmDB EPMS_HFM -fdmDB EPMS_FDM -strategic $false -distributedHFM -remoteDeployment $false -firstStage
+.\start.ps1 -superSilentAll -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installEssbase $false -installRAF $true -installPlanning $false -installDisclosure $false -installHFM $true -installfdm $true -installProfit $false -installFCM $false -installTax $false -installStrategic $false -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -calcDB EPMS_CAL -rafDB EPMS_RAF -hfmDB EPMS_HFM -fdmDB EPMS_FDM -strategic $false -distributedHFM $true -remoteDeployment $false -firstStage
 ```
   * The difference with this command are the switches -distributedHFM, -remoteDeployment, and -firstStage. If you set -distributedHFM to $true, -remoteDeployment to $false, and -firstStage it will only install ___(HFMWeb, and it won't configure)___ which is what you want to do on the foundation server.
   * If you dont want a product installed outside of HFM you can set the install to $false, and ommit the DB switch for that product. For instance if your client does not need __Essbase__ your command would look like this:
