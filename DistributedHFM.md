@@ -53,6 +53,17 @@ ___Note: An important concept to know about when doing a distributed silent inst
   * Changing the -install switches to __$false__ tells the script not to install those products
   * Ommiting the different productDB switches tells the script not to try and configure the products we chose not to install
 
+  #### Foundation Server: (Third)
+  1. Browse to the powershell path in the folder you cloned
+  ```powershell
+  cd c:\EPM\InstallAutomation\Powershell
+  ```
+  2. Run the following command
+  ```powershell
+  .\start.ps1 -superSilentConfig -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -hfmDB EPMS_HFM -strategic $false -distributedHFM -remoteDeployment $false -secondStage
+  ```
+  * The important things to look at the above script is that we are now using ___-superSilentConfig___ because we have already install what we need on the foundation server in step one. So we change from -superSilentAll to ___-superSilentConfig___ and remove all of the -install* switches. We also need to use the ___-secondStage___ switch. This tells the utility to only deploy the distributed Products in your script to the app server, and then reconfigure the webserver. If this stage isnt used the ___Database Tables will be DROPPED___ instead of being reused.
+  
 ### See the above steps in action:
 
 <a href="https://vimeo.com/323622992" target="_blank"><img src="https://kb.chaseelder.com/wp-content/uploads/2019/03/2019-03-13_21-01-50.png" 
