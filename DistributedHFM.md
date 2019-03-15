@@ -1,6 +1,7 @@
 
 # Distributed HFM | Two Server Environment
 ___Note: Interactive mode not supported yet for multiple server deployments. Silent only___
+
 ___Note: An important concept to know about when doing a distributed silent install of any of the following products is important to know: HFM, FDM, Planning..
 Since you have to first install, and configure all of the non distributed products on the foundation server, then install and configure the distributed products on 
 their respective servers, and finally come back to the foundation server and deploy the distributed applications and reconfigure the webserver. To handle this
