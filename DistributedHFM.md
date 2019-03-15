@@ -62,7 +62,7 @@ ___Note: An important concept to know about when doing a distributed silent inst
   ```powershell
   .\start.ps1 -superSilentConfig -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -hfmDB EPMS_HFM -strategic $false -distributedHFM -remoteDeployment $false -secondStage
   ```
-  * The important things to look at the above script is that we are now using ___-superSilentConfig___ because we have already install what we need on the foundation server in step one. So we change from -superSilentAll to ___-superSilentConfig___ and remove all of the -install* switches. We also need to use the ___-secondStage___ switch. This tells the utility to only deploy the distributed Products in your script to the app server, and then reconfigure the webserver. If this stage isnt used the ___Database Tables will be DROPPED___ instead of being reused.
+  * The important things to look at the above script is that we are now using ___-superSilentConfig___ because we have already installed what we need on the foundation server in step one. So we change from -superSilentAll to ___-superSilentConfig___ and remove all of the -install* switches. We also need to use the ___-secondStage___ switch. This tells the utility to only deploy the distributed Products in your script to the app server, and then reconfigure the webserver. If this stage isnt used the ___Database Tables will be DROPPED___ instead of being reused.
   
 ### See the above steps in action:
 
