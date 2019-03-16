@@ -1,0 +1,33 @@
+<product productXML="Planning">
+    <tasks>
+      <task>hubRegistration</task>
+      <task>planningRmiServerConfiguration</task>
+      <task>preConfiguration</task>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="customConfiguration">
+        <property name="port">11333</property>
+        <property name="relativePaths"/>
+        <property name="relativePathsInstance"/>
+      </bean>
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">create</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($plnDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($plnDB);loadLibraryPath=$($epmInstallPath)\wlserver_10.3\server\lib</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">false</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">Planning</property>
+    </bean>
+  </product>

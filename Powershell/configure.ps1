@@ -859,80 +859,236 @@
 
     #region configure EPM variables
 
-    if($remoteDeployment -and $remoteDeployment -eq $true){
-        $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\headerRemote" -Raw
-        $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
-    } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
-        $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\header" -Raw
-        $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
-    }
-    if($configFoundation -ne $false){
-        $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\foundation" -Raw
-        $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
-    }
-    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
-        $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\aps" -Raw
-        $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
-    } 
-    if($configEPMA -ne $false){
-        $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\epma" -Raw
-        $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
-    }
-    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
-        $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbaseStudio" -Raw
-        $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
-    }
-    if($configCALC -ne $false){
-        $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\calc" -Raw
-        $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
-    }
-    if($configDisclosure -ne $false){
-        $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\disclosure" -Raw
-        $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
-    }
-    if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
-        $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\eas" -Raw
-        $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
-    }
-    if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
-        $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbase" -Raw
-        $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
-    } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
-        $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\essbaseDistributed" -Raw
-        $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
-    }
-    if($strategic -eq $true){
-        $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\strategic" -Raw
-        $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
-    }
-    if($configPlanning -ne $false){
-        $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\planning" -Raw
-        $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
-    }
-    if($configProfit -ne $false){
-        $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\profit" -Raw
-        $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
-    }
-    if($configRAF -ne $false){
-        $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\raf" -Raw
-        $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
-    }
-    if($configFoundation -ne $false){
-        $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\workspace" -Raw 
-        $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
-    }
-    if($configFDM -ne $false){
-        $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\fdm" -Raw 
-        $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
-    }
-    if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
-        $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\hfm" -Raw
-        $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
-    } elseif($configHFM -eq $false -and $remoteDeployment -eq $true -and $distributedHFM -eq $true){
-        $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\hfmDistributed" -Raw
-        $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
-    }
+    if($standalone -eq $true){
 
+        $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\header" -Raw
+        $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+ 
+        if($configFoundation -ne $false){
+            $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\foundation" -Raw
+            $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+        }
+        if($configEssbase -ne $false){
+            $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\aps" -Raw
+            $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
+        } 
+        if($configEPMA -ne $false){
+            $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\epma" -Raw
+            $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
+        }
+        if($configEssbase -ne $false){
+            $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbaseStudio" -Raw
+            $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
+        }
+        if($configCALC -ne $false){
+            $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\calc" -Raw
+            $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
+        }
+        if($configDisclosure -ne $false){
+            $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\disclosure" -Raw
+            $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
+        }
+        if($configEssbase -ne $false){
+            $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\eas" -Raw
+            $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
+        }
+        if($configEssbase -ne $false){
+            $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
+            $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+        }
+        if($strategic -ne $false){
+            $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\strategic" -Raw
+            $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
+        }
+        if($configPlanning -ne $false){
+            $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\planning" -Raw
+            $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
+        }
+        if($configProfit -ne $false){
+            $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\profit" -Raw
+            $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
+        }
+        if($configRAF -ne $false){
+            $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\raf" -Raw
+            $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
+        }
+        if($configFoundation -ne $false){
+            $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\workspace" -Raw 
+            $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
+        }
+        if($configFDM -ne $false){
+            $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\fdm" -Raw 
+            $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
+        }
+        if($configHFM -ne $false){
+            $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\hfm" -Raw
+            $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
+        }
+    } else {
+        if($firstStage -eq $true){
+            if($remoteDeployment -and $remoteDeployment -eq $true){
+                $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\remote\header" -Raw
+                $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+            } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
+                $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\central\header" -Raw
+                $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+            }
+            if($configFoundation -ne $false -and $remoteDeployment -eq $true){
+                $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\foundation" -Raw
+                $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+            } elseif($configFoundation -ne $false -and $remoteDeployment -ne $true){
+                $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\foundation" -Raw
+                $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\aps" -Raw
+                $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
+            } 
+            if($configEPMA -ne $false){
+                $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\epma" -Raw
+                $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\essbaseStudio" -Raw
+                $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
+            }
+            if($configCALC -ne $false){
+                $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\calc" -Raw
+                $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
+            }
+            if($configDisclosure -ne $false){
+                $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\disclosure" -Raw
+                $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\eas" -Raw
+                $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
+                $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
+                $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+            } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
+                $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\essbase" -Raw
+                $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+            }
+            if($strategic -eq $true){
+                $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\strategic" -Raw
+                $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
+            }
+            if($configPlanning -ne $false -and $distributedPlanning -eq $true){
+                $planningConfigureSilent = '' 
+            } elseif($configPlanning -ne $false -and $distributedPlanning -ne $true) {
+                $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\planning" -Raw
+                $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
+            }
+            if($configProfit -ne $false){
+                $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\profit" -Raw
+                $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
+            }
+            if($configRAF -ne $false){
+                $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\raf" -Raw
+                $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
+            }
+            if($configFoundation -ne $false -and $remoteDeployment -ne $true){
+                $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\workspace" -Raw 
+                $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
+            }
+            if($configFDM -ne $false -and $distributedFDM -eq $true){
+                $fdmConfigureSilent = ''
+            } elseif($configFDM -ne $false -and $distributedFDM -ne $true) {
+                $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\fdm" -Raw 
+                $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
+            }
+            if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
+                $hfmConfigureSilent = ''
+           } elseif($configHFM -ne $false -and $distributedHFM -ne $true) {
+                $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\hfm" -Raw
+                $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
+           }
+        } 
+        if($distributedEssbase -eq $true -or $distributedPlanning -eq $true -or $distributedFDM -eq $true -or $distributedHFM -eq $true -and $remoteDeployment -eq $true){
+            if($remoteDeployment -and $remoteDeployment -eq $true){
+                $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\remote\header" -Raw
+                $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+            } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
+                $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\central\header" -Raw
+                $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
+            }
+            if($configFoundation -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $true){
+                $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\foundation" -Raw
+                $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+            } elseif($configFoundation -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $false){
+                $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\foundation" -Raw
+                $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\aps" -Raw
+                $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
+            } 
+            if($configEPMA -ne $false){
+                $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\epma" -Raw
+                $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\essbaseStudio" -Raw
+                $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
+            }
+            if($configCALC -ne $false){
+                $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\calc" -Raw
+                $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
+            }
+            if($configDisclosure -ne $false){
+                $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\disclosure" -Raw
+                $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\eas" -Raw
+                $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
+            }
+            if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
+                $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
+                $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+            } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
+                $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\essbase" -Raw
+                $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+            }
+            if($strategic -eq $true){
+                $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\strategic" -Raw
+                $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
+            }
+            if($configPlanning -ne $false -and $distributedPlanning -eq $true -and $remoteDeployment -ne $true){
+                $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\planning" -Raw
+                $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
+            } elseif($configPlanning -ne $false -and $distributedPlanning -eq $true -and $remoteDeployment -eq $true) {
+                $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\planning" -Raw
+                $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
+            }
+            if($configProfit -ne $false){
+                $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\profit" -Raw
+                $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
+            }
+            if($configRAF -ne $false){
+                $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\raf" -Raw
+                $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
+            }
+            if($configFoundation -ne $false -and $remoteDeployment -ne $true){
+            }
+            if($configFDM -ne $false -and $distributedFDM -eq $true -and $remoteDeployment -ne $true){
+                $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\fdm" -Raw 
+                $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
+            } elseif($configFDM -ne $false -and $distributedFDM -eq $true -and $remoteDeployment -eq $true) {
+                $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\fdm" -Raw 
+                $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
+            }
+            if($configHFM -ne $false -or $distributedHFM -eq $true -and $remoteDeployment -eq $false){
+                $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\hfm" -Raw
+                $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
+           } elseif($configHFM -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $true) {
+                $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\hfm" -Raw
+                $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
+           }
+        }
+    }
     #endregion
 
 #endregion
@@ -1016,7 +1172,7 @@ if($inputEPMADB -eq $null) {
   $($fdmConfigureSilent)
   $($hfmConfigureSilent)
   $($apsConfigureSilent)
-  $($fndConfigureSilent)
+  $($workspaceConfigureSilent)
   $($bpmaConfigureSilent)
   $($calcConfigureSilent)
 </products>

@@ -1,0 +1,25 @@
+<product productXML="Foundation">
+    <tasks>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">Reuse</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($foundationDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($foundationDB)</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">true</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">Foundation Services</property>
+    </bean>
+  </product>

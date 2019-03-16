@@ -3,6 +3,7 @@ Param (
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [switch]$superSilentInstall,
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$superSilentConfig,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)] [switch]$superSilentAll,
+
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$install7zip,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
@@ -60,10 +61,19 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$foundationDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedEssbase,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedHFM,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedFDM,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$distributedPlanning,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$remoteDeployment,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$epmaDB,
@@ -143,13 +153,36 @@ Param (
         $superSilentInstall = $true
         $superSilentConfig = $true
     }
+	
+	if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
+		if($remoteDeployment -eq $false){
+			$firstStage = $true
+		}
+	}
 
-    if($superSilentAll.IsPresent -eq $true -or $superSilentConfig -eq $true){
+    if($superSilentAll.IsPresent -eq $true -or $superSilentConfig -eq $true -or $superSilentConfig.IsPresent -eq $true){
         if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\w+.*" -or $wkspcAdminPassword -notmatch '[^a-zA-Z]|.*\d+.*'){
            Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
            Read-Host "Click enter to exit"
            exit
         }
+    }
+
+    if($distributedEssbase -or $distributedHFM -or $distributedFDM -or $distributedPlanning){
+        if($remoteDeployment -ne $true -and $remoteDeployment -ne $false){
+            Write-Host "Distributed environments require -remoteDeployment (true | false)" -ForegroundColor Red
+            Read-Host "Click enter to exit"
+            Exit            
+        }
+    }
+
+    if($distributedEssbase -or $distributedHFM -or $distributedFDM -or $distributedPlanning -and $remoteDeployment -ne $true){
+        if($firstStage.isPresent -eq $true -and $secondStage.isPreset -eq $true){
+            Write-Host "Distributed environments require -firstStage or -secondStage" -ForegroundColor Red
+            Read-Host "Click enter to exit"
+            Exit
+        }
+        
     }
 
     if($remoteDeployment -eq $true){
@@ -195,6 +228,9 @@ Param (
     if(!$profitDB){
         $configProfit = $false
     }
+    if($distributedEssbase -ne $true -and $distributedHFM -ne $true -and $distributedFDM -ne $true -and $distributedPlanning -ne $true){
+        $standalone = $true
+    }
     
 #endregion
 
@@ -232,27 +268,29 @@ Param (
 #endregion
 
 #region install .net framework 3.5
-
-    $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
-    if($netFrameworkInstall.Installed -ne $true){
-        Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
-        Install-WindowsFeature -Name Net-Framework-Core -Source "$($installerPath)\SXS"
-    } else {
-        Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
+    
+    if($superSilentConfig.IsPresent -eq $false){
+        $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
+        if($netFrameworkInstall.Installed -ne $true){
+            Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
+            Install-WindowsFeature -Name Net-Framework-Core -Source "$($installerPath)\SXS"
+        } else {
+            Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
+        }
     }
-
 #endregion
 
 #region install iis
-
-    $iisInstall = Get-WindowsFeature -Name Web-server
-    if($iisInstall.Installed -ne $true){ 
-        Write-Host "IIS is not installed. Installing now.." -ForegroundColor Cyan
-        Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
-    } else {
-        Write-Host "IIS is already installed. Continuing" -ForegroundColor Green
+    
+    if($superSilentConfig.IsPresent -eq $false -or $superSilentConfig -eq $false){
+        $iisInstall = Get-WindowsFeature -Name Web-server
+        if($iisInstall.Installed -ne $true){ 
+            Write-Host "IIS is not installed. Installing now.." -ForegroundColor Cyan
+            Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
+        } else {
+            Write-Host "IIS is already installed. Continuing" -ForegroundColor Green
+        }
     }
-
 #endregion
 
 #region set mainVariables and mainFunctions
@@ -265,16 +303,18 @@ Param (
 #endregion
 
 #region install assembly and choco
-
-    Add-Type -AssemblyName PresentationFramework
-    Invoke-Command -ScriptBlock $choco *> $null
-    choco upgrade chocolatey $choco *> $null
+    
+    if($superSilentConfig.IsPresent -eq $True){
+        Add-Type -AssemblyName PresentationFramework
+        Invoke-Command -ScriptBlock $choco *> $null
+        choco upgrade chocolatey $choco *> $null
+    }
 
 #endregion
 
 #region installer important info notice
     
-    if($superSilentInstall -or $superSilentInstall){
+    if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
         Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
     
         Requirments:
@@ -349,7 +389,7 @@ Param (
 
 #region prompt user
 
-    if(!$superSilentInstall){
+    if($superSilentInstall -eq $false -or $superSilentConfig -eq $false){
         $softwareStatus = @($7zipStatus,$firefoxStatus,$notepadStatus)
         foreach($j in $softwareStatus){
             if($j.installed -eq $true) {
