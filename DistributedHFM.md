@@ -57,6 +57,10 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
   3. Select Configure Web Server under Foundation
   4. Click next until completion
   
+  image:: https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/hfmDeploy.gif
+  :scale: 50 %
+  
+  
 ### See the above steps in action:
 
 <a href="https://vimeo.com/323622992" target="_blank"><img src="https://kb.chaseelder.com/wp-content/uploads/2019/03/2019-03-13_21-01-50.png" 
