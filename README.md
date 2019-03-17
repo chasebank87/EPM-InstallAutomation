@@ -105,7 +105,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -epmDomain (String | Example: EPMSystem)
           * -foundationDB (String | Example: EPMS_FND)
           * -strategic ($true | $false)
-       * Optional Sub Options: Default answer to below install switches is $false
+       * Optional Sub Options: (Default answer to below install switches is $false)
           * -install7zip ($true | $false)
           * -installNotepadPlus ($true | $false)
           * -installFirefox ($true | $false)
