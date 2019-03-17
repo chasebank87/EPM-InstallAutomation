@@ -108,44 +108,6 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
-
-#region installer important info notice
-    
-    if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
-        Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
-        Warning:
-        1. This utility is still in BETA. Continue at your own RISK.
-
-        Requirments:
-        1. You must be a local Administrator.
-        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
-    
-        Limitations:
-        1. This utility should not be used on an environment that has already been configured.
-        2. Oracle DB is currently not supported.
-        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
-        4. SOA Products like Tax Management and Financial Close Manager are not supported.' -ForegroundColor Magenta
-        Read-Host "Click enter to continue"
-    } else {
-        [System.Windows.MessageBox]::Show('Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
-        Warning:
-        1. This utility is still in BETA. Continue at your own RISK.
-
-        Requirments:
-        1. You must be a local Administrator.
-        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
-    
-        Limitations:
-        1. This utility should not be used on an environment that has already been configured.
-        2. Oracle DB is currently not supported.
-        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
-        4. SOA Products like Tax Management and Financial Close Manager are not supported.
-    
-        Click ok to continue..')
-    }
-
-#endregion
-
 #region check current directory
 
     $currentPath = pwd
@@ -347,6 +309,43 @@ Param (
     
 #endregion
 
+#region installer important info notice
+    
+    if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
+        Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
+        Warning:
+        1. This utility is still in BETA. Continue at your own RISK.
+
+        Requirments:
+        1. You must be a local Administrator.
+        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
+    
+        Limitations:
+        1. This utility should not be used on an environment that has already been configured.
+        2. Oracle DB is currently not supported.
+        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
+        4. SOA Products like Tax Management and Financial Close Manager are not supported.' -ForegroundColor Magenta
+        Read-Host "Click enter to continue"
+    } else {
+        [System.Windows.MessageBox]::Show('Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
+        Warning:
+        1. This utility is still in BETA. Continue at your own RISK.
+
+        Requirments:
+        1. You must be a local Administrator.
+        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
+    
+        Limitations:
+        1. This utility should not be used on an environment that has already been configured.
+        2. Oracle DB is currently not supported.
+        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
+        4. SOA Products like Tax Management and Financial Close Manager are not supported.
+    
+        Click ok to continue..')
+    }
+
+#endregion
+
 #region check if UAC is disabled
    
     $uacSetting = Get-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin
@@ -380,16 +379,25 @@ Param (
 
 #endregion
 
+#region set mainVariables and mainFunctions
+    
+    Unblock-File -Path "$($installerPath)\Variables\mainVariables.ps1"
+    Unblock-File -Path "$($installerPath)\Functions\mainfunctions.ps1"
+    . "$($installerPath)\Variables\mainVariables.ps1"
+    . "$($installerPath)\Functions\mainfunctions.ps1"
+
+#endregion
+
 #region install assembly and choco
     
     if (Get-Command choco -errorAction SilentlyContinue){
+        Write-Host "Choco already installed. Continuing.." -ForegroundColor Green
+    } else {
         if($superSilentConfig.IsPresent -eq $True){
             Add-Type -AssemblyName PresentationFramework
             Invoke-Command -ScriptBlock $choco *> $null
             choco upgrade chocolatey $choco *> $null
         }
-    } else {
-        Write-Host "Choco already installed. Continuing.." -ForegroundColor Green
     }
 
 #endregion
@@ -423,15 +431,6 @@ Param (
             }
         }
     }
-#endregion
-
-#region set mainVariables and mainFunctions
-    
-    Unblock-File -Path "$($installerPath)\Variables\mainVariables.ps1"
-    Unblock-File -Path "$($installerPath)\Functions\mainfunctions.ps1"
-    . "$($installerPath)\Variables\mainVariables.ps1"
-    . "$($installerPath)\Functions\mainfunctions.ps1"
-
 #endregion
 
 #region look for current programs and hyperion
