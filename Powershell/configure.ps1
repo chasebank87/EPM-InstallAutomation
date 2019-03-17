@@ -1005,8 +1005,7 @@
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            }
-        } 
-        if($distributedEssbase -eq $true -or $distributedPlanning -eq $true -or $distributedFDM -eq $true -or $distributedHFM -eq $true -and $remoteDeployment -eq $true){
+        } elseif($distributedEssbase -eq $true -or $distributedPlanning -eq $true -or $distributedFDM -eq $true -or $distributedHFM -eq $true -and $remoteDeployment -eq $true){
             if($remoteDeployment -and $remoteDeployment -eq $true){
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\remote\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
@@ -1014,13 +1013,10 @@
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\central\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
             }
-            if($configFoundation -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $true){
+            if($configFoundation -eq $false -and $firstStage -ne $true -and $remoteDeployment -eq $true){
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
-            } elseif($configFoundation -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $false){
-                $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\foundation" -Raw
-                $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
-            }
+            } 
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
                 $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\aps" -Raw
                 $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
