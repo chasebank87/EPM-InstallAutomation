@@ -1,5 +1,0 @@
-<Product name="hfm">
-	<Component>hfmAdmClient</Component>
-	<Component>hfmWebApps</Component>
-	<Component>hfmService</Component>
-</Product>

@@ -1,4 +1,0 @@
-<Product name="profitability">
-	<Component>osloWebApp</Component>
-	<Component>osloWebAppSamples</Component>
-</Product>

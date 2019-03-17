@@ -1,9 +1,0 @@
-<Product name="reportingAndAnalysis">
-	<ProductComponent name="raFramework">
-		<Component>raFrameworkWebApp</Component>
-		<Component>raFrameworkService</Component>
-	</ProductComponent>
-	<ProductComponent name="fr">
-		<Component>frWebApp</Component>
-	</ProductComponent>
-</Product>

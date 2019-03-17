@@ -1,4 +1,0 @@
-<Product name="foundation">
-	<ProductComponent name="foundationServices">
-		<Component>staticContent</Component>
-</Product>
