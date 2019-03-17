@@ -1,41 +1,48 @@
 [CmdletBinding(DefaultParametersetName='none')] 
 Param (
+  #parameter sets
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [switch]$superSilentInstall,
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$superSilentConfig,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)] [switch]$superSilentAll,
 
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$install7zip,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installnotepadPlus,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installfirefox,
+
+  #params
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$install7zip,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installnotepadPlus,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installfirefox,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installIIS,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installNetFrame,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installepm,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [string]$epmPath,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installfoundation,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installessbase,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installraf,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installplanning,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installdisclosure,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installhfm,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installfdm,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installprofit,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installfcm,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installtax,
-  [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
-  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installstrategic,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installfoundation,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installessbase,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installraf,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installplanning,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installdisclosure,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installhfm,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installfdm,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installprofit,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installfcm,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installtax,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installstrategic,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$True)] [string]$dbServer,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
@@ -101,6 +108,44 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
 )
 
+
+#region installer important info notice
+    
+    if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
+        Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
+        Warning:
+        1. This utility is still in BETA. Continue at your own RISK.
+
+        Requirments:
+        1. You must be a local Administrator.
+        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
+    
+        Limitations:
+        1. This utility should not be used on an environment that has already been configured.
+        2. Oracle DB is currently not supported.
+        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
+        4. SOA Products like Tax Management and Financial Close Manager are not supported.' -ForegroundColor Magenta
+        Read-Host "Click enter to continue"
+    } else {
+        [System.Windows.MessageBox]::Show('Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
+        Warning:
+        1. This utility is still in BETA. Continue at your own RISK.
+
+        Requirments:
+        1. You must be a local Administrator.
+        2. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
+    
+        Limitations:
+        1. This utility should not be used on an environment that has already been configured.
+        2. Oracle DB is currently not supported.
+        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
+        4. SOA Products like Tax Management and Financial Close Manager are not supported.
+    
+        Click ok to continue..')
+    }
+
+#endregion
+
 #region check current directory
 
     $currentPath = pwd
@@ -122,7 +167,7 @@ Param (
 
 #endregion
 
-#region test if ran as admin
+#region test script running as admin
 
     $currentPrincipal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
     if($currentPrincipal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator) -eq $false){
@@ -148,18 +193,21 @@ Param (
 #endregion
 
 #region parse silent params and validate
-
+    
+    #set install and config to true if superSilentAll is present
     if($superSilentAll.IsPresent -eq $true){
         $superSilentInstall = $true
         $superSilentConfig = $true
     }
 	
+    #check if any products are distributed and if remoteDeployment is false
 	if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
 		if($remoteDeployment -eq $false){
 			$firstStage = $true
 		}
 	}
 
+    #check if password meets oracle requirements
     if($superSilentAll.IsPresent -eq $true -or $superSilentConfig -eq $true -or $superSilentConfig.IsPresent -eq $true){
         if($wkspcAdminPassword.Length -lt 8 -or $wkspcAdminPassword -notmatch ".*\w+.*" -or $wkspcAdminPassword -notmatch '[^a-zA-Z]|.*\d+.*'){
            Write-Host "Workspace admin password does not meet the minimum requirements. Password must be alphanumeric, and at least 8 characters." -ForegroundColor Red
@@ -168,6 +216,7 @@ Param (
         }
     }
 
+    #check if any product is distributed and announces that remoteDeployment is required then exits
     if($distributedEssbase -or $distributedHFM -or $distributedFDM -or $distributedPlanning){
         if($remoteDeployment -ne $true -and $remoteDeployment -ne $false){
             Write-Host "Distributed environments require -remoteDeployment (true | false)" -ForegroundColor Red
@@ -176,61 +225,125 @@ Param (
         }
     }
 
-    if($distributedEssbase -or $distributedHFM -or $distributedFDM -or $distributedPlanning -and $remoteDeployment -ne $true){
-        if($firstStage.isPresent -eq $true -and $secondStage.isPreset -eq $true){
-            Write-Host "Distributed environments require -firstStage or -secondStage" -ForegroundColor Red
-            Read-Host "Click enter to exit"
-            Exit
-        }
-        
-    }
-
+    #check if remoteDeployment is true and sets configFoundation to false
     if($remoteDeployment -eq $true){
         $configFoundation = $false
     }
 
+    #check if distributedEssbase is true and sets configEssbase to false
     if($distributedEssbase -eq $true){
         $configEssbase = $false
     }
     
+    #check if distributedHFM is true and sets configHFM to false
     if($distributedHFM -eq $true){
         $configHFM = $false
-    } elseif(!$hfmDB){
+    } 
+    #else if $hfmDB is missing set configHFM to false
+    elseif(!$hfmDB){
         $configHFM = $false
     }
 
+    #check if switch epmaDB is missing and sets configEPMA to false
     if(!$epmaDB){
         $configEPMA = $false
     }
 
+    #check if switch calcDB is missing and sets configCALC to false
     if(!$calcDB){
         $configCALC = $false
     }
 
+    #check if switch essbaseDB is missing and sets configEssbase to false
     if(!$essbaseDB){
         $configEssbase = $false
     }
 
+    #check if switch rafDB is missing and sets configRAF to false
     if(!$rafDB){
         $configRAF = $false
     }
 
+    #check if switch planningDB is missing and sets configPlanning to false
     if(!$planningDB){
         $configPlanning = $false
     }
 
+    #check if switch disclosureDB is missing and sets configDisclosure to false
     if(!$disclosureDB){
         $configDisclosure = $false
     }
+
+    #check if fdmDB is missing and sets configFDM to false
     if(!$fdmDB){
         $configFDM = $false
     }
+
+    #check if profitDB is missing and sets configProfit to false
     if(!$profitDB){
         $configProfit = $false
     }
+
+    #check if any products are distributed, if so sets standalone to true
     if($distributedEssbase -ne $true -and $distributedHFM -ne $true -and $distributedFDM -ne $true -and $distributedPlanning -ne $true){
         $standalone = $true
     }
+
+    #region check if install switches are missing, if so set install switch to false
+
+        if(!$install7zip){
+            $install7zip = $false
+        }
+        if(!$installnotepadPlus){
+            $installnotepadPlus = $false
+        }
+        if(!$installfirefox){
+            $installfirefox = $false
+        }
+        if(!$install7zip){
+            $install7zip = $false
+        }
+        if(!$installIIS){
+            $installIIS = $false
+        }
+        if(!$installNetFrame){
+            $installNetFrame = $false
+        }
+        if(!$installfoundation){
+            $installfoundation = $false
+        }
+        if(!$installessbase){
+            $installessbase = $false
+        }
+        if(!$installraf){
+            $installraf = $false
+        }
+        if(!$installplanning){
+            $installplanning = $false
+        }
+        if(!$installdisclosure){
+            $installdisclosure = $false
+        }
+        if(!$installhfm){
+            $installhfm = $false
+        }
+        if(!$installfdm){
+            $installfdm = $false
+        }
+        if(!$installprofit){
+            $installprofit = $false
+        }
+        if(!$installfcm){
+            $installfcm = $false
+        }
+        if(!$installtax){
+            $installtax = $false
+        }
+        if(!$installtax){
+            $installstrategic = $false
+        }
+
+    #endregion
     
 #endregion
 
@@ -267,17 +380,32 @@ Param (
 
 #endregion
 
+#region install assembly and choco
+    
+    if (Get-Command choco -errorAction SilentlyContinue){
+        if($superSilentConfig.IsPresent -eq $True){
+            Add-Type -AssemblyName PresentationFramework
+            Invoke-Command -ScriptBlock $choco *> $null
+            choco upgrade chocolatey $choco *> $null
+        }
+    } else {
+        Write-Host "Choco already installed. Continuing.." -ForegroundColor Green
+    }
+
+#endregion
+
 #region install .net framework 3.5
     
     if($superSilentConfig.IsPresent -eq $false){
         $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
         if($netFrameworkInstall.Installed -ne $true){
             Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
-            Install-WindowsFeature -Name Net-Framework-Core -Source "$($installerPath)\SXS"
+            choco install dotnet3.5 -y
         } else {
             Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
         }
     }
+
 #endregion
 
 #region install iis
@@ -302,54 +430,9 @@ Param (
 
 #endregion
 
-#region install assembly and choco
-    
-    if($superSilentConfig.IsPresent -eq $True){
-        Add-Type -AssemblyName PresentationFramework
-        Invoke-Command -ScriptBlock $choco *> $null
-        choco upgrade chocolatey $choco *> $null
-    }
-
-#endregion
-
-#region installer important info notice
-    
-    if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
-        Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
-    
-        Requirments:
-        1. IIS, Netframework 3.5 must be installed as that feature has not beed added to the utility yet.
-        2. You must be a local Administrator.
-        3. UAC must be disabled.
-        4. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
-    
-        Limitations:
-        1. This utility should not be used on an environment that has already been configured.
-        2. Oracle DB is currently not supported.
-        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
-        4. SOA Products like Tax Management and Financial Close Manager are not supported.' -ForegroundColor Magenta
-    } else {
-        [System.Windows.MessageBox]::Show('Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
-    
-        Requirments:
-        1. IIS, Netframework 3.5 must be installed as that feature has not beed added to the utility yet.
-        2. You must be a local Administrator.
-        3. UAC must be disabled.
-        4. 7-zip must be installed. The utility will install for you but if you opt out of that feature the script will error out.
-    
-        Limitations:
-        1. This utility should not be used on an environment that has already been configured.
-        2. Oracle DB is currently not supported.
-        3. 100% Customization is not currently supported. Only common settings can be configured (ex. database name, host, port, smtp, more..)
-        4. SOA Products like Tax Management and Financial Close Manager are not supported.
-    
-        Click ok to continue..')
-    }
-
-#endregion
-
 #region look for current programs and hyperion
 
+    #build software install array
     $installedSoftware = Get-Software
     $7zipStatus = New-Object PSObject
     $7zipStatus | Add-Member -MemberType NoteProperty -Name Name -Value "7-Zip"
@@ -388,7 +471,8 @@ Param (
 #endregion
 
 #region prompt user
-
+    
+    #check if silent switches are  false, if so start interactive  mode
     if($superSilentInstall -eq $false -or $superSilentConfig -eq $false){
         $softwareStatus = @($7zipStatus,$firefoxStatus,$notepadStatus)
         foreach($j in $softwareStatus){
@@ -476,21 +560,36 @@ Param (
             }
         }
     } elseif($superSilentInstall -and $superSilentInstall -eq $true) {
+        $currentSoftware = Get-Software
         if($install7zip -eq $true){
-            choco uninstall 7zip -y -x 
-            choco install 7zip --force -y
+            if('7-Zip' -in $currentSoftware.DisplayName){
+                Write-Host "7-Zip already installed. Continuing.." -ForegroundColor Green
+            } else {
+                choco install 7zip --force -y
+            }
         }
         if($installNotepadPlus -eq $true){
-            choco uninstall notepadplusplus -y -x
-            choco install notepadplusplus --force -y
+            if('Notepad++' -in $currentSoftware.DisplayName){
+                Write-Host "Notepad++ already installed. Continuing.." -ForegroundColor Green
+            } else {
+                choco install notepadplusplus --force -y  
+            }
         }
         if($installFirefox -eq $true){
-            choco uninstall firefox -y -x
-            choco install firefox --force -y
+            if('Firefox' -in $currentSoftware.DisplayName){
+                Write-Host "Firefox already installed. Continuing.." -ForegroundColor Green
+            } else {
+                choco install firefox --force -y
+            }
         }
         if($installEPM -eq $true){
-            Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
-            Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
+            if('Oracle EPM System' -in $currentSoftware.DisplayName){
+                Write-Host "EPM is already installed. I don't want to mess anything up for you. Exiting" -ForegroundColor Red
+                Exit
+            } else {
+                Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
+                Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
+            }
         }
     }
 
