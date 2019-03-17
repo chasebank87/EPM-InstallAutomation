@@ -395,14 +395,16 @@ Param (
 #endregion
 
 #region install .net framework 3.5
-    
-    if($superSilentConfig.IsPresent -eq $false){
-        $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
-        if($netFrameworkInstall.Installed -ne $true){
-            Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
-            choco install dotnet3.5 -y
-        } else {
-            Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
+
+    if($installNetFrame -eq $true){
+        if($superSilentConfig.IsPresent -eq $false){
+            $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
+            if($netFrameworkInstall.Installed -ne $true){
+                Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
+                choco install dotnet3.5 -y
+            } else {
+                Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
+            }
         }
     }
 
@@ -410,13 +412,15 @@ Param (
 
 #region install iis
     
-    if($superSilentConfig.IsPresent -eq $false -or $superSilentConfig -eq $false){
-        $iisInstall = Get-WindowsFeature -Name Web-server
-        if($iisInstall.Installed -ne $true){ 
-            Write-Host "IIS is not installed. Installing now.." -ForegroundColor Cyan
-            Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
-        } else {
-            Write-Host "IIS is already installed. Continuing" -ForegroundColor Green
+    if($installIIS -eq $true){
+        if($superSilentConfig.IsPresent -eq $false -or $superSilentConfig -eq $false){
+            $iisInstall = Get-WindowsFeature -Name Web-server
+            if($iisInstall.Installed -ne $true){ 
+                Write-Host "IIS is not installed. Installing now.." -ForegroundColor Cyan
+                Install-WindowsFeature -Name Web-Server -IncludeAllSubFeature -IncludeManagementTools
+            } else {
+                Write-Host "IIS is already installed. Continuing" -ForegroundColor Green
+            }
         }
     }
 #endregion
