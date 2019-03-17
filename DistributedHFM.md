@@ -2,6 +2,8 @@
 # Distributed HFM | Two Server Environment
 ___Note: Interactive mode not supported yet for multiple server deployments. Silent only___
 
+###### Status: ___Tested Working___
+
 ### Steps:
   #### Foundation Server: (First)
   1. Clone repo to a folder on your ***Foundation Server*** __(make sure it is as close to the base drive as possible, or you may get file path too long errors)__
