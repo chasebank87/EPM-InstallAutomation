@@ -667,7 +667,7 @@
 			    $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
             }
             if($installRAF -eq $true){
-                Write-Host "Adding Reporting anto Install List" -ForegroundColor Green
+                Write-Host "Adding Reporting to Install List" -ForegroundColor Green
                 Write-Host ""
 			    $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\raf" -Raw
 			    $inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
