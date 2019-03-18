@@ -990,10 +990,9 @@
                 $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\eas" -Raw
                 $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
             }
-            if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
-                Write-Host "Adding Standalone Essbase to config file" -ForegroundColor green
-                $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
-                $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
+            if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Skipping Essbase configuration.. please configure on remote server" -ForegroundColor yellow
+                $essbaseServerConfigureSilent = ''
             } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
                 Write-Host "Adding Remote Essbase to config file" -ForegroundColor green
                 $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\essbase" -Raw
@@ -1031,8 +1030,8 @@
                 Write-Host "Skipping FDM config.. Please configure on remote server." -ForegroundColor yellow
                 $fdmConfigureSilent = ''
             } elseif($configFDM -ne $false -and $distributedFDM -ne $true) {
-                Write-Host "Adding Standalone FDM to config file" -ForegroundColor green
-                $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\fdm" -Raw 
+                Write-Host "Adding Central FDM to config file" -ForegroundColor green
+                $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\fdm" -Raw 
                 $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
             }
             if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
