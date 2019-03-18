@@ -910,7 +910,7 @@
             $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\strategic" -Raw
             $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
         }
-        if($configPlanning -ne $false){\
+        if($configPlanning -ne $false){
             Write-Host "Adding Planning to config file" -ForegroundColor green
             $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\planning" -Raw
             $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
