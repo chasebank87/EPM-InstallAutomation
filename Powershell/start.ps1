@@ -210,17 +210,23 @@ Param (
 
 
 	
-    #check if any products are distributed and if remoteDeployment is false
-	if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
-        	if($remoteDeployment -ne $false -and $remoteDeployment -ne $true){
+   #check if any products are distributed and if remoteDeployment is false
+   if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
+	if($remoteDeployment -ne $false -and $remoteDeployment -ne $true){
             Write-Host 'You must supply the switch -remoteDeployment with either $true or $false when using any distributed switched.' -ForegroundColor Red
             Read-Host 'Click enter to exit'
             Exit
         }
-		if($remoteDeployment -eq $false){
-			$firstStage = $true
-		}
+	if($remoteDeployment -eq $false){
+		$firstStage = $true
 	}
+	} else {
+		if($remoteDeployment -eq $true){
+            		Write-Host "You must supply the -distributed switch for the product you are installing in a distributed environment." -ForegroundColor Red
+            		Read-Host "Click enter to exit"
+            		Exit
+        }
+    }
 
     #check if password meets oracle requirements
     if($superSilentAll.IsPresent -eq $true -or $superSilentConfig -eq $true -or $superSilentConfig.IsPresent -eq $true){
