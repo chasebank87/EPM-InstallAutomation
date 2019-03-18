@@ -68,7 +68,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
   ```
 .\start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installPlanning $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -planningDB EPMS_PLN -strategic $false -distributedEssbase $true -distributedPlanning $true -remoteDeployment $true  
   ```
-  * -remoteDeployment __$true__ tells the script that this is a remote server, and only installs __Essbase Server__
+  * -remoteDeployment __$true__ tells the script that this is a remote server, and only installs __Planning Server__
   * Changing the -install switches to __$false__ tells the script not to install those products
   * Ommiting the different productDB switches tells the script not to try and configure the products we chose not to install
   #### Foundation Server: (Fourth)
