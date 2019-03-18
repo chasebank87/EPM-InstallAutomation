@@ -1,5 +1,6 @@
 <product productXML="HFM">
     <tasks>
+      <task>applicationServerDeployment</task>
       <task>clusterConfig</task>
       <task>hfmAppServerConfig</task>
       <task>hubRegistration</task>
@@ -7,6 +8,55 @@
       <task>relationalStorageConfiguration</task>
     </tasks>
     <bean name="main">
+    <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($wlHost)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">EPMServer</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">FM Web Services</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>oracle-epm-fm-webservices</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">7363</property>
+                <property name="serverName">HFMWeb</property>
+                <property name="sslPort">7365</property>
+                <property name="validationContext">oracle-epm-fm-webservices/ApplicationService</property>
+              </bean>
+            </listItem>
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">EPMServer</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">FM ADF Web Application</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>hfmadf</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">7363</property>
+                <property name="serverName">HFMWeb</property>
+                <property name="sslPort">7365</property>
+                <property name="validationContext">hfmadf/faces/hfm.jspx</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">true</property>
+        </bean>
+      </bean>
       <bean name="customConfiguration">
         <bean name="cluster1">
           <property name="clusterName">HFM</property>
