@@ -212,7 +212,7 @@ Param (
 	
     #check if any products are distributed and if remoteDeployment is false
 	if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
-        if(!$remoteDeployment){
+        	if($remoteDeployment -eq $null){
             Write-Host 'You must supply the switch -remoteDeployment with either $true or $false when using any distributed switched.' -ForegroundColor Red
             Read-Host 'Click enter to exit'
             Exit
