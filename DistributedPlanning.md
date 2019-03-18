@@ -78,7 +78,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
   3. Select Configure Web Server under Foundation
   4. Click next until completion
   
-  ![alt text](https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/planningDeploy.gif)
+  ![alt text](https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/deployPlanning.gif)
   
   
 ### See the above steps in action:
