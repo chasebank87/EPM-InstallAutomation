@@ -160,9 +160,63 @@ Param (
         $superSilentInstall = $true
         $superSilentConfig = $true
     }
+
+    #look for the amount of installed products, add ask if they forgot to add -remoteDeployment if less than 3
+    $installSwitches = 0
+    if($installfoundation){
+        $installSwitches ++
+    }
+    if($installessbase){
+        $installSwitches ++
+    }
+
+    if($installraf){
+        $installSwitches ++
+    }
+
+    if($installplanning){
+        $installSwitches ++
+    }
+
+    if($installdisclosure){
+        $installSwitches ++
+    }
+
+    if($installhfm){
+        $installSwitches ++
+    }
+
+    if($installfdm){
+        $installSwitches ++
+    }
+
+    if($installprofit){
+        $installSwitches ++
+    }
+    if($installfcm){
+        $installSwitches ++
+    }
+    if($installtax){
+        $installSwitches ++
+    }
+    if($installstrategic){
+        $installSwitches ++
+    }
+    if($installSwitches -lt 3 -and !$remoteDeployment){
+        Write-Host 'I detected that you may be doing an install only for a distributed remote server, but have ommited the -remoteDeployment switch. Please set this switch to $true or $false. If set to $false you will bypass this message.' -ForegroundColor Yellow
+        Read-Host 'Click enter to exit.'
+        Exit
+    }
+
+
 	
     #check if any products are distributed and if remoteDeployment is false
 	if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
+        if(!$remoteDeployment){
+            Write-Host 'You must supply the switch -remoteDeployment with either $true or $false when using any distributed switched.' -ForegroundColor Red
+            Read-Host 'Click enter to exit'
+            Exit
+        }
 		if($remoteDeployment -eq $false){
 			$firstStage = $true
 		}
@@ -410,7 +464,8 @@ Param (
     if (Get-Command choco -errorAction SilentlyContinue){
         Write-Host "Choco already installed. Continuing.." -ForegroundColor Green
     } else {
-        if($superSilentConfig.IsPresent -eq $True){
+        if($superSilentConfig -eq $True -or $superSilentInstall -eq $true){
+            Write-Host "Choco is not installed. Installing now.." -ForegroundColor Cyan
             Add-Type -AssemblyName PresentationFramework
             Invoke-Command -ScriptBlock $choco *> $null
             choco upgrade chocolatey $choco *> $null
@@ -426,7 +481,15 @@ Param (
             $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
             if($netFrameworkInstall.Installed -ne $true){
                 Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
-                choco install dotnet3.5 -y
+                try {
+                    choco install dotnet3.5 -y -f 2>&1>$null
+                } catch {
+                    $_ | Out-File "$($installerPath)\Logs\installNetFramework.Error.log" -Append
+                    Get-Content "$($installerPath)\Logs\installNetFramework.Error.log" | Write-Host -ForegroundColor Red
+                    Read-Host "Click enter to exit"
+                    Exit
+                }
+                
             } else {
                 Write-Host ".Net Framework 3.5 is already installed. Continuing.." -ForegroundColor Green
             }
@@ -493,7 +556,7 @@ Param (
 #region prompt user
     
     #check if silent switches are  false, if so start interactive  mode
-    if($superSilentInstall -eq $false -or $superSilentConfig -eq $false){
+    if($superSilentInstall -eq $false -and $superSilentConfig -eq $false){
         $softwareStatus = @($7zipStatus,$firefoxStatus,$notepadStatus)
         foreach($j in $softwareStatus){
             if($j.installed -eq $true) {
@@ -611,7 +674,23 @@ Param (
                 Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
             }
         }
-    }
+    } elseif($superSilentConfig -and $superSilentConfig -eq $true -and !$superSilentInstall){
+         if($epmStatus.installed -eq $true){
+            Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
+            try {
+                Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1" -Verbose
+            } catch {
+                $_ | Out-File "$($installerPath)\Logs\configure.Error.log" -Append
+                Get-Content "$($installerPath)\Logs\configure.Error.log" | Write-Host -ForegroundColor Red
+                Read-Host "Click enter to exit"
+                Exit
+            }          
+        }
+            if($break){
+                Clear-Variable break
+            }
+        }
+    
 
 #endregion
 
