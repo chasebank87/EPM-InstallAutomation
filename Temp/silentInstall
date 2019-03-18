@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HyperionInstall>
+  <HyperionHome>c:\Oracle\Middleware</HyperionHome>
+  <UserLocale>en_US</UserLocale>
+  <ActionType>0</ActionType>
+  <SelectedProducts>
+		<Product name="foundation">
+	<ProductComponent name="foundationServices">
+		<Component>staticContent</Component>
+		<Component>weblogic</Component>
+	</ProductComponent>
+	<Component>dbclient32</Component>
+	<Component>dbclient64</Component>
+</Product>
+
+		<Product name="essbase">
+	<Component>essbaseService</Component>
+</Product>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		</SelectedProducts>
+  <ProductHomes/>
+  <UpgradeCleanUp/>
+  <UninstallCleanUp>false</UninstallCleanUp>
+</HyperionInstall>

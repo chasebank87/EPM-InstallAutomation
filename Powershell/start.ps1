@@ -5,7 +5,6 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$superSilentConfig,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)] [switch]$superSilentAll,
 
-
   #params
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$install7zip,
@@ -312,6 +311,24 @@ Param (
 #region installer important info notice
     
     if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
+        Write-Host '
+#   ______     ______   __    __        ______     __     __         ______     __   __     ______             
+#  /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
+#  \ \  __\   \ \  _-/ \ \ \-./\ \     \ \___  \  \ \ \  \ \ \____  \ \  __\   \ \ \-.  \  \/_/\ \/            
+#   \ \_____\  \ \_\    \ \_\ \ \_\     \/\_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\    \ \_\            
+#    \/_____/   \/_/     \/_/  \/_/      \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/     \/_/            
+#   __     __   __     ______     ______   ______     __         __            ______     __   __     _____    
+#  /\ \   /\ "-.\ \   /\  ___\   /\__  _\ /\  __ \   /\ \       /\ \          /\  __ \   /\ "-.\ \   /\  __-.  
+#  \ \ \  \ \ \-.  \  \ \___  \  \/_/\ \/ \ \  __ \  \ \ \____  \ \ \____     \ \  __ \  \ \ \-.  \  \ \ \/\ \ 
+#   \ \_\  \ \_\\"\_\  \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\     \ \_\ \_\  \ \_\\"\_\  \ \____- 
+#    \/_/   \/_/ \/_/   \/_____/     \/_/   \/_/\/_/   \/_____/   \/_____/      \/_/\/_/   \/_/ \/_/   \/____/ 
+#   ______     ______     __   __     ______   __     ______                                                   
+#  /\  ___\   /\  __ \   /\ "-.\ \   /\  ___\ /\ \   /\  ___\                                                  
+#  \ \ \____  \ \ \/\ \  \ \ \-.  \  \ \  __\ \ \ \  \ \ \__ \                                                 
+#   \ \_____\  \ \_____\  \ \_\\"\_\  \ \_\    \ \_\  \ \_____\                                                
+#    \/_____/   \/_____/   \/_/ \/_/   \/_/     \/_/   \/_____/                                                
+#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+ ' -ForegroundColor Magenta
         Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
         Warning:
         1. This utility is still in BETA. Continue at your own RISK.

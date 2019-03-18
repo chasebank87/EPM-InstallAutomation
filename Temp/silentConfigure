@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<products>
+  <instance>c:\Oracle\Middleware\user_projects\epmsystem1</instance>
+  <auto_port_tick>true</auto_port_tick>
+
+  <product productXML="Foundation">
+    <tasks>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">Reuse</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">EPMS_FND</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">sql.domain.local</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_FND</property>
+          <property name="password">Password!</property>
+          <property name="port">1433</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">hypadmin</property>
+          <property name="VALIDATESERVERCERTIFICATE">true</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">Foundation Services</property>
+    </bean>
+  </product>
+  
+  
+  
+  <product productXML="EssbaseServer">
+    <tasks>
+      <task>hubRegistration</task>
+      <task>preConfiguration</task>
+      <task>RegisterEssbaseAsMultipleAgent</task>
+    </tasks>
+    <bean name="main">
+      <bean name="customConfiguration">
+        <property name="AgentPort">1423</property>
+        <property name="AgentSSLPort">6423</property>
+        <property name="AppDirectory">EssbaseServer\essbaseserver1</property>
+        <property name="bindingHost">ESSBASE.DOMAIN.LOCAL</property>
+        <property name="BPMS_dbVersion">11.1.2.4.0</property>
+        <property name="ClusterName">EssbaseCluster-1</property>
+        <property name="company">hyperion</property>
+        <property name="component.name">essbaseserver1</property>
+        <property name="eas_dbVersion">11.1.2.4.0</property>
+        <property name="EnableClearMode">true</property>
+        <property name="EnableSecureMode">false</property>
+        <property name="EndPort">33768</property>
+        <property name="InstanceName">Essbase1</property>
+        <property name="LangSelect">English_UnitedStates.Latin1@Binary</property>
+        <property name="localhost_name">foundation.domain.local</property>
+        <property name="password">Password!</property>
+        <property name="relativePaths"/>
+        <property name="relativePathsInstance">AppDirectory</property>
+        <property name="service">hypservice</property>
+        <property name="StartPort">32768</property>
+        <property name="userID">hypuser</property>
+      </bean>
+      <property name="shortcutFolderName">startMenu.product.null.folderName</property>
+    </bean>
+  </product>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</products>
+
