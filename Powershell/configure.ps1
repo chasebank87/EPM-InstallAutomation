@@ -860,103 +860,129 @@
     #region configure EPM variables
 
     if($standalone -eq $true){
-
+        Write-Host "Starting Standalone Configuration" -ForegroundColor cyan
+        Write-Host "Adding Header to config file" -ForegroundColor green
         $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\header" -Raw
         $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
  
         if($configFoundation -ne $false){
+            Write-Host "Adding Foundation to config file" -ForegroundColor green
             $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\foundation" -Raw
             $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
         }
         if($configEssbase -ne $false){
+            Write-Host "Adding Provider to config file" -ForegroundColor green
             $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\aps" -Raw
             $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
         } 
         if($configEPMA -ne $false){
+            Write-Host "Adding EPMA to config file" -ForegroundColor green
             $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\epma" -Raw
             $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
         }
         if($configEssbase -ne $false){
+            Write-Host "Adding Essbase Studio to config file" -ForegroundColor green
             $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbaseStudio" -Raw
             $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
         }
         if($configCALC -ne $false){
+            Write-Host "Adding CALC to config file" -ForegroundColor green
             $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\calc" -Raw
             $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
         }
         if($configDisclosure -ne $false){
+            Write-Host "Adding Disclosure to config file" -ForegroundColor green
             $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\disclosure" -Raw
             $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
         }
         if($configEssbase -ne $false){
+            Write-Host "Adding EAS to config file" -ForegroundColor green
             $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\eas" -Raw
             $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
         }
         if($configEssbase -ne $false){
+            Write-Host "Adding Essbase to config file" -ForegroundColor green
             $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
             $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
         }
         if($strategic -ne $false){
+            Write-Host "Adding Strategic to config file" -ForegroundColor green
             $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\strategic" -Raw
             $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
         }
-        if($configPlanning -ne $false){
+        if($configPlanning -ne $false){\
+            Write-Host "Adding Planning to config file" -ForegroundColor green
             $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\planning" -Raw
             $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
         }
         if($configProfit -ne $false){
+            Write-Host "Adding Profit to config file" -ForegroundColor green
             $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\profit" -Raw
             $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
         }
         if($configRAF -ne $false){
+            Write-Host "Adding RAF to config file" -ForegroundColor green
             $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\raf" -Raw
             $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
         }
         if($configFoundation -ne $false){
+            Write-Host "Adding Workspace to config file" -ForegroundColor green
             $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\workspace" -Raw 
             $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
         }
         if($configFDM -ne $false){
+            Write-Host "Adding FDM to config file" -ForegroundColor green
             $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\fdm" -Raw 
             $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
         }
         if($configHFM -ne $false){
+            Write-Host "Adding HFM to config file" -ForegroundColor green
             $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\hfm" -Raw
             $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
         }
     } else {
         if($firstStage -eq $true){
+            Write-Host "Starting Distributed Central Configuration" -ForegroundColor cyan
             if($remoteDeployment -and $remoteDeployment -eq $true){
+                Write-Host "Adding Remote Header to config file" -ForegroundColor green
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\remote\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
             } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
+                Write-Host "Adding Central Header to config file" -ForegroundColor green
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\central\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
             }
             if($configFoundation -ne $false -and $remoteDeployment -eq $true){
+                Write-Host "Adding Remote Foundation to config file" -ForegroundColor green
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
             } elseif($configFoundation -ne $false -and $remoteDeployment -ne $true){
+                Write-Host "Adding Central Foundation to config file" -ForegroundColor green
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central Provider to config file" -ForegroundColor green
                 $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\aps" -Raw
                 $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
             } 
             if($configEPMA -ne $false){
+                Write-Host "Adding Central EPMA to config file" -ForegroundColor green
                 $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\epma" -Raw
                 $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central Essbase Studio to config file" -ForegroundColor green
                 $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\essbaseStudio" -Raw
                 $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
             }
             if($configCALC -ne $false){
+                Write-Host "Adding Central CALC to config file" -ForegroundColor green
                 $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\calc" -Raw
                 $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
             }
             if($configDisclosure -ne $false){
+                Write-Host "Adding Central Disclosure to config file" -ForegroundColor green
                 $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\disclosure" -Raw
                 $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
             }
@@ -965,121 +991,154 @@
                 $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
+                Write-Host "Adding Standalone Essbase to config file" -ForegroundColor green
                 $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
                 $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
             } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
+                Write-Host "Adding Remote Essbase to config file" -ForegroundColor green
                 $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\essbase" -Raw
                 $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
             }
             if($strategic -eq $true){
+                Write-Host "Adding Central Strategic to config file" -ForegroundColor green
                 $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\strategic" -Raw
                 $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
             }
             if($configPlanning -ne $false -and $distributedPlanning -eq $true){
+                Write-Host "Skipping Planning config.. Please configure on remote server." -ForegroundColor yellow
                 $planningConfigureSilent = '' 
             } elseif($configPlanning -ne $false -and $distributedPlanning -ne $true) {
+                Write-Host "Adding Standalone Planning to config file" -ForegroundColor green
                 $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\planning" -Raw
                 $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
             }
             if($configProfit -ne $false){
+                Write-Host "Adding Central Profit to config file" -ForegroundColor green
                 $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\profit" -Raw
                 $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
             }
             if($configRAF -ne $false){
+                Write-Host "Adding Central RAF to config file" -ForegroundColor green
                 $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\raf" -Raw
                 $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
             }
             if($configFoundation -ne $false -and $remoteDeployment -ne $true){
+                Write-Host "Adding Central Foundation to config file" -ForegroundColor green
                 $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\workspace" -Raw 
                 $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
             }
             if($configFDM -ne $false -and $distributedFDM -eq $true){
+                Write-Host "Skipping FDM config.. Please configure on remote server." -ForegroundColor yellow
                 $fdmConfigureSilent = ''
             } elseif($configFDM -ne $false -and $distributedFDM -ne $true) {
+                Write-Host "Adding Standalone FDM to config file" -ForegroundColor green
                 $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\fdm" -Raw 
                 $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
             }
             if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
+                Write-Host "Skipping HFM config.. Please configure on remote server." -ForegroundColor yellow
                 $hfmConfigureSilent = ''
            } elseif($configHFM -ne $false -and $distributedHFM -ne $true) {
+                Write-Host "Adding Standalone HFM to config file" -ForegroundColor green
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            }
         } elseif($distributedEssbase -eq $true -or $distributedPlanning -eq $true -or $distributedFDM -eq $true -or $distributedHFM -eq $true -and $remoteDeployment -eq $true){
+            Write-Host "Starting Distributed Remote Configuration" -ForegroundColor cyan
             if($remoteDeployment -and $remoteDeployment -eq $true){
+                Write-Host "Adding Remote Header to config file" -ForegroundColor green
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\remote\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
             } elseif(!$remoteDeployment -or $remoteDeployment -eq $false) {
+                Write-Host "Adding Central Header to config file" -ForegroundColor green
                 $headerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\central\header" -Raw
                 $headerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($headerConfigureSilent)
             }
             if($configFoundation -eq $false -and $firstStage -ne $true -and $remoteDeployment -eq $true){
+                Write-Host "Adding Remote Foundation to config file" -ForegroundColor green
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
             } 
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central Provider to config file" -ForegroundColor green
                 $apsConfigureSilent =  Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\aps" -Raw
                 $apsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($apsConfigureSilent)
             } 
             if($configEPMA -ne $false){
+                Write-Host "Adding Central EPMA to config file" -ForegroundColor green
                 $bpmaConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\epma" -Raw
                 $bpmaConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmaConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central Essbase Studio to config file" -ForegroundColor green
                 $bpmsConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\essbaseStudio" -Raw
                 $bpmsConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($bpmsConfigureSilent)
             }
             if($configCALC -ne $false){
+                Write-Host "Adding Central CALC to config file" -ForegroundColor green
                 $calcConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\calc" -Raw
                 $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
             }
             if($configDisclosure -ne $false){
+                Write-Host "Adding Central Disclosure to config file" -ForegroundColor green
                 $disclosureConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\disclosure" -Raw
                 $disclosureConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($disclosureConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central EAS to config file" -ForegroundColor green
                 $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\eas" -Raw
                 $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $false -and $remoteDeployment -eq $false){
+                Write-Host "Adding Standalone Essbase to config file" -ForegroundColor green
                 $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Standalone\essbase" -Raw
                 $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
             } elseif($configEssbase -eq $false -and $remoteDeployment -eq $true -and $distributedEssbase -eq $true) {
+                Write-Host "Adding Remote Essbase to config file" -ForegroundColor green
                 $essbaseServerConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\essbase" -Raw
                 $essbaseServerConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($essbaseServerConfigureSilent)
             }
             if($strategic -eq $true){
+                Write-Host "Adding Central Strategic to config file" -ForegroundColor green
                 $strategicConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\strategic" -Raw
                 $strategicConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($strategicConfigureSilent)
             }
             if($configPlanning -ne $false -and $distributedPlanning -eq $true -and $remoteDeployment -ne $true){
+                Write-Host "Adding Central Planning to config file" -ForegroundColor green
                 $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\planning" -Raw
                 $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
             } elseif($configPlanning -ne $false -and $distributedPlanning -eq $true -and $remoteDeployment -eq $true) {
+                Write-Host "Adding Remote Planning to config file" -ForegroundColor green
                 $planningConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\planning" -Raw
                 $planningConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($planningConfigureSilent)
             }
             if($configProfit -ne $false){
+                Write-Host "Addding Central Profit to config file" -ForegroundColor green
                 $profitConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\profit" -Raw
                 $profitConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($profitConfigureSilent)
             }
             if($configRAF -ne $false){
+                Write-Host "Adding Central RAF to config file" -ForegroundColor green
                 $rafConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\raf" -Raw
                 $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
             }
             if($configFoundation -ne $false -and $remoteDeployment -ne $true){
             }
             if($configFDM -ne $false -and $distributedFDM -eq $true -and $remoteDeployment -ne $true){
+                Write-Host "Adding Central FDM to config file" -ForegroundColor green
                 $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\fdm" -Raw 
                 $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
             } elseif($configFDM -ne $false -and $distributedFDM -eq $true -and $remoteDeployment -eq $true) {
+                Write-Host "Adding Remote FDM config file" -ForegroundColor green
                 $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\fdm" -Raw 
                 $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
             }
             if($configHFM -ne $false -or $distributedHFM -eq $true -and $remoteDeployment -eq $false){
+                Write-Host "Adding Central HFM to config file" -ForegroundColor green
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            } elseif($configHFM -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $true) {
+                Write-Host " Adding Remote HFM to config file" -ForegroundColor green
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            }
