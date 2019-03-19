@@ -327,7 +327,7 @@
         while($break -ne 'break'){
             switch($inp = Read-Host -Prompt "Select"){
                 1 {
-                    Write-Host "Adding Reporting anto Install List" -ForegroundColor Green
+                    Write-Host "Adding Reporting to Install List" -ForegroundColor Green
                     Write-Host ""
 					$inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\raf" -Raw
 					$inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
