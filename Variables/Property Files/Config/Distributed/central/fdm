@@ -39,10 +39,6 @@
           <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
         </bean>
       </bean>
-      <bean name="lwaConfiguration">
-        <beanList name="batchUpdateLWAComponents"/>
-        <beanList name="deploymentLWAComponents"/>
-      </bean>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
           <property name="createOrReuse">reuse</property>
