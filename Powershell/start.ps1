@@ -202,7 +202,7 @@ Param (
     if($installstrategic){
         $installSwitches ++
     }
-    if($installSwitches -lt 3 -and !$remoteDeployment){
+    if($installSwitches -lt 3 -and $remoteDeployment -ne $true -and $remoteDeployment -ne $false){
         Write-Host 'I detected that you may be doing an install only for a distributed remote server, but have ommited the -remoteDeployment switch. Please set this switch to $true or $false. If set to $false you will bypass this message.' -ForegroundColor Yellow
         Read-Host 'Click enter to exit.'
         Exit
