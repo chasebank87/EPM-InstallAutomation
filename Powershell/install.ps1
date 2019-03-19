@@ -5,6 +5,17 @@
 
 #endregion
 
+#region announce install
+
+	Write-Host '
+ __   __   __   ______   ______  ______   __       __       __   __   __   ______    
+/\ \ /\ "-.\ \ /\  ___\ /\__  _\/\  __ \ /\ \     /\ \     /\ \ /\ "-.\ \ /\  ___\   
+\ \ \\ \ \-.  \\ \___  \\/_/\ \/\ \  __ \\ \ \____\ \ \____\ \ \\ \ \-.  \\ \ \__ \  
+ \ \_\\ \_\\"\_\\/\_____\  \ \_\ \ \_\ \_\\ \_____\\ \_____\\ \_\\ \_\\"\_\\ \_____\ 
+  \/_/ \/_/ \/_/ \/_____/   \/_/  \/_/\/_/ \/_____/ \/_____/ \/_/ \/_/ \/_/ \/_____/ ' -ForegroundColor Magenta                                                                                  
+
+#endregion
+
 #region look for zip files and unzip
     if(!$superSilentInstall -or $superSilentInstall -eq $false){
         if($break){Clear-Variable break}
