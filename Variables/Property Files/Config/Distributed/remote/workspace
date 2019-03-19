@@ -42,10 +42,6 @@
         <property name="port">$($workspacePort)</property>
         <property name="protocol">http</property>
       </bean>
-      <bean name="lwaConfiguration">
-        <beanList name="batchUpdateLWAComponents"/>
-        <beanList name="deploymentLWAComponents"/>
-      </bean>
       <property name="shortcutFolderName">Workspace</property>
     </bean>
   </product>
