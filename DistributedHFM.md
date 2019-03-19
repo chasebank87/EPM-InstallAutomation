@@ -55,9 +55,8 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
   #### Foundation Server: (Third)
   1. Run the configuration GUI
     * Start Menu
-  2. Select Configure Database, and Deploy to Application server for all Distributed Products
-  3. Select Configure Web Server under Foundation
-  4. Click next until completion
+  2. Select Configure Web Server under Foundation
+  3. Click next until completion
   
   ![alt text](https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/configureWeb.gif)
   
