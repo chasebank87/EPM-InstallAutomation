@@ -1150,7 +1150,7 @@
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            } elseif($configHFM -eq $false -and $distributedHFM -eq $true -and $remoteDeployment -eq $true) {
-                Write-Host " Adding Remote HFM to config file" -ForegroundColor green
+                Write-Host "Adding Remote HFM to config file" -ForegroundColor green
                 $hfmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Remote\hfm" -Raw
                 $hfmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($hfmConfigureSilent)
            }
