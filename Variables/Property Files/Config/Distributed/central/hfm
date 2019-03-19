@@ -74,10 +74,6 @@
         <property name="SystemDataLinkFile">FinancialManagement\ServerWorkingFolder\MS_SQL_SERVER_hfm.udl</property>
       </bean>
       <bean name="httpServerConfiguration"/>
-	        <bean name="lwaConfiguration">
-        <beanList name="batchUpdateLWAComponents"/>
-        <beanList name="deploymentLWAComponents"/>
-      </bean>
 	  <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
           <property name="createOrReuse">reuse</property>
