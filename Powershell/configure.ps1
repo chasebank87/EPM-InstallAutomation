@@ -1022,7 +1022,7 @@
                 $rafConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($rafConfigureSilent)
             }
             if($configFoundation -ne $false -and $remoteDeployment -ne $true){
-                Write-Host "Adding Central Foundation to config file" -ForegroundColor green
+                Write-Host "Adding Central Workspace to config file" -ForegroundColor green
                 $workspaceConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\workspace" -Raw 
                 $workspaceConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($workspaceConfigureSilent) 
             }
