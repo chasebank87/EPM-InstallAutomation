@@ -212,14 +212,21 @@ Param (
 	
    #check if any products are distributed and if remoteDeployment is false
    if($distributedEssbase -or $distributedFDM -or $distributedHFM -or $distributedPlanning){
-	if($remoteDeployment -ne $false -and $remoteDeployment -ne $true){
+	    if($remoteDeployment -ne $false -and $remoteDeployment -ne $true){
             Write-Host 'You must supply the switch -remoteDeployment with either $true or $false when using any distributed switched.' -ForegroundColor Red
             Read-Host 'Click enter to exit'
             Exit
         }
-	if($remoteDeployment -eq $false){
-		$firstStage = $true
-	}
+	    if($remoteDeployment -eq $false){
+		    $firstStage = $true
+	    } else {
+            $testWeblogicConnection = Test-NetConnection -ComputerName $weblogicHostname -Port $weblogicPort
+            if($testWeblogicConnection -ne $true){
+                Write-Host "Not able to connect to weblogic on server $($weblogicHostname):$($weblogicPort). Start weblogic admin service and try again.." -ForegroundColor Red
+                Read-Host "Click enter to exit"
+                Exit
+            }
+        }
 	} else {
 		if($remoteDeployment -eq $true){
             		Write-Host "You must supply the -distributed switch for the product you are installing in a distributed environment." -ForegroundColor Red
