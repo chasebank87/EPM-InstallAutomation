@@ -492,7 +492,7 @@ Param (
 #region install .net framework 3.5
 
     if($installNetFrame -eq $true){
-        if($superSilentConfig.IsPresent -eq $false){
+        if($superSilentConfig.IsPresent -eq $false -or $superSilentInstall -eq $true){
             $netFrameworkInstall = Get-WindowsFeature -Name Net-Framework-Core
             if($netFrameworkInstall.Installed -ne $true){
                 Write-Host ".Net Framework 3.5 is not installed. Installing now.." -ForegroundColor Cyan
