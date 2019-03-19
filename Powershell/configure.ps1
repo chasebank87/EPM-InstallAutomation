@@ -1034,7 +1034,7 @@
                 $fdmConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\Config\Distributed\Central\fdm" -Raw 
                 $fdmConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fdmConfigureSilent) 
             }
-            if($configHFM -ne $false -or $distributedHFM -eq $false -and $remoteDeployment -eq $false){
+            if($configHFM -ne $false -or $distributedHFM -ne $false -and $remoteDeployment -eq $false){
                 Write-Host "Skipping HFM config.. Please configure on remote server." -ForegroundColor yellow
                 $hfmConfigureSilent = ''
            } elseif($configHFM -ne $false -and $distributedHFM -ne $true) {
