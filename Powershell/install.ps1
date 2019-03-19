@@ -649,6 +649,7 @@
         if($break){Clear-Variable break}
     } elseif($superSilentInstall -and $superSilentInstall -eq $true){
         if($standalone -eq $true){
+		Write-Host "Starting Standalone Install" -ForegroundColor cyan
             if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                 Write-Host "Adding Foundation to Install List" -ForegroundColor Green
                 $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\foundation" -Raw
@@ -714,6 +715,7 @@
 
         } else {
             if($remoteDeployment -ne $true){
+	    	Write-Host "Starting Distributed Central Install" -ForegroundColor cyan
                 if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                     Write-Host "Adding Foundation to Install List" -ForegroundColor Green
                     $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\foundation" -Raw
@@ -793,6 +795,7 @@
                     $epmInstallPath = $epmPath
                 }
             } else {
+	    	Write-Host "Starting Distributed Remote Install" -ForegroundColor cyan
                 if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                     Write-Host "Adding Foundation to Install List" -ForegroundColor Green
                     $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\foundation" -Raw
