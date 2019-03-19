@@ -1,7 +1,6 @@
 <product productXML="Foundation">
     <tasks>
       <task>applicationServerDeployment</task>
-      <task>editLWAConfiguration</task>
       <task>FndCommonSetting</task>
       <task>preConfiguration</task>
       <task>relationalStorageConfiguration</task>
