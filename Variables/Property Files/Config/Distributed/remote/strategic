@@ -49,10 +49,6 @@
         <property name="relativePathsInstance">HSFDataDirectory</property>
         <property name="selectedWebServiceServer">$($fqdn):7750</property>
       </bean>
-      <bean name="lwaConfiguration">
-        <beanList name="batchUpdateLWAComponents"/>
-        <beanList name="deploymentLWAComponents"/>
-      </bean>
       <property name="shortcutFolderName">Strategic Finance</property>
     </bean>
   </product>
