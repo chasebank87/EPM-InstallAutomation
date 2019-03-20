@@ -195,6 +195,15 @@
                 Sleep -Seconds 15
             }
          }
+	 #Check amount of files in unzipped folder
+	 $unzippedFiles = Get-ChildItem -Path "$($installerPath)\EPM\Unzipped\" -Recurse -File -ErrorAction SilentlyContinue
+	 if($unzippedFiles.count -lt 23500){
+	 	Write-Host "Fatal Error: Unzipped directory is missing files. Expected 23500 files, but only $($unzippedFiles.count). Exiting.." -ForegroundColor Red
+		Read-Host "Click enter to exit"
+		Exit
+	 } elseif($unzippedFiles.count -eq 23500){
+		Write-Host "Unzipped files are present. Continuing.." -ForegroundColor Cyan
+	 }
     }
 #endregion
 
