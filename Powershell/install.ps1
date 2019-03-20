@@ -968,5 +968,21 @@
             Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
             Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
         }
+	
+	#announce completion if config isn't present
+	if($superSilentConfig -ne $true){
+	Write-Host '
+
+
+ ______   ______   __    __   ______  __       ______  ______  ______    
+/\  ___\ /\  __ \ /\ "-./  \ /\  == \/\ \     /\  ___\/\__  _\/\  ___\   
+\ \ \____\ \ \/\ \\ \ \-./\ \\ \  _-/\ \ \____\ \  __\\/_/\ \/\ \  __\   
+ \ \_____\\ \_____\\ \_\ \ \_\\ \_\   \ \_____\\ \_____\ \ \_\ \ \_____\ 
+  \/_____/ \/_____/ \/_/  \/_/ \/_/    \/_____/ \/_____/  \/_/  \/_____/ 
+                                                                         
+									 
+ ' -ForegroundColor magenta
+
+	}
 
 #endregion
