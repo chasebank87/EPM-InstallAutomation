@@ -104,7 +104,14 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$startEPM,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [bool]$validate,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$configSQL,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$sqlAdmin,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$sqlAdminPassword
+
 )
 
 #region check current directory
@@ -152,6 +159,7 @@ Param (
     }
 
 #endregion
+
 
 #region parse silent params and validate
     
@@ -234,6 +242,20 @@ Param (
             		Write-Host "You must supply the -distributed switch for the product you are installing in a distributed environment." -ForegroundColor Red
             		Read-Host "Click enter to exit"
             		Exit
+        }
+    }
+
+    #check if -configSQL is present, if so require paramters
+    if($configSQL.IsPresent -eq $true){
+        if(!$sqlAdmin){
+            Write-Host "The option sqlAdmin is required when using the switch configSQL" -ForegroundColor Red
+            Read-Host "cleck enter to exit"
+            Exit
+        }
+        if(!$sqlAdminPassword){
+            Write-Host "The option sqlAdminPassword is required when using the switch configSQL" -ForegroundColor Red
+            Read-Host "cleck enter to exit"
+            Exit
         }
     }
 
@@ -372,6 +394,9 @@ Param (
         if(!$installtax){
             $installstrategic = $false
         }
+        if(!$configSQL){
+            $configSQL = $false
+        }
 
     #endregion
     
@@ -471,6 +496,68 @@ Param (
     Unblock-File -Path "$($installerPath)\Functions\mainfunctions.ps1"
     . "$($installerPath)\Variables\mainVariables.ps1"
     . "$($installerPath)\Functions\mainfunctions.ps1"
+
+#endregion
+
+#region check if configSQL, if so start configureSQL.ps1
+
+    if($configSQL -eq $true){
+        Write-Host "Starting SQL configuration" -ForegroundColor Cyan
+        if(Get-Command Install-Module -errorAction SilentlyContinue){
+            Write-Host "Powershell is already the correct version. Continuing.." -ForegroundColor Cyan
+        } else {
+            Write-Host "Powershell needs to be updated. Updating.." -ForegroundColor Yellow
+            if($osVersion -like '*2008*'){
+                Write-Host "Updating Powershell for Windows 2008" -ForegroundColor Cyan
+                Unblock-File $ps2008
+                try {
+                    Start-Process -FilePath $wusa -ArgumentList ("$($ps2008)", '/quiet', '/norestart') -Wait
+                } catch {
+                    $_ | Out-File "$($installerPath)\Logs\updatePowershell.Error.log" -Append
+                    Get-Content "$($installerPath)\Logs\updatePowershell.Error.log" | Write-Host -ForegroundColor Red
+                    Read-Host "Click enter to exit"
+                    Exit
+                }
+                Write-Host "We need to restart to commit the update for powershell. Restarting.." -ForegroundColor Yellow
+                Read-Host "Click enter to restart"
+                Restart-Computer
+            } elseif($osVersion -like '*2012*') {
+                Write-Host "Updating Powershell for Windows 2012" -ForegroundColor Cyan
+                Unblock-File $ps2012
+                try {
+                    Start-Process -FilePath $wusa -ArgumentList ("$($ps2012)", '/quiet', '/norestart') -Wait
+                } catch {
+                    $_ | Out-File "$($installerPath)\Logs\updatePowershell.Error.log" -Append
+                    Get-Content "$($installerPath)\Logs\updatePowershell.Error.log" | Write-Host -ForegroundColor Red
+                    Read-Host "Click enter to exit"
+                    Exit
+                }
+                Write-Host "We need to restart to commit the update for powershell. Restarting.." -ForegroundColor Yellow
+                Read-Host "Click enter to restart"
+                Restart-Computer
+            } else {
+                Write-Host "Current OS Version is not supported." -ForegroundColor Red
+                Read-Host "Click enter to exit"
+                Exit
+            }
+        }
+        if(Get-Command Invoke-Sqlcmd -errorAction SilentlyContinue){
+            Write-Host "Sqlserver module already install. Continuing.." -ForegroundColor Cyan
+        } else {
+            Write-Host "Slqserver module not installed. Installing now.." -ForegroundColor Yellow
+            Write-Host "Please confirm the following prompts" -ForegroundColor Yellow
+            Install-module -Name SqlServer -Scope CurrentUser -SkipPublisherCheck -Confirm -Force
+        }
+        Try {
+            Invoke-Expression -Command "$($installerPath)\Powershell\configureSQL.ps1" -Verbose
+        } catch {
+            $_ | Out-File "$($installerPath)\Logs\configureSQL.Error.log" -Append
+            Get-Content "$($installerPath)\Logs\configureSQL.Error.log" | Write-Host -ForegroundColor Red
+            Read-Host "Click enter to exit"
+            Exit
+        }
+    }
+
 
 #endregion
 
