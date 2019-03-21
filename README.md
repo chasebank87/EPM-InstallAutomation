@@ -139,6 +139,9 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -distributedPlanning ($true | $false)
           * -distributedFDM ($true | $false)
           * -remoteDeployment ($true | $false)
+          * -configSQL (switch)
+          * -sqlAdmin (String | Example: sa)
+          * -sqlAdminPassword (String | Example: Password!)
           
 ### Environment Instructions:
 
