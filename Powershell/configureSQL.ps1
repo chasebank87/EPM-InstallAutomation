@@ -52,7 +52,7 @@
 #endregion
 
     #create DB array
-    $databases = @($epmaDB,$calcDB,$disclosureDB,$essbaseDB,$fdmDB,$foundationDB,$hfmDB,$profitDB,$rafDB)
+    $databases = @($epmaDB,$calcDB,$disclosureDB,$essbaseDB,$fdmDB,$foundationDB,$hfmDB,$profitDB,$rafDB,$planningDB)
 
     #look for databases
     foreach($d in $databases){
