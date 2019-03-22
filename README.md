@@ -14,7 +14,7 @@ The goal of this utility was to make the installation and configuration of Hyper
 
 1. Logged in as a local Administrator
 2. Run powershell as admin
-2. A SQL Server,  and a User with sysadmin acess ___or___ The databases created already to Oracle specifications
+2. A SQL Server,  and a User with sysadmin access ___or___ The databases previously created to Oracle specifications
 4. 64 Bit OS Only
 5. Windows Server 2008 or 2012
 
