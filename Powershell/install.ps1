@@ -13,7 +13,7 @@
             $expectedInstallationFiles = @('V37380-01_1of2.zip','V37380-01_2of2.zip','V37446-01.zip','V74011-01.zip','V74016-01.zip','V74019-01.zip','V74025-01.zip','V74031-01.zip','V74037-01.zip','V74044-01.zip','V74050-01.zip','V74056-01.zip','V74108-01.zip','V76567-01.zip','V76569-01.zip')
             $installationFileAvailability = @()
             $installationFailures = 0
-            $installationFiles = Get-ChildItem -Path "$($installerPath)\EPM"
+            $installationFiles = Get-ChildItem -Path "$($installerPath)\EPM\11.1.2.4"
             foreach($i in $expectedInstallationFiles){
                 if($i -in $installationFiles.name) {
                     $newObject = New-Object -TypeName PSObject
@@ -46,9 +46,9 @@
                                 $fileToDownload = $downloads | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                                 $ProgressPreference = 'SilentlyContinue'
                                 #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
-                                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\$($i.name)")
+                                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\11.1.2.4\$($i.name)")
                                 $ProgressPreference = 'Continue'
-                                $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\$($i.name)"
+                                $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\11.1.2.4\$($i.name)"
                                 if($downloadedFileHash.hash -notin $downloadHashs){
                                     Write-Host "Downloaded file hash not found. Terminating." -ForegroundColor Red
                                     Read-Host "Cleck enter to exit.."
@@ -92,7 +92,7 @@
  
         try{
                 Write-Host "Unzipping Install Files.  This may take a few minutes." -ForegroundColor Cyan
-                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
+                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\11.1.2.4*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
             }
         Catch {
                 $_ | Out-File "$($installerPath)\Logs\Unzip.Error.log" -Append
@@ -115,7 +115,7 @@
         $expectedInstallationFiles = @('V37380-01_1of2.zip','V37380-01_2of2.zip','V37446-01.zip','V74011-01.zip','V74016-01.zip','V74019-01.zip','V74025-01.zip','V74031-01.zip','V74037-01.zip','V74044-01.zip','V74050-01.zip','V74056-01.zip','V74108-01.zip','V76567-01.zip','V76569-01.zip')
         $installationFileAvailability = @()
         $installationFailures = 0
-        $installationFiles = Get-ChildItem -Path "$($installerPath)\EPM"
+        $installationFiles = Get-ChildItem -Path "$($installerPath)\EPM\11.1.2.4"
         foreach($i in $expectedInstallationFiles){
             if($i -in $installationFiles.name) {
                 $newObject = New-Object -TypeName PSObject
@@ -143,9 +143,9 @@
                 $fileToDownload = $downloads | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                 $ProgressPreference = 'SilentlyContinue'
                 #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
-                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\$($i.name)")
+                (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\11.1.2.4\$($i.name)")
                 $ProgressPreference = 'Continue'
-                $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\$($i.name)"
+                $downloadedFileHash = Get-FileHash -Path "$($installerPath)\EPM\11.1.2.4\$($i.name)"
                 if($downloadedFileHash.hash -notin $downloadHashs){
                     Write-Host "Downloaded file hash not found. Terminating." -ForegroundColor Red
                     Read-Host "Cleck enter to exit.."
@@ -302,7 +302,7 @@
                 1 {
                     Write-Host "Adding Essbase to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\essbase" -Raw
+					$inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\essbase" -Raw
 					$inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
                     $break = 'break'
                     Break
@@ -340,7 +340,7 @@
                 1 {
                     Write-Host "Adding Reporting to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\raf" -Raw
+					$inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\raf" -Raw
 					$inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
                     $break = 'break'
                     Break
@@ -378,7 +378,7 @@
                 1 {
                     Write-Host "Adding Planning to Install List" -ForegroundColor Green
                     Write-Host ""
-                    $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\planning" -Raw
+                    $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\planning" -Raw
 					$inputPlanning = $ExecutionContext.InvokeCommand.ExpandString($inputPlanning)
                     $break = 'break'
                     Break
@@ -416,7 +416,7 @@
                 1 {
                     Write-Host "Adding Disclosure to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\disclosure" -Raw
+					$inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\disclosure" -Raw
 					$inputDisclosure = $ExecutionContext.InvokeCommand.ExpandString($inputDisclosure)
                     $break = 'break'
                     Break
@@ -454,7 +454,7 @@
                 1 {
                     Write-Host "Adding HFM to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\hfm" -Raw
+					$inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\hfm" -Raw
 					$inputHFM = $ExecutionContext.InvokeCommand.ExpandString($inputHFM)
                     $break = 'break'
                     Break
@@ -492,7 +492,7 @@
                 1 {
                     Write-Host "Adding FDM to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\fdm" -Raw
+					$inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\fdm" -Raw
 					$inputFDM = $ExecutionContext.InvokeCommand.ExpandString($inputFDM)
                     $break = 'break'
                     Break
@@ -530,7 +530,7 @@
                 1 {
                     Write-Host "Adding Profit to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\profit" -Raw
+					$inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\profit" -Raw
 					$inputProfit = $ExecutionContext.InvokeCommand.ExpandString($inputProfit)
                     $break = 'break'
                     Break
@@ -568,7 +568,7 @@
                 1 {
                     Write-Host "Adding Financial Close to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\fcm" -Raw
+					$inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\fcm" -Raw
 					$inputFCC = $ExecutionContext.InvokeCommand.ExpandString($inputFCC)
                     $break = 'break'
                     Break
@@ -606,7 +606,7 @@
                 1 {
                     Write-Host "Adding Tax Management to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\tax" -Raw
+					$inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\tax" -Raw
 					$inputTax = $ExecutionContext.InvokeCommand.ExpandString($inputTax)
                     $break = 'break'
                     Break
@@ -645,7 +645,7 @@
                 1 {
                     Write-Host "Adding Strategic Finance to Install List" -ForegroundColor Green
                     Write-Host ""
-					$inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\hsf" -Raw
+					$inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\hsf" -Raw
 					$inputHSF = $ExecutionContext.InvokeCommand.ExpandString($inputHSF)
                     $break = 'break'
                     Break
@@ -674,61 +674,61 @@
 		Write-Host "Starting Standalone Install" -ForegroundColor cyan
             if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                 Write-Host "Adding Foundation to Install List" -ForegroundColor Green
-                $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\foundation" -Raw
+                $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\foundation" -Raw
 			    $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
             } elseif($installFoundation -eq $true -and $remoteDeployment -eq $true) {
 			    Write-Host "Adding Foundation Remote Deployment to Install List" -ForegroundColor Green
-			    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\foundationRemoteDeployment" -Raw
+			    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\foundationRemoteDeployment" -Raw
 			    $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
 		    }
             if($installEssbase -eq $true){
                 Write-Host "Adding Essbase to Install List" -ForegroundColor Green
-			    $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\essbase" -Raw
+			    $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\essbase" -Raw
 			    $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
             }
             if($installRAF -eq $true){
                 Write-Host "Adding Reporting to Install List" -ForegroundColor Green
-			    $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\raf" -Raw
+			    $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\raf" -Raw
 			    $inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
             }
             if($installPlanning -eq $true){
                 Write-Host "Adding Planning to Install List" -ForegroundColor Green
-			    $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\planning" -Raw
+			    $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\planning" -Raw
 			    $inputPlanning = $ExecutionContext.InvokeCommand.ExpandString($inputPlanning)
             }
             if($installDisclosure -eq $true){
                 Write-Host "Adding Disclosure to Install List" -ForegroundColor Green
-			    $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\disclosure" -Raw
+			    $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\disclosure" -Raw
 			    $inputDisclosure = $ExecutionContext.InvokeCommand.ExpandString($inputDisclosure)
             }
             if($installHFM -eq $true){
                 Write-Host "Adding HFM to Install List" -ForegroundColor Green
-			    $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\hfm" -Raw
+			    $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\hfm" -Raw
 			    $inputHFM = $ExecutionContext.InvokeCommand.ExpandString($inputHFM)
             }
             if($installFDM -eq $true){
                 Write-Host "Adding FDM to Install List" -ForegroundColor Green
-			    $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\fdm" -Raw
+			    $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\fdm" -Raw
 			    $inputFDM = $ExecutionContext.InvokeCommand.ExpandString($inputFDM)
             }
             if($installProfit -eq $true){
                 Write-Host "Adding Profit to Install List" -ForegroundColor Green
-			    $inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\profit" -Raw
+			    $inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\profit" -Raw
 			    $inputProfit = $ExecutionContext.InvokeCommand.ExpandString($inputProfit)
             }
             if($installFCM -eq $true){
                 Write-Host "Adding Financial Close to Install List" -ForegroundColor Green
-			    $inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\fcm" -Raw
+			    $inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\fcm" -Raw
 			    $inputFCC = $ExecutionContext.InvokeCommand.ExpandString($inputFCC)
             }
             if($installTax -eq $true){
                 Write-Host "Adding Tax Management to Install List" -ForegroundColor Green
-			    $inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\tax" -Raw
+			    $inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\tax" -Raw
 			    $inputTax = $ExecutionContext.InvokeCommand.ExpandString($inputTax)
             }
             if($installStrategic -eq $true){
                 Write-Host "Adding Strategic Finance to Install List" -ForegroundColor Green
-			    $inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\hsf" -Raw
+			    $inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\hsf" -Raw
 			    $inputHSF = $ExecutionContext.InvokeCommand.ExpandString($inputHSF)
             }
             if($epmPath){
@@ -740,77 +740,77 @@
 	    	Write-Host "Starting Distributed Central Install" -ForegroundColor cyan
                 if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                     Write-Host "Adding Foundation to Install List" -ForegroundColor Green
-                    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\foundation" -Raw
+                    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\foundation" -Raw
 			        $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
                 } elseif($installFoundation -eq $true -and $remoteDeployment -eq $true) {
 			        Write-Host "Adding Foundation Remote Deployment to Install List" -ForegroundColor Green
-			        $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\foundation" -Raw
+			        $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\foundation" -Raw
 			        $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
 		        }
                 if($installEssbase -eq $true -and $distributedEssbase -eq $true){
                     Write-Host "Adding Essbase Distributed to Install List" -ForegroundColor Green
-			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\essbase" -Raw
+			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\essbase" -Raw
 			        $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
                 } elseif($installEssbase -eq $true -and $distributedEssbase -ne $true){
                     Write-Host "Adding Essbase Standalone to Install List" -ForegroundColor Green
-			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\essbase" -Raw
+			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\essbase" -Raw
 			        $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
                 }
                 if($installRAF -eq $true){
                     Write-Host "Adding Reporting anto Install List" -ForegroundColor Green
-			        $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\raf" -Raw
+			        $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\raf" -Raw
 			        $inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
                 }
                 if($installPlanning -eq $true -and $distributedPlanning -eq $true){
                     Write-Host "Adding Planning Distributed to Install List" -ForegroundColor Green
-			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\planning" -Raw
+			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\planning" -Raw
 			        $inputPlanning = $ExecutionContext.InvokeCommand.ExpandString($inputPlanning)
                 } elseif($installPlanning -eq $true -and $distributedPlanning -ne $true){
                     Write-Host "Adding Planning Standalone to Install List" -ForegroundColor Green
-			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\planning" -Raw
+			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\planning" -Raw
 			        $inputPlanning = $ExecutionContext.InvokeCommand.ExpandString($inputPlanning)
                 }
                 if($installDisclosure -eq $true){
                     Write-Host "Adding Disclosure to Install List" -ForegroundColor Green
-			        $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\disclosure" -Raw
+			        $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\disclosure" -Raw
 			        $inputDisclosure = $ExecutionContext.InvokeCommand.ExpandString($inputDisclosure)
                 }
                 if($installHFM -eq $true -and $distributedHFM -eq $true){
                     Write-Host "Adding HFM Distributed to Install List" -ForegroundColor Green
-			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\hfm" -Raw
+			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\hfm" -Raw
 			        $inputHFM = $ExecutionContext.InvokeCommand.ExpandString($inputHFM)
                 } elseif($installHFM -eq $true -and $distributedHFM -ne $true){
                     Write-Host "Adding HFM Standalone to Install List" -ForegroundColor Green
-			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\hfm" -Raw
+			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\hfm" -Raw
 			        $inputHFM = $ExecutionContext.InvokeCommand.ExpandString($inputHFM)
                 }
                 if($installFDM -eq $true -and $distributedFDM -eq $true){
                     Write-Host "Adding FDM Distributed to Install List" -ForegroundColor Green
-			        $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\fdm" -Raw
+			        $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\fdm" -Raw
 			        $inputFDM = $ExecutionContext.InvokeCommand.ExpandString($inputFDM)
                 } elseif($installFDM -eq $true -and $distributedFDM -ne $true){
                     Write-Host "Adding FDM Standalone to Install List" -ForegroundColor Green
-			        $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\fdm" -Raw
+			        $inputFDM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\fdm" -Raw
 			        $inputFDM = $ExecutionContext.InvokeCommand.ExpandString($inputFDM)                    
                 }
                 if($installProfit -eq $true){
                     Write-Host "Adding Profit to Install List" -ForegroundColor Green
-			        $inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\profit" -Raw
+			        $inputProfit = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\profit" -Raw
 			        $inputProfit = $ExecutionContext.InvokeCommand.ExpandString($inputProfit)
                 }
                 if($installFCM -eq $true){
                     Write-Host "Adding Financial Close to Install List" -ForegroundColor Green
-			        $inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\fcm" -Raw
+			        $inputFCC = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\fcm" -Raw
 			        $inputFCC = $ExecutionContext.InvokeCommand.ExpandString($inputFCC)
                 }
                 if($installTax -eq $true){
                     Write-Host "Adding Tax Management to Install List" -ForegroundColor Green
-			        $inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\tax" -Raw
+			        $inputTax = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\tax" -Raw
 			        $inputTax = $ExecutionContext.InvokeCommand.ExpandString($inputTax)
                 }
                 if($installStrategic -eq $true){
                     Write-Host "Adding Strategic Finance to Install List" -ForegroundColor Green
-			        $inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\hsf" -Raw
+			        $inputHSF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\hsf" -Raw
 			        $inputHSF = $ExecutionContext.InvokeCommand.ExpandString($inputHSF)
                 }
                 if($epmPath){
@@ -820,36 +820,36 @@
 	    	Write-Host "Starting Distributed Remote Install" -ForegroundColor cyan
                 if($installFoundation -eq $true -and $remoteDeployment -ne $true){
                     Write-Host "Adding Foundation to Install List" -ForegroundColor Green
-                    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Central\foundation" -Raw
+                    $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Central\foundation" -Raw
 			        $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
                 } elseif($installFoundation -eq $true -and $remoteDeployment -eq $true) {
 			        Write-Host "Adding Foundation Remote Deployment to Install List" -ForegroundColor Green
-			        $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\foundation" -Raw
+			        $inputFoundation = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\foundation" -Raw
 			        $inputFoundation = $ExecutionContext.InvokeCommand.ExpandString($inputFoundation)
 		        }
                 if($installEssbase -eq $true){
                     Write-Host "Adding Essbase to Install List" -ForegroundColor Green
-			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\essbase" -Raw
+			        $inputEssbase = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\essbase" -Raw
 			        $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
                 }
                 if($installRAF -eq $true){
                     Write-Host "Adding Reporting to Install List" -ForegroundColor Green
-			        $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\raf" -Raw
+			        $inputRAF = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\raf" -Raw
 			        $inputRAF = $ExecutionContext.InvokeCommand.ExpandString($inputRAF)
                 }
                 if($installPlanning -eq $true){
                     Write-Host "Adding Planning to Install List" -ForegroundColor Green
-			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\planning" -Raw
+			        $inputPlanning = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\planning" -Raw
 			        $inputPlanning = $ExecutionContext.InvokeCommand.ExpandString($inputPlanning)
                 }
                 if($installDisclosure -eq $true){
                     Write-Host "Adding Disclosure to Install List" -ForegroundColor Green
-			        $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\disclosure" -Raw
+			        $inputDisclosure = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\disclosure" -Raw
 			        $inputDisclosure = $ExecutionContext.InvokeCommand.ExpandString($inputDisclosure)
                 }
                 if($installHFM -eq $true){
                     Write-Host "Adding HFM to Install List" -ForegroundColor Green
-			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Distributed\Remote\hfm" -Raw
+			        $inputHFM = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Distributed\Remote\hfm" -Raw
 			        $inputHFM = $ExecutionContext.InvokeCommand.ExpandString($inputHFM)
                 }
                 if($installFDM -eq $true){
@@ -949,7 +949,7 @@
                         "Y" {
                             ""
                             Write-Host "Starting $($epmStatus.name) configuration procedure" -ForegroundColor Cyan
-                            Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
+                            Invoke-Expression -Command "$($installerPath)/Powershell/$($configureScript)"
                             $break = 'break'
                             }
                         "N" {
@@ -966,7 +966,7 @@
             if($break){Clear-Variable break}
         } elseif($superSilentConfig -and $superSilentConfig -eq $true){
             Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
-            Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1"
+            Invoke-Expression -Command "$($installerPath)/Powershell/$($configureScript)"
         }
 	
 	#announce completion if config isn't present

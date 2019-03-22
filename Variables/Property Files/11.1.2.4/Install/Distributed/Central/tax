@@ -1,0 +1,8 @@
+<Product name="taxManagement">
+	<ProductComponent name="taxGovernance">
+		<Component>taxOpWebApp</Component>
+	</ProductComponent>
+	<ProductComponent name="taxReporting">
+		<Component>taxProvWebApp</Component>
+	</ProductComponent>
+</Product>

@@ -1,0 +1,8 @@
+<Product name="essbase">
+	<Component>essbaseWebApp</Component>
+	<Component>essbaseApsWebApp</Component>
+	<Component>essbaseApsWebAppSamples</Component>
+	<Component>essbaseStudioService</Component>
+	<Component>essbaseStudioServiceSamples</Component>
+	<Component>essbaseServiceSamples</Component>
+</Product>

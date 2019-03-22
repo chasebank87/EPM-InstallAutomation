@@ -18,6 +18,9 @@ Param (
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installNetFrame,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [bool]$installepm,
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [switch]$version900,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$True)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$True)] [string]$epmPath,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
@@ -26,6 +29,8 @@ Param (
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installessbase,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installraf,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installfr,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installplanning,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
@@ -90,6 +95,8 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$rafDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$frDB,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$planningDB,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$disclosureDB,
@@ -132,6 +139,18 @@ Param (
 #region start transcript
 
     Start-Transcript -Path "$($installerPath)\Logs\transcript.log"
+
+#endregion
+
+#region check 32 bit or 64 bit
+
+    if([System.IntPtr]::Size -eq 4){
+        Write-Host "32 Bit is not currently supported. Exiting.." -ForegroundColor Red
+        Read-Host "Click enter to exit"
+        Exit 
+     } else {
+        Write-Host "64 Bit is supported. Continuing.." -ForegroundColor Cyan
+     }
 
 #endregion
 
@@ -394,8 +413,39 @@ Param (
         if(!$installtax){
             $installstrategic = $false
         }
+        if(!$installFR){
+            $installFR = $false
+        }
         if(!$configSQL){
             $configSQL = $false
+        }
+
+        
+
+        #check for version900
+        if($version900.IsPresent -eq $true){
+            Write-Host "You selected 11.1.2.4.900" -ForegroundColor Green
+            $installScript = 'install900.ps1'
+            $configureScript = 'configure900.ps1'
+            if($installRAF -ne $false){
+                Write-Host "RAF is not included in version 11.1.2.4.900. Removing from install.." -ForegroundColor Yellow
+                $installRAF = $false
+            }
+            if($installDisclosure -ne $false){
+                Write-Host "Disclosure is not included in version 11.1.2.4.900. Removing from install.." -ForegroundColor Yellow
+                $installDisclosure = $false
+            }
+            if($configRAF -ne $false){
+                Write-Host "RAF is not included in version 11.1.2.4.900. Removing from config.." -ForegroundColor Yellow
+                $configRAF = $false
+            }
+            if($configDisclosure -ne $false){
+                Write-Host "Disclosure is not included in version 11.1.2.4.900. Removing from config.." -ForegroundColor Yellow
+            }
+        } else {
+            Write-Host "You selected 11.1.2.4" -ForegroundColor Green
+            $installScript = 'install.ps1'
+            $configureScript = 'configure.ps1'
         }
 
     #endregion
@@ -406,22 +456,22 @@ Param (
     
     if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
         Write-Host '
-#   ______     ______   __    __        ______     __     __         ______     __   __     ______             
-#  /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
-#  \ \  __\   \ \  _-/ \ \ \-./\ \     \ \___  \  \ \ \  \ \ \____  \ \  __\   \ \ \-.  \  \/_/\ \/            
-#   \ \_____\  \ \_\    \ \_\ \ \_\     \/\_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\    \ \_\            
-#    \/_____/   \/_/     \/_/  \/_/      \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/     \/_/            
-#   __     __   __     ______     ______   ______     __         __            ______     __   __     _____    
-#  /\ \   /\ "-.\ \   /\  ___\   /\__  _\ /\  __ \   /\ \       /\ \          /\  __ \   /\ "-.\ \   /\  __-.  
-#  \ \ \  \ \ \-.  \  \ \___  \  \/_/\ \/ \ \  __ \  \ \ \____  \ \ \____     \ \  __ \  \ \ \-.  \  \ \ \/\ \ 
-#   \ \_\  \ \_\\"\_\  \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\     \ \_\ \_\  \ \_\\"\_\  \ \____- 
-#    \/_/   \/_/ \/_/   \/_____/     \/_/   \/_/\/_/   \/_____/   \/_____/      \/_/\/_/   \/_/ \/_/   \/____/ 
-#   ______     ______     __   __     ______   __     ______                                                   
-#  /\  ___\   /\  __ \   /\ "-.\ \   /\  ___\ /\ \   /\  ___\                                                  
-#  \ \ \____  \ \ \/\ \  \ \ \-.  \  \ \  __\ \ \ \  \ \ \__ \                                                 
-#   \ \_____\  \ \_____\  \ \_\\"\_\  \ \_\    \ \_\  \ \_____\                                                
-#    \/_____/   \/_____/   \/_/ \/_/   \/_/     \/_/   \/_____/                                                
-#                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+   ______     ______   __    __        ______     __     __         ______     __   __     ______             
+  /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
+  \ \  __\   \ \  _-/ \ \ \-./\ \     \ \___  \  \ \ \  \ \ \____  \ \  __\   \ \ \-.  \  \/_/\ \/            
+   \ \_____\  \ \_\    \ \_\ \ \_\     \/\_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\    \ \_\            
+    \/_____/   \/_/     \/_/  \/_/      \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/     \/_/            
+   __     __   __     ______     ______   ______     __         __            ______     __   __     _____    
+  /\ \   /\ "-.\ \   /\  ___\   /\__  _\ /\  __ \   /\ \       /\ \          /\  __ \   /\ "-.\ \   /\  __-.  
+  \ \ \  \ \ \-.  \  \ \___  \  \/_/\ \/ \ \  __ \  \ \ \____  \ \ \____     \ \  __ \  \ \ \-.  \  \ \ \/\ \ 
+   \ \_\  \ \_\\"\_\  \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\     \ \_\ \_\  \ \_\\"\_\  \ \____- 
+    \/_/   \/_/ \/_/   \/_____/     \/_/   \/_/\/_/   \/_____/   \/_____/      \/_/\/_/   \/_/ \/_/   \/____/ 
+   ______     ______     __   __     ______   __     ______                                                   
+  /\  ___\   /\  __ \   /\ "-.\ \   /\  ___\ /\ \   /\  ___\                                                  
+  \ \ \____  \ \ \/\ \  \ \ \-.  \  \ \  __\ \ \ \  \ \ \__ \                                                 
+   \ \_____\  \ \_____\  \ \_\\"\_\  \ \_\    \ \_\  \ \_____\                                                
+    \/_____/   \/_____/   \/_/ \/_/   \/_/     \/_/   \/_____/                                                
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
  ' -ForegroundColor Magenta
         Write-Host 'Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
         Warning:
@@ -546,7 +596,7 @@ Param (
         } else {
             Write-Host "Slqserver module not installed. Installing now.." -ForegroundColor Yellow
             Write-Host "Please confirm the following prompts" -ForegroundColor Yellow
-            Install-module -Name SqlServer -Scope CurrentUser -SkipPublisherCheck -Confirm -Force
+            Install-module -Name SqlServer -Scope CurrentUser -SkipPublisherCheck -Confirm:$False
         }
         Try {
             Invoke-Expression -Command "$($installerPath)\Powershell\configureSQL.ps1" -Verbose
@@ -704,7 +754,7 @@ Param (
                     "Y" {
                         ""
                         Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
-                        Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1" -Verbose
+                        Invoke-Expression -Command "$($installerPath)/Powershell/$($configureScript)" -Verbose
                         $break = 'break'
                     }
                     "N" {
@@ -729,7 +779,7 @@ Param (
                     "Y" {
                         ""
                         Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
-                        Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
+                        Invoke-Expression -Command "$($installerPath)/Powershell/$($installScript)" -Verbose
                         $break = 'break'
                     }
                     "N" {
@@ -773,14 +823,14 @@ Param (
                 Exit
             } else {
                 Write-Host "Starting $($epmStatus.name) installation procedure.." -ForegroundColor Cyan
-                Invoke-Expression -Command "$($installerPath)/Powershell/install.ps1" -Verbose
+                Invoke-Expression -Command "$($installerPath)/Powershell/$($installScript)" -Verbose
             }
         }
     } elseif($superSilentConfig -and $superSilentConfig -eq $true -and !$superSilentInstall){
          if($epmStatus.installed -eq $true){
             Write-Host "Starting $($epmStatus.name).. configuration procedure" -ForegroundColor Cyan
             try {
-                Invoke-Expression -Command "$($installerPath)/Powershell/configure.ps1" -Verbose
+                Invoke-Expression -Command "$($installerPath)/Powershell/$($configureScript)" -Verbose
             } catch {
                 $_ | Out-File "$($installerPath)\Logs\configure.Error.log" -Append
                 Get-Content "$($installerPath)\Logs\configure.Error.log" | Write-Host -ForegroundColor Red

@@ -1,0 +1,3 @@
+<Product name="essbase">
+	<Component>essbaseService</Component>
+</Product>

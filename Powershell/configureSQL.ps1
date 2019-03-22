@@ -52,11 +52,11 @@
 #endregion
 
     #create DB array
-    $databases = @($epmaDB,$calcDB,$disclosureDB,$essbaseDB,$fdmDB,$foundationDB,$hfmDB,$profitDB,$rafDB,$planningDB)
+    $databases = @($epmaDB,$calcDB,$disclosureDB,$essbaseDB,$fdmDB,$foundationDB,$hfmDB,$profitDB,$rafDB,$planningDB,$frDB)
 
     #look for databases
     foreach($d in $databases){
-        if($d -ne $null){
+        if($d -ne $null -and $d -ne ''){
             $dbExistence = Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "
             select * from sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb');"
             if($dbExistence.name -contains "$d"){

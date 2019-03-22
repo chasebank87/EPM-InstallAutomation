@@ -6,25 +6,52 @@
   <SelectedProducts>
 		<Product name="foundation">
 	<ProductComponent name="foundationServices">
+		<Component>hssWebApp</Component>
 		<Component>staticContent</Component>
+		<Component>ohs</Component>
 		<Component>weblogic</Component>
 	</ProductComponent>
 	<Component>dbclient32</Component>
 	<Component>dbclient64</Component>
+	<ProductComponent name="BPMA">
+		<Component>BPMAWebApp</Component>
+		<Component>epmaDataSync</Component>
+		<Component>epmaServices</Component>
+	</ProductComponent>
+	<ProductComponent name="Calc">
+		<Component>CalcWebApp</Component>
+	</ProductComponent>
 </Product>
-
 		<Product name="essbase">
+	<Component>essbaseWebApp</Component>
+	<Component>essbaseApsWebApp</Component>
+	<Component>essbaseApsWebAppSamples</Component>
+	<Component>essbaseStudioService</Component>
+	<Component>essbaseStudioServiceSamples</Component>
 	<Component>essbaseService</Component>
+	<Component>essbaseServiceSamples</Component>
+</Product>
+		<Product name="fr">
+	<Component>frWebApp</Component>
 </Product>
 		
 		
 		
-		
-		
-		
-		
-		
-		
+		<Product name="planning">
+	<Component>planningWebApp</Component>
+</Product>
+		<Product name="hfm">
+	<Component>hfmAdmClient</Component>
+	<Component>hfmWebApps</Component>
+	<Component>hfmService</Component>
+</Product>
+		<Product name="erpi">
+	<Component>erpiWebApp</Component>
+</Product>
+		<Product name="profitability">
+	<Component>osloWebApp</Component>
+	<Component>osloWebAppSamples</Component>
+</Product>
 		</SelectedProducts>
   <ProductHomes/>
   <UpgradeCleanUp/>

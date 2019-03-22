@@ -1,0 +1,8 @@
+<Product name="foundation">
+	<ProductComponent name="foundationServices">
+		<Component>staticContent</Component>
+		<Component>weblogic</Component>
+	</ProductComponent>
+	<Component>dbclient32</Component>
+	<Component>dbclient64</Component>
+</Product>

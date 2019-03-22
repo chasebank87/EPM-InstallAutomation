@@ -1,0 +1,93 @@
+<product productXML="BPMA">
+    <tasks>
+      <task>applicationServerDeployment</task>
+      <task>bpmaVirtualDirectoryConfiguration</task>
+      <task>hubRegistration</task>
+      <task>preConfiguration</task>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($wlHost)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">EPMADataSynchronizer</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>DataSync</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">19101</property>
+                <property name="serverName">EpmaDataSync</property>
+                <property name="sslPort">19145</property>
+                <property name="validationContext">DataSync</property>
+              </bean>
+            </listItem>
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">EPMAWebTier</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>awb</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">19091</property>
+                <property name="serverName">EpmaWebReports</property>
+                <property name="sslPort">19047</property>
+                <property name="validationContext">awb/conf/AwbConfig.xml</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="BEA_HOME">$($epmInstallPath)</property>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">false</property>
+          <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
+        </bean>
+      </bean>
+      <bean name="customConfiguration">
+        <property name="bpmaInterfaceDSConfigSelectionPanel_datasourceAction">create</property>
+        <property name="createTables">create</property>
+        <property name="datasourceDbType">Oracle</property>
+        <property name="epmaNetJniPort">5255</property>
+        <property name="epmaServicePort">5251</property>
+        <property name="product">Datasource</property>
+        <property name="rdbmsPort">1521</property>
+        <property name="rdbmsServer">null</property>
+        <property name="rdbmsType">Oracle</property>
+        <property name="relativePaths"/>
+        <property name="relativePathsInstance"/>
+      </bean>
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">create</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($bpmaDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($bpmaDB);loadLibraryPath=$($epmInstallPath)\wlserver_10.3\server\lib</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">false</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">Foundation Services/Performance Management Architect</property>
+    </bean>
+  </product>

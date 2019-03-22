@@ -1,0 +1,18 @@
+<Product name="foundation">
+	<ProductComponent name="foundationServices">
+		<Component>hssWebApp</Component>
+		<Component>staticContent</Component>
+		<Component>ohs</Component>
+		<Component>weblogic</Component>
+	</ProductComponent>
+	<Component>dbclient32</Component>
+	<Component>dbclient64</Component>
+	<ProductComponent name="BPMA">
+		<Component>BPMAWebApp</Component>
+		<Component>epmaDataSync</Component>
+		<Component>epmaServices</Component>
+	</ProductComponent>
+	<ProductComponent name="Calc">
+		<Component>CalcWebApp</Component>
+	</ProductComponent>
+</Product>
