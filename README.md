@@ -95,7 +95,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -configSQL (switch)
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
-          * ___-version900 (Switch | Using this switch will configure 11.1.2.4.900 otherwise 11.1.2.4 will be configured)___
+          * -version900 (Switch | Using this switch will configure 11.1.2.4.900 otherwise 11.1.2.4 will be configured)
    #### -superSilentAll
        * Required Sub Options:
           * -installEPM ($true | $false)
@@ -147,7 +147,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -configSQL (switch)
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
-          * ___-version900 (Switch | Using this switch will install/configure 11.1.2.4.900 otherwise 11.1.2.4 will be installed/configured)___
+          * -version900 (Switch | Using this switch will install/configure 11.1.2.4.900 otherwise 11.1.2.4 will be installed/configured)
           
 ### Environment Instructions:
 
