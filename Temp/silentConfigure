@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <products>
-  <instance>C:\Oracle\Middleware\user_projects\epmsystem1</instance>
+  <instance>c:\Oracle\Middleware\user_projects\epmsystem1</instance>
   <enable_compact_deployment_mode>false</enable_compact_deployment_mode>
   <auto_port_tick>true</auto_port_tick>
 
@@ -40,11 +40,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -79,7 +79,7 @@
       <bean name="httpServerConfiguration">
         <property name="displayVersion">11.1.1.7</property>
         <bean name="OracleHTTPserver">
-          <property name="path">C:\Oracle\Middleware\ohs</property>
+          <property name="path">c:\Oracle\Middleware\ohs</property>
           <property name="port">19000</property>
           <property name="useSSL">false</property>
         </bean>
@@ -96,11 +96,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_FND</property>
+          <property name="dbName">EPMS_FND</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_FND</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_FND</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -130,11 +130,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_ESB</property>
+          <property name="dbName">EPMS_ESB</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_ESB ;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_ESB ;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -179,11 +179,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="lwaConfiguration">
@@ -195,11 +195,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_ESB</property>
+          <property name="dbName">EPMS_ESB</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_ESB;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_ESB;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -276,11 +276,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -334,11 +334,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -355,11 +355,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_PLN</property>
+          <property name="dbName">EPMS_PLN</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_PLN;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_PLN;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -405,11 +405,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="lwaConfiguration">
@@ -421,11 +421,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_PCM</property>
+          <property name="dbName">EPMS_PCM</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_PCM;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_PCM;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -471,11 +471,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -488,11 +488,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_HFR</property>
+          <property name="dbName"></property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_HFR;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -535,11 +535,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="httpServerConfiguration">
@@ -589,11 +589,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="lwaConfiguration">
@@ -605,11 +605,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_FDM</property>
+          <property name="dbName">EPMS_FDM</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_FDM;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_FDM;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -675,11 +675,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -720,11 +720,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_HFM</property>
+          <property name="dbName">EPMS_HFM</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_HFM;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_HFM;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -768,11 +768,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="lwaConfiguration">
@@ -813,11 +813,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="httpServerConfiguration">
@@ -886,11 +886,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
@@ -915,11 +915,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_BPM</property>
+          <property name="dbName">EPMS_BPM</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_BPM;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_BPM;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>
@@ -964,11 +964,11 @@
               </bean>
             </listItem>
           </beanList>
-          <property name="BEA_HOME">C:\Oracle\Middleware</property>
+          <property name="BEA_HOME">c:\Oracle\Middleware</property>
           <property name="domainName">EPMSystem</property>
           <property name="manualProcessing">false</property>
           <property name="remoteDeployment">false</property>
-          <property name="serverLocation">C:\Oracle\Middleware\wlserver_10.3</property>
+          <property name="serverLocation">c:\Oracle\Middleware\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="lwaConfiguration">
@@ -980,11 +980,11 @@
           <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
-          <property name="dbName">EPM_CAL</property>
+          <property name="dbName">EPMS_CAL</property>
           <property name="dbTableTbsp"/>
           <property name="encrypted">true</property>
           <property name="host">sql.domain.local</property>
-          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPM_CAL;loadLibraryPath=C:\Oracle\Middleware\wlserver_10.3\server\lib</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://sql.domain.local:1433;databaseName=EPMS_CAL;loadLibraryPath=c:\Oracle\Middleware\wlserver_10.3\server\lib</property>
           <property name="password">Password!</property>
           <property name="port">1433</property>
           <property name="SSL_ENABLED">false</property>

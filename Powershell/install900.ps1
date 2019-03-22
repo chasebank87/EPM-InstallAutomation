@@ -43,7 +43,7 @@
                             "Y" {
                                 ""
                                 Write-Host "Downloading $($i.name).." -ForegroundColor Cyan
-                                $fileToDownload = $download900 | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
+                                $fileToDownload = $downloads900 | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                                 $ProgressPreference = 'SilentlyContinue'
                                 #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
                                 (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\11.1.2.4.900\$($i.name)")
@@ -140,7 +140,7 @@
                 $installationFailures++
                 Write-Host "NOT FOUND" -ForegroundColor Red
                 Write-Host "Downloading $($i.name).." -ForegroundColor Cyan
-                $fileToDownload = $download900 | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
+                $fileToDownload = $downloads900 | Where-Object -FilterScript { $_ -like "*$($i.name)*" }
                 $ProgressPreference = 'SilentlyContinue'
                 #wget $fileToDownload -OutFile "$($installerPath)\EPM\$($i.name)" -Verbose
                 (New-Object System.Net.WebClient).DownloadFile($fileToDownload, "$($installerPath)\EPM\11.1.2.4.900\$($i.name)")

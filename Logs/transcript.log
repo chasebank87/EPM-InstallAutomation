@@ -1,11 +1,11 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20190321204232
+Start time: 20190321225018
 Username: FOUNDATION\Administrator
 RunAs User: FOUNDATION\Administrator
 Machine: FOUNDATION (Microsoft Windows NT 6.3.9600.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-Process ID: 3608
+Process ID: 3816
 PSVersion: 5.1.14409.1005
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.14409.1005
@@ -20,23 +20,26 @@ Transcript started, output file is C:\EPM\EPMSilent-InstallAutomation-master\Pow
 Utility running as administrator. Continuing..
 Execution Policy is correct. Continuing
 You selected 11.1.2.4.900
+RAF is not included in version 11.1.2.4.900. Removing from install..
+Disclosure is not included in version 11.1.2.4.900. Removing from install..
+RAF is not included in version 11.1.2.4.900. Removing from config..
+Disclosure is not included in version 11.1.2.4.900. Removing from config..
 
-#   ______     ______   __    __        ______     __     __         ______     __   __     ______             
-#  /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
-#  \ \  __\   \ \  _-/ \ \ \-./\ \     \ \___  \  \ \ \  \ \ \____  \ \  __\   \ \ \-.  \  \/_/\ \/            
-#   \ \_____\  \ \_\    \ \_\ \ \_\     \/\_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\    \ \_\            
-#    \/_____/   \/_/     \/_/  \/_/      \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/     \/_/            
-#   __     __   __     ______     ______   ______     __         __            ______     __   __     _____    
-#  /\ \   /\ "-.\ \   /\  ___\   /\__  _\ /\  __ \   /\ \       /\ \          /\  __ \   /\ "-.\ \   /\  __-.  
-#  \ \ \  \ \ \-.  \  \ \___  \  \/_/\ \/ \ \  __ \  \ \ \____  \ \ \____     \ \  __ \  \ \ \-.  \  \ \ \/\ \ 
-#   \ \_\  \ \_\\"\_\  \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\     \ \_\ \_\  \ \_\\"\_\  \ \____- 
-#    \/_/   \/_/ \/_/   \/_____/     \/_/   \/_/\/_/   \/_____/   \/_____/      \/_/\/_/   \/_/ \/_/   \/____/ 
-#   ______     ______     __   __     ______   __     ______                                                   
-#  /\  ___\   /\  __ \   /\ "-.\ \   /\  ___\ /\ \   /\  ___\                                                  
-#  \ \ \____  \ \ \/\ \  \ \ \-.  \  \ \  __\ \ \ \  \ \ \__ \                                                 
-#   \ \_____\  \ \_____\  \ \_\\"\_\  \ \_\    \ \_\  \ \_____\                                                
-#    \/_____/   \/_____/   \/_/ \/_/   \/_/     \/_/   \/_____/                                                
-#
+   ______     ______   __    __        ______     __     __         ______     __   __     ______             
+  /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
+  \ \  __\   \ \  _-/ \ \ \-./\ \     \ \___  \  \ \ \  \ \ \____  \ \  __\   \ \ \-.  \  \/_/\ \/            
+   \ \_____\  \ \_\    \ \_\ \ \_\     \/\_____\  \ \_\  \ \_____\  \ \_____\  \ \_\\"\_\    \ \_\            
+    \/_____/   \/_/     \/_/  \/_/      \/_____/   \/_/   \/_____/   \/_____/   \/_/ \/_/     \/_/            
+   __     __   __     ______     ______   ______     __         __            ______     __   __     _____    
+  /\ \   /\ "-.\ \   /\  ___\   /\__  _\ /\  __ \   /\ \       /\ \          /\  __ \   /\ "-.\ \   /\  __-.  
+  \ \ \  \ \ \-.  \  \ \___  \  \/_/\ \/ \ \  __ \  \ \ \____  \ \ \____     \ \  __ \  \ \ \-.  \  \ \ \/\ \ 
+   \ \_\  \ \_\\"\_\  \/\_____\    \ \_\  \ \_\ \_\  \ \_____\  \ \_____\     \ \_\ \_\  \ \_\\"\_\  \ \____- 
+    \/_/   \/_/ \/_/   \/_____/     \/_/   \/_/\/_/   \/_____/   \/_____/      \/_/\/_/   \/_/ \/_/   \/____/ 
+   ______     ______     __   __     ______   __     ______                                                   
+  /\  ___\   /\  __ \   /\ "-.\ \   /\  ___\ /\ \   /\  ___\                                                  
+  \ \ \____  \ \ \/\ \  \ \ \-.  \  \ \  __\ \ \ \  \ \ \__ \                                                 
+   \ \_____\  \ \_____\  \ \_\\"\_\  \ \_\    \ \_\  \ \_____\                                                
+    \/_____/   \/_____/   \/_/ \/_/   \/_/     \/_/   \/_____/
 Thank you for using the EPM silent installer/configuration utility. Please note the following requirments and limitations before continuing:
         Warning:
         1. This utility is still in BETA. Continue at your own RISK.
@@ -70,52 +73,98 @@ sa is a sysadmin. Continuing..
 \ \ \/\ \\ \  __ \\/_/\ \/\ \  __ \\ \  __< \ \  __ \\ \___  \\ \  __\ \ \___  \  
  \ \____- \ \_\ \_\  \ \_\ \ \_\ \_\\ \_____\\ \_\ \_\\/\_____\\ \_____\\/\_____\ 
   \/____/  \/_/\/_/   \/_/  \/_/\/_/ \/_____/ \/_/\/_/ \/_____/ \/_____/ \/_____/
-EPM_BPM already exists. Skipping..
-EPM_CAL already exists. Skipping..
-EPM_ESB already exists. Skipping..
-EPM_FDM already exists. Skipping..
-EPM_FND already exists. Skipping..
-EPM_HFM already exists. Skipping..
-EPM_PCM already exists. Skipping..
-EPM_PLN already exists. Skipping..
-EPM_HFR already exists. Skipping..
+EPMS_BPM already exists. Skipping..
+EPMS_CAL already exists. Skipping..
+EPMS_DMA already exists. Skipping..
+EPMS_ESB already exists. Skipping..
+EPMS_FDM already exists. Skipping..
+EPMS_FND already exists. Skipping..
+EPMS_HFM already exists. Skipping..
+EPMS_PCM already exists. Skipping..
+EPMS_RAF already exists. Skipping..
+EPMS_PLN already exists. Skipping..
 Choco already installed. Continuing..
-Starting Oracle EPM.. configuration procedure
+.Net Framework 3.5 is already installed. Continuing..
+Chocolatey v0.10.11
+Installing the following packages:
+7zip
+By installing you accept licenses for the packages.
+7zip v19.0 already installed. Forcing reinstall of version '19.0'.
+ Please use upgrade if you meant to upgrade to a new version.
+Progress: Downloading 7zip 19.0... 100%
+
+7zip v19.0 (forced) [Approved]
+7zip package files install completed. Performing other installation steps.
+ The install of 7zip was successful.
+  Software install location not explicitly set, could be in package or
+  default install location if installer.
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Installing the following packages:
+notepadplusplus
+By installing you accept licenses for the packages.
+notepadplusplus v7.6.4 already installed. Forcing reinstall of version '7.6.4'.
+ Please use upgrade if you meant to upgrade to a new version.
+Progress: Downloading notepadplusplus 7.6.4... 100%
+
+notepadplusplus v7.6.4 (forced) [Approved]
+notepadplusplus package files install completed. Performing other installation steps.
+ The install of notepadplusplus was successful.
+  Software install location not explicitly set, could be in package or
+  default install location if installer.
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Chocolatey v0.10.11
+Installing the following packages:
+firefox
+By installing you accept licenses for the packages.
+Firefox v65.0.2 already installed. Forcing reinstall of version '65.0.2'.
+ Please use upgrade if you meant to upgrade to a new version.
+Progress: Downloading Firefox 65.0.2... 100%
+
+Firefox v65.0.2 (forced) [Approved]
+firefox package files install completed. Performing other installation steps.
+Downloading Firefox 64 bit
+  from 'https://download.mozilla.org/?product=firefox-65.0.2-ssl&os=win64&lang=en-US'
+Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\2\chocolatey\Firefox\65.0.2\Firefox Set
+up 65.0.2.exe (43.58 MB).
+Download of Firefox Setup 65.0.2.exe (43.58 MB) completed.
+Hashes match.
+Installing Firefox...
+Firefox has been installed.
+ The install of firefox was successful.
+  Software installed to 'C:\Program Files\Mozilla Firefox'
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+Starting Oracle EPM installation procedure..
+Looking for installation files
+Looking for V74019-01.zip
+OK
 
 
- ______   ______   __   __   ______  __   ______   __  __   ______   __   __   __   ______    
-/\  ___\ /\  __ \ /\ "-.\ \ /\  ___\/\ \ /\  ___\ /\ \/\ \ /\  == \ /\ \ /\ "-.\ \ /\  ___\   
-\ \ \____\ \ \/\ \\ \ \-.  \\ \  __\\ \ \\ \ \__ \\ \ \_\ \\ \  __< \ \ \\ \ \-.  \\ \ \__ \  
- \ \_____\\ \_____\\ \_\\"\_\\ \_\   \ \_\\ \_____\\ \_____\\ \_\ \_\\ \_\\ \_\\"\_\\ \_____\ 
-  \/_____/ \/_____/ \/_/ \/_/ \/_/    \/_/ \/_____/ \/_____/ \/_/ /_/ \/_/ \/_/ \/_/ \/_____/
-Starting Standalone Configuration
-Adding Header to config file
-Adding Foundation to config file
-Adding Provider to config file
-Adding EPMA to config file
-Adding Essbase Studio to config file
-Adding CALC to config file
-Adding EAS to config file
-Adding Essbase to config file
-Adding Strategic to config file
-Adding Planning to config file
-Adding Profit to config file
-Adding FR to config file
-Adding Workspace to config file
-Adding FDM to config file
-Adding HFM to config file
-Configuring EPM. This may take 30 - 45 Minutes.
-Starting EPM.
-Validating EPM.
+Looking for V74050-01.zip
+OK
 
 
+Looking for V975616-01.zip
+OK
 
- ______   ______   __    __   ______  __       ______  ______  ______    
-/\  ___\ /\  __ \ /\ "-./  \ /\  == \/\ \     /\  ___\/\__  _\/\  ___\   
-\ \ \____\ \ \/\ \\ \ \-./\ \\ \  _-/\ \ \____\ \  __\\/_/\ \/\ \  __\   
- \ \_____\\ \_____\\ \_\ \ \_\\ \_\   \ \_____\\ \_____\ \ \_\ \ \_____\ 
-  \/_____/ \/_____/ \/_/  \/_/ \/_/    \/_____/ \/_____/  \/_/  \/_____/
+
+Looking for V975624-01.zip
+NOT FOUND
+Downloading V975624-01.zip..
+PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> clear
+PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> .\start.ps1 -superSilentAll -version900 -installIIS $true -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installEssbase $true -installRAF $true -installPlanning $true -installDisclosure $true -installHFM $true -installfdm $true -installProfit $true -installStrategic $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -epmaDB EPMS_BPM -calcDB EPMS_CAL -essbaseDB EPMS_ESB -rafDB EPMS_RAF -planningDB EPMS_PLN -disclosureDB EPMS_DMA -hfmDB EPMS_HFM -fdmDB EPMS_FDM -profitDB EPMS_PCM -strategic $true -startEPM $true -validate $true -configSQL -sqlAdmin sa -sqlAdminPassword Password!
+Working directory is correct. Continuing..
 **********************
 Windows PowerShell transcript end
-End time: 20190321212608
+End time: 20190321225333
 **********************

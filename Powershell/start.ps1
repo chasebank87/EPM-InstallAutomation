@@ -443,7 +443,7 @@ Param (
                 Write-Host "Disclosure is not included in version 11.1.2.4.900. Removing from config.." -ForegroundColor Yellow
             }
         } else {
-            Write-Host "You selected 11.1.2.4" -ForegroundColor Green
+            Write-Host "Defaulting to 11.1.2.4" -ForegroundColor Green
             $installScript = 'install.ps1'
             $configureScript = 'configure.ps1'
         }
@@ -596,7 +596,8 @@ Param (
         } else {
             Write-Host "Slqserver module not installed. Installing now.." -ForegroundColor Yellow
             Write-Host "Please confirm the following prompts" -ForegroundColor Yellow
-            Install-module -Name SqlServer -Scope CurrentUser -SkipPublisherCheck -Confirm:$False
+            Install-PackageProvider -Name Nuget -Confirm:$false -Force
+            Install-module -Name SqlServer -SkipPublisherCheck -Confirm:$False -Force
         }
         Try {
             Invoke-Expression -Command "$($installerPath)\Powershell\configureSQL.ps1" -Verbose

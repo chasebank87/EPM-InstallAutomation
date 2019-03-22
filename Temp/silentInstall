@@ -31,9 +31,7 @@
 	<Component>essbaseService</Component>
 	<Component>essbaseServiceSamples</Component>
 </Product>
-		<Product name="fr">
-	<Component>frWebApp</Component>
-</Product>
+		
 		
 		
 		
