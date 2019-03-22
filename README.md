@@ -9,11 +9,14 @@ The goal of this utility was to make the installation and configuration of Hyper
 1. Oracle DB is not ___currently___ supported
 2. SOA is not ___currently___ supported
 3. Individual database usernames are not ___currently___ supported
-4. 11.1.2.4 Only version __currently__ supported
 
 ### Requirements:
 
 1. Logged in as a local Administrator
+2. Run powershell as admin
+2. A SQL Server,  and a User with sysadmin acess ___or___ The databases created already to Oracle specifications
+4. 64 Bit OS Only
+5. Windows Server 2008 or 2012
 
 ### Steps:
 
@@ -57,6 +60,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -installFCM ($true | $false)
           * -installTax ($true | $false)
           * -installStrategic ($true | $false)
+          * -version900 (Switch | Using this switch will install 11.1.2.4.900 otherwise 11.1.2.4 will be installed)
   #### -superSilentConfig
       * Required Sub Options:
           * -dbServer (String | Example: server.domain.local)
@@ -91,6 +95,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -configSQL (switch)
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
+          * ___-version900 (Switch | Using this switch will configure 11.1.2.4.900 otherwise 11.1.2.4 will be configured)___
    #### -superSilentAll
        * Required Sub Options:
           * -installEPM ($true | $false)
@@ -142,6 +147,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -configSQL (switch)
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
+          * ___-version900 (Switch | Using this switch will install/configure 11.1.2.4.900 otherwise 11.1.2.4 will be installed/configured)___
           
 ### Environment Instructions:
 
