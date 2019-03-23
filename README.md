@@ -159,13 +159,16 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -noDomain (Switch | Using this switch will configure EPM with hostname only not hostname and domain)
           
 ### Environment Instructions:
-
+#### 11.1.2.4
 1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Standalone.md">Standalone EPM __(Single Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedEssbase.md">Distributed Essbase __(Two Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedHFM.md">Distributed HFM __(Two Server Environment)__</a>
 3. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedPlanning.md">Distributed Planning & Essbase __(Three Server Environment)__</a>
-
-
+#### 11.1.2.4.900
+1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Standalone900.md">Standalone EPM __(Single Server Environment)__</a>
+2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedEssbase900.md">Distributed Essbase __(Two Server Environment)__</a>
+2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedHFM900.md">Distributed HFM __(Two Server Environment)__</a>
+3. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedPlanning900.md">Distributed Planning & Essbase __(Three Server Environment)__</a>
 
 ### Features:
 
