@@ -1,7 +1,45 @@
 <product productXML="Foundation">
     <tasks>
+      <task>applicationServerDeployment</task>
+      <task>FndCommonSetting</task>
+      <task>preConfiguration</task>
       <task>relationalStorageConfiguration</task>
+      <task>WebServerConfiguration</task>
     </tasks>
+    <bean name="main">
+      <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($wlHost)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">EPMServer</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">Shared Services</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>interop</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">28080</property>
+                <property name="serverName">FoundationServices</property>
+                <property name="sslPort">28443</property>
+                <property name="validationContext">interop</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="BEA_HOME">$($epmInstallPath)</property>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">false</property>
+          <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
+        </bean>
+      </bean>
       <bean name="customConfiguration">
         <property name="AdminEmail">$($email)</property>
         <property name="adminPassword">$($password)</property>
@@ -31,9 +69,20 @@
         <property name="windows_services_password"/>
         <property name="windows_services_user"/>
       </bean>
+      <bean name="httpServerConfiguration">
+        <property name="displayVersion">11.1.1.7</property>
+        <bean name="OracleHTTPserver">
+          <property name="path">$($epmInstallPath)\ohs</property>
+          <property name="port">$($workspacePort)</property>
+          <property name="useSSL">false</property>
+        </bean>
+        <property name="port">$($workspacePort)</property>
+        <property name="protocol">http</property>
+        <property name="sharedLocation">use_local_instance</property>
+      </bean>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
-          <property name="createOrReuse">Reuse</property>
+          <property name="createOrReuse">create</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
           <property name="dbName">$($foundationDB)</property>

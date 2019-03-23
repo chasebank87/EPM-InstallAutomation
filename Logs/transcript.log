@@ -1,11 +1,11 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20190321225018
-Username: FOUNDATION\Administrator
-RunAs User: FOUNDATION\Administrator
-Machine: FOUNDATION (Microsoft Windows NT 6.3.9600.0)
+Start time: 20190323045732
+Username: HYPCHASE-HFM\BEADMIN
+RunAs User: HYPCHASE-HFM\BEADMIN
+Machine: HYPCHASE-HFM (Microsoft Windows NT 6.3.9600.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
-Process ID: 3816
+Process ID: 1404
 PSVersion: 5.1.14409.1005
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.14409.1005
@@ -15,15 +15,12 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Transcript started, output file is C:\EPM\EPMSilent-InstallAutomation-master\Powershell\..\\Logs\transcript.log
+Transcript started, output file is Z:\EPM\EPMSilent-InstallAutomation-master\Powershell\..\\Logs\transcript.log
 64 Bit is supported. Continuing..
 Utility running as administrator. Continuing..
 Execution Policy is correct. Continuing
+Weblogic is accepting requests on server HYPCHASE-FND:7001. Continuing..
 You selected 11.1.2.4.900
-RAF is not included in version 11.1.2.4.900. Removing from install..
-Disclosure is not included in version 11.1.2.4.900. Removing from install..
-RAF is not included in version 11.1.2.4.900. Removing from config..
-Disclosure is not included in version 11.1.2.4.900. Removing from config..
 
    ______     ______   __    __        ______     __     __         ______     __   __     ______             
   /\  ___\   /\  == \ /\ "-./  \      /\  ___\   /\ \   /\ \       /\  ___\   /\ "-.\ \   /\__  _\            
@@ -55,9 +52,19 @@ Thank you for using the EPM silent installer/configuration utility. Please note 
         4. SOA Products like Tax Management and Financial Close Manager are not supported.
 
 UAC is already disabled. Continuing..
+Powershell max memory per shell limit too low, raising limit..
+WARNING: The updated configuration might affect the operation of the plugins having a per plugin quota value greater than 6144. Verify the configuration of all the registered plugins and change the per plugin quota values for the affected plugins.
+WARNING: The updated configuration is effective only if it is less than or equal to the value of global quota WSMan:\localhost\Shell\MaxMemoryPerShellMB. Verify the value for the global quota using the PowerShell cmdlet "Get-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB".
+WARNING: The configuration changes you made will only be effective after the WinRM service is restarted.  To restart the WinRM service, run the following command: 'Restart-Service winrm'
+VERBOSE: Performing the operation "Restart-Service" on target "Windows Remote Management (WS-Management) (WinRM)".
 Starting SQL configuration
 Powershell is already the correct version. Continuing..
-Sqlserver module already install. Continuing..
+Slqserver module not installed. Installing now..
+Please confirm the following prompts
+
+Name                           Version          Source           Summary
+----                           -------          ------           -------
+nuget                          2.8.5.208        https://onege... NuGet provider for the OneGet meta-package manager
 SQL Server collation is set correctly. Continuing..
 sa is a sysadmin. Continuing..
 
@@ -73,25 +80,41 @@ sa is a sysadmin. Continuing..
 \ \ \/\ \\ \  __ \\/_/\ \/\ \  __ \\ \  __< \ \  __ \\ \___  \\ \  __\ \ \___  \  
  \ \____- \ \_\ \_\  \ \_\ \ \_\ \_\\ \_____\\ \_\ \_\\/\_____\\ \_____\\/\_____\ 
   \/____/  \/_/\/_/   \/_/  \/_/\/_/ \/_____/ \/_/\/_/ \/_____/ \/_____/ \/_____/
-EPMS_BPM already exists. Skipping..
-EPMS_CAL already exists. Skipping..
-EPMS_DMA already exists. Skipping..
-EPMS_ESB already exists. Skipping..
-EPMS_FDM already exists. Skipping..
-EPMS_FND already exists. Skipping..
-EPMS_HFM already exists. Skipping..
-EPMS_PCM already exists. Skipping..
-EPMS_RAF already exists. Skipping..
-EPMS_PLN already exists. Skipping..
-Choco already installed. Continuing..
+CHASE_FND already exists. Skipping..
+CHASE_HFM already exists. Skipping..
+Choco is not installed. Installing now..
+WARNING: It's very likely you will need to close and reopen your shell 
+  before you can use choco.
+WARNING: You can safely ignore errors related to missing log files when 
+  upgrading from a version of Chocolatey less than 0.9.9. 
+  'Batch file could not be found' is also safe to ignore. 
+  'The system cannot find the file specified' - also safe.
+PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding...
 .Net Framework 3.5 is already installed. Continuing..
-Chocolatey v0.10.11
+Chocolatey v0.10.13
 Installing the following packages:
 7zip
 By installing you accept licenses for the packages.
-7zip v19.0 already installed. Forcing reinstall of version '19.0'.
- Please use upgrade if you meant to upgrade to a new version.
+Progress: Downloading 7zip.install 19.0... 100%
+Progress: Downloading chocolatey-core.extension 1.3.3... 100%
 Progress: Downloading 7zip 19.0... 100%
+
+chocolatey-core.extension v1.3.3 (forced) [Approved]
+chocolatey-core.extension package files install completed. Performing other installation steps.
+ Installed/updated chocolatey-core extensions.
+ The install of chocolatey-core.extension was successful.
+  Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
+
+7zip.install v19.0 (forced) [Approved]
+7zip.install package files install completed. Performing other installation steps.
+Installing 64 bit version
+Installing 7zip.install...
+7zip.install has been installed.
+7zip installed to 'C:\Program Files\7-Zip'
+Added C:\ProgramData\chocolatey\bin\7z.exe shim pointed to 'c:\program files\7-zip\7z.exe'.
+  7zip.install may be able to be automatically uninstalled.
+ The install of 7zip.install was successful.
+  Software installed to 'C:\Program Files\7-Zip\'
 
 7zip v19.0 (forced) [Approved]
 7zip package files install completed. Performing other installation steps.
@@ -99,15 +122,24 @@ Progress: Downloading 7zip 19.0... 100%
   Software install location not explicitly set, could be in package or
   default install location if installer.
 
-Chocolatey installed 1/1 packages.
+Chocolatey installed 3/3 packages.
  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-Chocolatey v0.10.11
+Chocolatey v0.10.13
 Installing the following packages:
 notepadplusplus
 By installing you accept licenses for the packages.
-notepadplusplus v7.6.4 already installed. Forcing reinstall of version '7.6.4'.
- Please use upgrade if you meant to upgrade to a new version.
+Progress: Downloading notepadplusplus.install 7.6.4... 100%
 Progress: Downloading notepadplusplus 7.6.4... 100%
+
+notepadplusplus.install v7.6.4 (forced) [Approved]
+notepadplusplus.install package files install completed. Performing other installation steps.
+Installing 64-bit notepadplusplus.install...
+notepadplusplus.install has been installed.
+notepadplusplus.install installed to 'C:\Program Files\Notepad++'
+Added C:\ProgramData\chocolatey\bin\notepad++.exe shim pointed to 'c:\program files\notepad++\notepad++.exe'.
+  notepadplusplus.install may be able to be automatically uninstalled.
+ The install of notepadplusplus.install was successful.
+  Software installed as 'exe', install location is likely default.
 
 notepadplusplus v7.6.4 (forced) [Approved]
 notepadplusplus package files install completed. Performing other installation steps.
@@ -115,26 +147,25 @@ notepadplusplus package files install completed. Performing other installation s
   Software install location not explicitly set, could be in package or
   default install location if installer.
 
-Chocolatey installed 1/1 packages.
+Chocolatey installed 2/2 packages.
  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-Chocolatey v0.10.11
+Chocolatey v0.10.13
 Installing the following packages:
 firefox
 By installing you accept licenses for the packages.
-Firefox v65.0.2 already installed. Forcing reinstall of version '65.0.2'.
- Please use upgrade if you meant to upgrade to a new version.
-Progress: Downloading Firefox 65.0.2... 100%
+Progress: Downloading Firefox 66.0.1... 100%
 
-Firefox v65.0.2 (forced) [Approved]
+Firefox v66.0.1 (forced) [Approved]
 firefox package files install completed. Performing other installation steps.
 Downloading Firefox 64 bit
-  from 'https://download.mozilla.org/?product=firefox-65.0.2-ssl&os=win64&lang=en-US'
-Progress: 100% - Completed download of C:\Users\Administrator\AppData\Local\Temp\2\chocolatey\Firefox\65.0.2\Firefox Set
-up 65.0.2.exe (43.58 MB).
-Download of Firefox Setup 65.0.2.exe (43.58 MB) completed.
+  from 'https://download.mozilla.org/?product=firefox-66.0.1-ssl&os=win64&lang=en-US'
+Progress: 100% - Completed download of C:\Users\BEADMIN\AppData\Local\Temp\chocolatey\Firefox\66.0.1\Firefox Setup 66.0.
+1.exe (43.8 MB).
+Download of Firefox Setup 66.0.1.exe (43.8 MB) completed.
 Hashes match.
 Installing Firefox...
 Firefox has been installed.
+  firefox may be able to be automatically uninstalled.
  The install of firefox was successful.
   Software installed to 'C:\Program Files\Mozilla Firefox'
 
@@ -155,16 +186,83 @@ OK
 
 
 Looking for V975624-01.zip
-NOT FOUND
-Downloading V975624-01.zip..
-PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> TerminatingError(): "The pipeline has been stopped."
+OK
+
+
+Looking for V975630-01.zip
+OK
+
+
+Looking for V975632-01.zip
+OK
+
+
+Looking for V975645-01.zip
+OK
+
+
+Looking for V975647-01.zip
+OK
+
+
+Looking for V980741-01.zip
+OK
+
+
+Unzipping Install Files.  This may take a few minutes.
+Unzipping.. 0% Completed.
+Unzipping.. 10% Completed.
+Unzipping.. 15% Completed.
+Unzipping.. 22% Completed.
+Unzipping.. 31% Completed.
+Unzipping.. 37% Completed.
+Unzipping.. 47% Completed.
+Unzipping.. 56% Completed.
+Unzipping.. 68% Completed.
+Unzipping.. 87% Completed.
+Unzipped files are present. Continuing..
+
+ __   __   __   ______   ______  ______   __       __       __   __   __   ______    
+/\ \ /\ "-.\ \ /\  ___\ /\__  _\/\  __ \ /\ \     /\ \     /\ \ /\ "-.\ \ /\  ___\   
+\ \ \\ \ \-.  \\ \___  \\/_/\ \/\ \  __ \\ \ \____\ \ \____\ \ \\ \ \-.  \\ \ \__ \  
+ \ \_\\ \_\\"\_\\/\_____\  \ \_\ \ \_\ \_\\ \_____\\ \_____\\ \_\\ \_\\"\_\\ \_____\ 
+  \/_/ \/_/ \/_/ \/_____/   \/_/  \/_/\/_/ \/_____/ \/_____/ \/_/ \/_/ \/_/ \/_____/
+Starting Distributed Remote Install
+Adding Foundation Remote Deployment to Install List
+Adding HFM to Install List
+Installing EPM. This may take 10 - 20 Minutes.
+Starting Oracle EPM.. configuration procedure
+
+
+ ______   ______   __   __   ______  __   ______   __  __   ______   __   __   __   ______    
+/\  ___\ /\  __ \ /\ "-.\ \ /\  ___\/\ \ /\  ___\ /\ \/\ \ /\  == \ /\ \ /\ "-.\ \ /\  ___\   
+\ \ \____\ \ \/\ \\ \ \-.  \\ \  __\\ \ \\ \ \__ \\ \ \_\ \\ \  __< \ \ \\ \ \-.  \\ \ \__ \  
+ \ \_____\\ \_____\\ \_\\"\_\\ \_\   \ \_\\ \_____\\ \_____\\ \_\ \_\\ \_\\ \_\\"\_\\ \_____\ 
+  \/_____/ \/_____/ \/_/ \/_/ \/_/    \/_/ \/_____/ \/_____/ \/_/ /_/ \/_/ \/_/ \/_/ \/_____/
+Starting Distributed Remote Configuration
+Adding Remote Header to config file
+Adding Remote Foundation to config file
+Adding Central FR to config file
+Adding Remote HFM to config file
+Configuring EPM. This may take 30 - 45 Minutes.
+PS>TerminatingError(Start-Process): "This command cannot be run due to the error: The system cannot find the file specified."
+Start-Process : This command cannot be run due to the error: The system cannot find the file specified.
+At Z:\EPM\EPMSilent-InstallAutomation-master\Powershell\configure900.ps1:1220 char:5
++     Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\ ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidOperation: (:) [Start-Process], InvalidOperationException
+    + FullyQualifiedErrorId : InvalidOperationException,Microsoft.PowerShell.Commands.StartProcessCommand
+
+PS>TerminatingError(): "The pipeline has been stopped."
 >> TerminatingError(): "The pipeline has been stopped."
 >> TerminatingError(): "The pipeline has been stopped."
 >> TerminatingError(): "The pipeline has been stopped."
-PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> clear
-PS C:\EPM\EPMSilent-InstallAutomation-master\Powershell> .\start.ps1 -superSilentAll -version900 -installIIS $true -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installEssbase $true -installRAF $true -installPlanning $true -installDisclosure $true -installHFM $true -installfdm $true -installProfit $true -installStrategic $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -epmaDB EPMS_BPM -calcDB EPMS_CAL -essbaseDB EPMS_ESB -rafDB EPMS_RAF -planningDB EPMS_PLN -disclosureDB EPMS_DMA -hfmDB EPMS_HFM -fdmDB EPMS_FDM -profitDB EPMS_PCM -strategic $true -startEPM $true -validate $true -configSQL -sqlAdmin sa -sqlAdminPassword Password!
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+>> TerminatingError(): "The pipeline has been stopped."
+PS Z:\EPM\EPMSilent-InstallAutomation-master\Powershell> .\start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath d:\Oracle\Middleware -installFoundation $true -installHFM $true -dbServer HYPCHASE-SQL -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname HYPCHASE-FND -wkspcPort 19000 -epmDomain EPMSystem -foundationDB CHASE_FND -hfmDB CHASE_HFM -strategic $false -remoteDeployment $true -distributedHFM $true -configSQL -sqlAdmin sa -sqlAdminPassword Password! -instance hfm1 -version900 -noDomain
 Working directory is correct. Continuing..
 **********************
 Windows PowerShell transcript end
-End time: 20190321225333
+End time: 20190323051225
 **********************

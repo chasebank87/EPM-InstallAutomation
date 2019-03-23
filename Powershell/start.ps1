@@ -343,6 +343,11 @@ Param (
     if(!$rafDB){
         $configRAF = $false
     }
+	
+	#check if switch frDB is missing and sets configFR to false
+    if(!$frDB){
+        $configFR = $false
+    }
 
     #check if switch planningDB is missing and sets configPlanning to false
     if(!$planningDB){
