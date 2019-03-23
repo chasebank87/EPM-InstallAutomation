@@ -950,7 +950,7 @@
             } elseif($configFoundation -ne $false -and $remoteDeployment -ne $true){
                	Write-Host "Adding Central Foundation to first stage config file" -ForegroundColor green
                 $fndConfigureSilentFirst = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4.900\Config\Distributed\Central\foundationFirstStage" -Raw
-                $fndConfigureSilentFirst = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+                $fndConfigureSilentFirst = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilentFirst)
 		Write-Host "Adding Central Foundation to second stage config file" -ForegroundColor green
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4.900\Config\Distributed\Central\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
