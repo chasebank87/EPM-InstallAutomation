@@ -82,7 +82,7 @@
       </bean>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
-          <property name="createOrReuse">create</property>
+          <property name="createOrReuse">reuse</property>
           <property name="customURL">false</property>
           <property name="dbIndexTbsp"/>
           <property name="dbName">$($foundationDB)</property>
