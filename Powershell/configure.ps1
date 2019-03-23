@@ -972,7 +972,10 @@
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Config\Distributed\Remote\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
             } elseif($configFoundation -ne $false -and $remoteDeployment -ne $true){
-                Write-Host "Adding Central Foundation to config file" -ForegroundColor green
+               	Write-Host "Adding Central Foundation to first stage config file" -ForegroundColor green
+                $fndConfigureSilentFirst = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Config\Distributed\Central\foundationFirstStage" -Raw
+                $fndConfigureSilentFirst = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
+		Write-Host "Adding Central Foundation to second stage config file" -ForegroundColor green
                 $fndConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Config\Distributed\Central\foundation" -Raw
                 $fndConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($fndConfigureSilent)
             }
@@ -1164,9 +1167,109 @@
 
 #region configure EPM
 
+    if($distributedHFM -or $distributedPlanning -or $distributedFDM -or $distributedEssbase -and $remoteDeployment -ne $true){
+    	if($inputCALCDB -eq $null -and $inputEPMADB -eq $null) {
+
+    $data1 = "$($headerConfigureSilent)
+    $($fndConfigureSilentFirst)
+    </products>"
+
+  $data2 = "$($headerConfigureSilent)
+  $($fndConfigureSilent)
+  $($apsConfigureSilent)
+  $($bpmsConfigureSilent)
+  $($disclosureConfigureSilent)
+  $($easConfigureSilent)
+  $($essbaseServerConfigureSilent)
+  $($strategicConfigureSilent)
+  $($planningConfigureSilent)
+  $($profitConfigureSilent)
+  $($rafConfigureSilent)
+  $($workspaceConfigureSilent)
+  $($fdmConfigureSilent)
+  $($hfmConfigureSilent)
+</products>
+"
+}
+
+if($inputCALCDB -eq $null) {
+  
+    $data1 = "$($headerConfigureSilent)
+    $($fndConfigureSilentFirst)
+    </products>"
+   
+    $data2 = "$($headerConfigureSilent)
+  $($fndConfigureSilent)
+  $($apsConfigureSilent)
+  $($bpmaConfigureSilent)
+  $($bpmsConfigureSilent)
+  $($disclosureConfigureSilent)
+  $($easConfigureSilent)
+  $($essbaseServerConfigureSilent)
+  $($strategicConfigureSilent)
+  $($planningConfigureSilent)
+  $($profitConfigureSilent)
+  $($rafConfigureSilent)
+  $($workspaceConfigureSilent)
+  $($fdmConfigureSilent)
+  $($hfmConfigureSilent)
+</products>
+"
+$data
+}
+
+if($inputEPMADB -eq $null) {
+    $data1 = "$($headerConfigureSilent)
+    $($fndConfigureSilentFirst)
+    </products>"
+    
+    $data2 = "$($headerConfigureSilent)
+  $($fndConfigureSilent)
+  $($apsConfigureSilent)
+  $($bpmsConfigureSilent)
+  $($calcConfigureSilent)
+  $($disclosureConfigureSilent)
+  $($easConfigureSilent)
+  $($essbaseServerConfigureSilent)
+  $($strategicConfigureSilent)
+  $($planningConfigureSilent)
+  $($profitConfigureSilent)
+  $($rafConfigureSilent)
+  $($workspaceConfigureSilent)
+  $($fdmConfigureSilent)
+  $($hfmConfigureSilent)
+</products>
+"
+}
+	
+  $data1 = "$($headerConfigureSilent)	
+  $($fndConfigureSilentFirst)
+  </products>"
+  
+  $data2 = "$($headerConfigureSilent)
+  $($fndConfigureSilent)
+  $($bpmsConfigureSilent)
+  $($disclosureConfigureSilent)
+  $($easConfigureSilent)
+  $($essbaseServerConfigureSilent)
+  $($strategicConfigureSilent)
+  $($planningConfigureSilent)
+  $($profitConfigureSilent)
+  $($rafConfigureSilent)
+  $($workspaceConfigureSilent)
+  $($fdmConfigureSilent)
+  $($hfmConfigureSilent)
+  $($apsConfigureSilent)
+  $($workspaceConfigureSilent)
+  $($bpmaConfigureSilent)
+  $($calcConfigureSilent)
+</products>
+"
+    } else {
+
     if($inputCALCDB -eq $null -and $inputEPMADB -eq $null) {
 
-    $data = "$($headerConfigureSilent)
+  $data = "$($headerConfigureSilent)
   $($fndConfigureSilent)
   $($apsConfigureSilent)
   $($bpmsConfigureSilent)
@@ -1246,7 +1349,42 @@ if($inputEPMADB -eq $null) {
   $($calcConfigureSilent)
 </products>
 "
+}
+    if($data1 -and $data2){
+    $data1 | Out-File "$($installerPath)\Temp\silentConfigure1" -Encoding utf8
+    $silentConfigureFile = Get-Content "$($installerPath)\Temp\silentConfigure1"
+    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+    [System.IO.File]::WriteAllLines("$($installerPath)\Temp\silentConfigure1", $silentConfigureFile, $Utf8NoBomEncoding)
 
+    try {
+    Write-Host "Configuring EPM First Stage. This may take 30 - 45 Minutes." -ForegroundColor Cyan
+    Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\config\11.1.2.0\configtool.bat" -Wait -ArgumentList "-silent $($installerPath)\Temp\silentConfigure1" -Verb RunAs -Verbose
+    }
+    catch {
+        $_ | Out-File "$($installerPath)\Logs\configTool1.Error.log" -Append
+        Get-Content "$($installerPath)\Logs\configTool1.Error.log" | Write-Host -ForegroundColor Red
+        Read-Host "Click enter to exit"
+        Exit
+    }
+    
+    $data2 | Out-File "$($installerPath)\Temp\silentConfigure2" -Encoding utf8
+    $silentConfigureFile = Get-Content "$($installerPath)\Temp\silentConfigure2"
+    $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+    [System.IO.File]::WriteAllLines("$($installerPath)\Temp\silentConfigure2", $silentConfigureFile, $Utf8NoBomEncoding)
+
+    try {
+    Write-Host "Configuring EPM Second Stage. This may take 30 - 45 Minutes." -ForegroundColor Cyan
+    Start-Process -FilePath "$($epmInstallPath)\EPMSystem11R1\common\config\11.1.2.0\configtool.bat" -Wait -ArgumentList "-silent $($installerPath)\Temp\silentConfigure2" -Verb RunAs -Verbose
+    }
+    catch {
+        $_ | Out-File "$($installerPath)\Logs\configTool2.Error.log" -Append
+        Get-Content "$($installerPath)\Logs\configTool2.Error.log" | Write-Host -ForegroundColor Red
+        Read-Host "Click enter to exit"
+        Exit
+    }
+    
+    } else {
+    
     $data | Out-File "$($installerPath)\Temp\silentConfigure" -Encoding utf8
     $silentConfigureFile = Get-Content "$($installerPath)\Temp\silentConfigure"
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
@@ -1262,7 +1400,7 @@ if($inputEPMADB -eq $null) {
         Read-Host "Click enter to exit"
         Exit
     }
-
+  }
 #endregion
 
 #region start epm and validate
