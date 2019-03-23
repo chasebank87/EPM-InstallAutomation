@@ -1,1 +1,61 @@
-
+<product productXML="AIF">
+    <tasks>
+      <task>applicationServerDeployment</task>
+      <task>hubRegistration</task>
+      <task>preConfiguration</task>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($wlHost)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">aif</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>aif</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">6550</property>
+                <property name="serverName">ErpIntegrator</property>
+                <property name="sslPort">6553</property>
+                <property name="validationContext">aif/faces/setup/Main.jspx oracle-epm-erpi-webservices/RuleService</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="BEA_HOME">$($epmInstallPath)</property>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">false</property>
+          <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
+        </bean>
+      </bean>
+      <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">reuse</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($fdmDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($fdmDB);loadLibraryPath=$($epmInstallPath)\wlserver_10.3\server\lib</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">false</property>
+        </bean>
+      </bean>
+      <property name="shortcutFolderName">FDM Enterprise Edition</property>
+    </bean>
+  </product>
