@@ -21,6 +21,7 @@ The goal of this utility was to make the installation and configuration of Hyper
 ### Gotchas:
 
 1. When choosing between version 900 and version 11.1.2.4 you need to modify the options use. For instance RAF is no longer included in version 900. So we need to use the option -rfDB (EPMS_HFR) instead, and install switch -installRF. Disclosure is also not included so you will need to leave that DB Switch out of your command. You will also need to remove the install switches for the products mentioned above.
+2. If you are doing your install and configuration on a workgroup joined server instead of a domain you should use the switch -noDomain
 
 ### Steps:
 
