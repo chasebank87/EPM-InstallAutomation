@@ -1,9 +1,9 @@
 
 # Distributed HFM, FDM, ESB, PLN | Five Server Environment
-Version: ___11.1.2.4.900___
-Status: ___Testing___
-Note: ___Interactive mode not supported yet for multiple server deployments. Silent only___
-Note: ___Instead of cloaning the repo to every server and downloading the files fresh, you can just map a drive to the repo on the first server. Then browse to that mapped drive in powershell to the powershell folder and run everything as normal.
+* Version: ___11.1.2.4.900___
+* Status: ___Testing___
+* Note: ___Interactive mode not supported yet for multiple server deployments. Silent only___
+* Note: ___Instead of cloaning the repo to every server and downloading the files fresh, you can just map a drive to the repo on the first server. Then browse to that mapped drive in powershell to the powershell folder and run everything as normal.
 
 ### Steps:
   #### Foundation Server: (First)
