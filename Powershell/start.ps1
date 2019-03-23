@@ -118,6 +118,8 @@ Param (
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$sqlAdmin,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$sqlAdminPassword
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$instance
 
 )
 
@@ -181,6 +183,11 @@ Param (
 
 
 #region parse silent params and validate
+	
+    #if instance option is specified use that if not set default instance
+    if(!$instance -or $instance -ne $null) {
+    	$instance = epmsystem1
+    }
     
     #set install and config to true if superSilentAll is present
     if($superSilentAll.IsPresent -eq $true){
