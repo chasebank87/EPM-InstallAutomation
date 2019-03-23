@@ -18,6 +18,10 @@ The goal of this utility was to make the installation and configuration of Hyper
 4. 64 Bit OS Only
 5. Windows Server 2008 or 2012
 
+### Gotchas:
+
+1. When choosing between version 900 and version 11.1.2.4 you need to modify the options use. For instance RAF is no longer included in version 900. So we need to use the option -rfDB (EPMS_HFR) instead, and install switch -installRF. Disclosure is also not included so you will need to leave that DB Switch out of your command. You will also need to remove the install switches for the products mentioned above.
+
 ### Steps:
 
 1. Clone this repository to a folder on your server(s)
@@ -134,6 +138,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -calcDB (String | Example: EPMS_CAL)
           * -essbaseDB (String | Example: EPMS_ESB)
           * -rafDB (String | Example: EPMS_RAF)
+          * -frDB (String | Example: EPMS_HFR)
           * -planningDB (String | Example: EPMS_PLN)
           * -disclosureDB (String | Example: EPMS_DMA)
           * -hfmDB (String | Example: EPMS_HFM)
