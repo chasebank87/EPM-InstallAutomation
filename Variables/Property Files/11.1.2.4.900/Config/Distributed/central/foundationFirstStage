@@ -1,5 +1,5 @@
 <product productXML="Foundation">
-    <tasks>
+   <tasks>
       <task>applicationServerDeployment</task>
       <task>FndCommonSetting</task>
       <task>preConfiguration</task>
@@ -35,40 +35,34 @@
           <property name="BEA_HOME">$($epmInstallPath)</property>
           <property name="domainName">$($epmDomain)</property>
           <property name="manualProcessing">false</property>
-          <property name="remoteDeployment">true</property>
+          <property name="remoteDeployment">false</property>
           <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
         </bean>
       </bean>
       <bean name="customConfiguration">
-        <property name="AdminEmail">$($email)</property>
+        <property name="AdminEmail"/>$($email)</property>
         <property name="adminPassword">$($password)</property>
         <property name="adminUserName">$($workspaceAdmin)</property>
-        <property name="common_lwa_host">$($fqdn)</property>
-        <property name="common_lwa_port">$($workspacePort)</property>
-        <property name="common_lwa_set">true</property>
-        <property name="common_lwa_ssl_port">19443</property>
         <property name="enable_SMTPServer_Authentication">$($smtpAuth)</property>
         <property name="enable_ssl">false</property>
+        <property name="enable_ssl_Offloading">false</property>
         <property name="enable_windows_services">true</property>
         <property name="enable_windows_services_user_account">false</property>
-        <property name="enableSslOffloading">false</property>
-        <property name="externalUrlHost"/>
-        <property name="externalUrlPort"/>
+        <property name="external_url_host"/>
+        <property name="external_url_port"/>
         <property name="filesystem.artifact.path">import_export</property>
         <property name="isSSLForSMTP">$($smtpSSL)</property>
-        <property name="LwaUpdateAll">1</property>
         <property name="relativePaths"/>
         <property name="relativePathsInstance">filesystem.artifact.path</property>
-        <property name="SMTPHostName">$($smtpServer)</property>
-        <property name="SMTPMailServer">$($smtpServer)</property>
+        <property name="SMTPHostName"/>$($smtpServer)</property>
+        <property name="SMTPMailServer"/>$($smtpServer)</property>
         <property name="SMTPPort">$($smtpPort)</property>
         <property name="SMTPPortIncoming">$($smtpIncomingPort)</property>
-        <property name="SMTPServerPassword">$($smtpPassword)</property>
-        <property name="SMTPServerUserID">$($smtpUsername)</property>
+        <property name="SMTPServerPassword"/>$($smtpPassword)</property>
+        <property name="SMTPServerUserID"/>$($smtpUsername)</property>
         <property name="windows_services_password"/>
         <property name="windows_services_user"/>
       </bean>
-      <bean name="httpServerConfiguration"/>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
           <property name="createOrReuse">create</property>
