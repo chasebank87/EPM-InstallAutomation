@@ -167,11 +167,13 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/DistributedEssbase.md">Distributed Essbase __(Two Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/DistributedHFM.md">Distributed HFM __(Two Server Environment)__</a>
 3. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/DistributedPlanning.md">Distributed Planning & Essbase __(Three Server Environment)__</a>
+4. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/Distributed-HFM-FDM-PLN-ESB.md">Distributed HFM, FDM, PLN, ESB __(Five Server Environment)__</a>
 #### 11.1.2.4.900
 1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/standalone900.md">Standalone EPM __(Single Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/DistributedEssbase900.md">Distributed Essbase __(Two Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/distributedHFM900">Distributed HFM __(Two Server Environment)__</a>
 3. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/DistributedPlanning900.md">Distributed Planning & Essbase __(Three Server Environment)__</a>
+4. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/Help/Distributed-HFM-FDM-PLN-ESB900.md">Distributed HFM, FDM, PLN, ESB __(Five Server Environment)__</a>
 
 ### Features:
 
