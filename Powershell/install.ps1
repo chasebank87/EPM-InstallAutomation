@@ -28,7 +28,7 @@
                     $installationFileAvailability += $newObject           
                 }
             }
-
+	    
             foreach($i in $installationFileAvailability){
                 Write-Host "Looking for $($i.name)" -ForegroundColor Cyan
                 Sleep -Seconds 1.5
@@ -84,7 +84,7 @@
                 $break = 'break'
             }
         }
-
+	if($skipUnzip -ne $true){
         $testUnzipDest = Test-Path "$($installerPath)\EPM\Unzipped\"
         if($testUnzipDest -eq $true){
             Remove-Item -Path "$($installerPath)\EPM\Unzipped\" -Recurse -Force
@@ -110,6 +110,7 @@
                 Sleep -Seconds 15
             }
          }
+	 }
      } elseif($superSilentInstall -and $superSilentInstall -eq $true) {
         Write-Host "Looking for installation files"
         $expectedInstallationFiles = @('V37380-01_1of2.zip','V37380-01_2of2.zip','V37446-01.zip','V74011-01.zip','V74016-01.zip','V74019-01.zip','V74025-01.zip','V74031-01.zip','V74037-01.zip','V74044-01.zip','V74050-01.zip','V74056-01.zip','V74108-01.zip','V76567-01.zip','V76569-01.zip')
@@ -169,7 +170,7 @@
                 $break = 'break'
             }
         }
-
+	if($skipUnzip -ne $true){
         $testUnzipDest = Test-Path "$($installerPath)\EPM\Unzipped\"
         if($testUnzipDest -eq $true){
             Remove-Item -Path "$($installerPath)\EPM\Unzipped\" -Recurse -Force
@@ -195,6 +196,7 @@
                 Sleep -Seconds 15
             }
          }
+	 }
 	 #Check amount of files in unzipped folder
 	 $unzippedFiles = Get-ChildItem -Path "$($installerPath)\EPM\Unzipped\" -Recurse -File -ErrorAction SilentlyContinue
 	 if($unzippedFiles.count -lt 23500){
