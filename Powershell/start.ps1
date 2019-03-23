@@ -119,9 +119,9 @@ Param (
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$sqlAdminPassword,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$instance
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$instance,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
-  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [string]$noDomain
+  [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$noDomain
 
 )
 
