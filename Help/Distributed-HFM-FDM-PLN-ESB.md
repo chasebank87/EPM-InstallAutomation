@@ -1,8 +1,9 @@
 
 # Distributed HFM, FDM, ESB, PLN | Five Server Environment
-Note: ___Interactive mode not supported yet for multiple server deployments. Silent only___
-Note: ___Instead of cloaning the repo to every server and downloading the files fresh, you can just map a drive to the repo on the first server. Then browse to that mapped drive in powershell to the powershell folder and run everything as normal.
-###### Status: ___Testing___
+* Version: ___11.1.2.4___
+* Status: ___Testing___
+* Note: ___Interactive mode not supported yet for multiple server deployments. Silent only___
+* Note: ___Instead of cloaning the repo to every server and downloading the files fresh, you can just map a drive to the repo on the first server. Then browse to that mapped drive in powershell to the powershell folder and run everything as normal.
 
 ### Steps:
   #### Foundation Server: (First)
@@ -99,7 +100,7 @@ Note: ___Instead of cloaning the repo to every server and downloading the files 
   6. To run the script in silent mode
   * Determine what products you want __(SOA: Tax, and FCM are not supported)__ In the most common scenario only Planning and Foundation would be installed on this remote server.
   ```
-  start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installFDM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -fdmDB EPMS_FDM -strategic $false -distributedFDM $true -remoteDeployment $true  
+  start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installFDM $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -fdmDB EPMS_FDM -strategic $false -distributedFDM $true -remoteDeployment $true  
   ```
   #### Foundation Server: (Sixth)
   1. Run the configuration GUI
