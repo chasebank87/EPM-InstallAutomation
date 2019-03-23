@@ -1,1 +1,96 @@
-
+<product productXML="HFM">
+    <tasks>
+      <task>applicationServerDeployment</task>
+      <task>preConfiguration</task>
+      <task>relationalStorageConfiguration</task>
+    </tasks>
+    <bean name="main">
+      <bean name="applicationServerDeployment">
+        <bean name="WebLogic 10">
+          <property name="adminHost">$($wlHost)</property>
+          <property name="adminPassword">$($password)</property>
+          <property name="adminPort">$($wlPort)</property>
+          <property name="adminUser">$($wlAdmin)</property>
+          <beanList name="applications">
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">EPMServer</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">FM Web Services</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>oracle-epm-fm-webservices</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">7363</property>
+                <property name="serverName">HFMWeb</property>
+                <property name="sslPort">7365</property>
+                <property name="validationContext">oracle-epm-fm-webservices/ApplicationService</property>
+              </bean>
+            </listItem>
+            <listItem>
+              <bean>
+                <property name="compactPort">9000</property>
+                <property name="compactServerName">EPMServer</property>
+                <property name="compactSslPort">9443</property>
+                <property name="component">FM ADF Web Application</property>
+                <beanList name="contexts">
+                  <listItem>
+                    <property>hfmadf</property>
+                  </listItem>
+                </beanList>
+                <property name="enable">true</property>
+                <property name="port">7363</property>
+                <property name="serverName">HFMWeb</property>
+                <property name="sslPort">7365</property>
+                <property name="validationContext">hfmadf/faces/hfm.jspx</property>
+              </bean>
+            </listItem>
+          </beanList>
+          <property name="BEA_HOME">$($epmInstallPath)</property>
+          <property name="domainName">$($epmDomain)</property>
+          <property name="manualProcessing">false</property>
+          <property name="remoteDeployment">true</property>
+          <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
+        </bean>
+      </bean>
+      <bean name="customConfiguration">
+        <property name="dbIndexTbsp"/>
+        <property name="dbTableTbsp"/>
+        <property name="encryptUDL">false</property>
+        <property name="entryPointPath">eie</property>
+        <property name="financialManagementPort">80</property>
+        <property name="HFM_dbVersion">11.1.2.4.0</property>
+        <property name="isBufferResizeEnabled">false</property>
+        <property name="localhost_name">$($hfmServer)</property>
+        <property name="MultiServerMaxSyncDelayForApplicationChanges">300</property>
+        <property name="MultiServerMaxSyncDelayForDataChanges">300</property>
+        <property name="receiveBufferSize">1024</property>
+        <property name="relativePaths"/>
+        <property name="relativePathsInstance">SystemDataLinkFile</property>
+        <property name="selectedTask">clusterConfig,hfmAppServerConfig,hubRegistration,preConfiguration,relationalStorageConfiguration</property>
+        <property name="SystemDataLinkFile">FinancialManagement\ServerWorkingFolder\MS_SQL_SERVER_hfm.udl</property>
+      </bean>
+      <bean name="httpServerConfiguration"/>
+	  <bean name="relationalStorageConfiguration">
+        <bean name="MS_SQL_SERVER">
+          <property name="createOrReuse">reuse</property>
+          <property name="customURL">false</property>
+          <property name="dbIndexTbsp"/>
+          <property name="dbName">$($hfmDB)</property>
+          <property name="dbTableTbsp"/>
+          <property name="encrypted">true</property>
+          <property name="host">$($dbServer)</property>
+          <property name="jdbcUrl">jdbc:weblogic:sqlserver://$($dbServer):$($dbServerPort);databaseName=$($hfmDB);loadLibraryPath=$($epmInstallPath)\wlserver_10.3\server\lib</property>
+          <property name="password">$($dbPassword)</property>
+          <property name="port">$($dbServerPort)</property>
+          <property name="SSL_ENABLED">false</property>
+          <property name="userName">$($dbUser)</property>
+          <property name="VALIDATESERVERCERTIFICATE">false</property>
+        </bean>
+	</bean>
+      <property name="shortcutFolderName">startMenu.product.null.folderName</property>
+    </bean>
+  </product>
