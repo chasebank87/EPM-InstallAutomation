@@ -96,6 +96,8 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
           * -version900 (Switch | Using this switch will configure 11.1.2.4.900 otherwise 11.1.2.4 will be configured)
+          * -instance (String | Example: FND1)
+          * -noDomain (Switch | Using this switch will configure EPM with hostname only not hostname and domain)
    #### -superSilentAll
        * Required Sub Options:
           * -installEPM ($true | $false)
@@ -148,6 +150,8 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -sqlAdmin (String | Example: sa)
           * -sqlAdminPassword (String | Example: Password!)
           * -version900 (Switch | Using this switch will install/configure 11.1.2.4.900 otherwise 11.1.2.4 will be installed/configured)
+          * -instance (String | Example: FND1)
+          * -noDomain (Switch | Using this switch will configure EPM with hostname only not hostname and domain)
           
 ### Environment Instructions:
 
