@@ -1,10 +1,11 @@
 
 # Distributed HFM | Two Server Environment
-###### Time: 1 Hour
-###### Version 11.1.2.4.900
-___Note: Interactive mode not supported yet for multiple server deployments. Silent only___
+* Time: ___1 Hour___
+* Version ___11.1.2.4.900___
+* Status: ___Tested Working___
+* Note: ___Interactive mode not supported yet for multiple server deployments. Silent only___
 
-###### Status: ___Tested Working___
+
 
 ### Steps:
   #### Foundation Server: (First)
