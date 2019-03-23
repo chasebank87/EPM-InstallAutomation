@@ -35,7 +35,7 @@
           <property name="BEA_HOME">$($epmInstallPath)</property>
           <property name="domainName">$($epmDomain)</property>
           <property name="manualProcessing">false</property>
-          <property name="remoteDeployment">false</property>
+          <property name="remoteDeployment">true</property>
           <property name="serverLocation">$($epmInstallPath)\wlserver_10.3</property>
         </bean>
       </bean>
