@@ -2,6 +2,7 @@
     <tasks>
       <task>applicationServerDeployment</task>
       <task>FndCommonSetting</task>
+      <task>preConfiguration</task>
       <task>relationalStorageConfiguration</task>
     </tasks>
     <bean name="main">
@@ -67,6 +68,7 @@
         <property name="windows_services_password"/>
         <property name="windows_services_user"/>
       </bean>
+      <bean name="httpServerConfiguration"/>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
           <property name="createOrReuse">create</property>
