@@ -259,6 +259,7 @@ Param (
 		    $firstStage = $true
 	    } else {
             $testWeblogicConnection = Test-NetConnection -ComputerName $weblogicHostname -Port $weblogicPort
+	    if($superSilentConfig -eq $true -or $superSilentConfig.IsPresent -eq $true){
             if($testWeblogicConnection.TcpTestSucceeded -ne $true){
                 Write-Host "Not able to connect to weblogic on server $($weblogicHostname):$($weblogicPort). Start weblogic admin service and try again.." -ForegroundColor Red
                 Read-Host "Click enter to exit"
@@ -266,6 +267,7 @@ Param (
             } else {
                 Write-Host "Weblogic is accepting requests on server $($weblogicHostname):$($weblogicPort). Continuing.." -ForegroundColor Cyan
             }
+	   }
         }
 	} else {
 		if($remoteDeployment -eq $true){
