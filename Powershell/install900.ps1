@@ -84,7 +84,7 @@
                 $break = 'break'
             }
         }
-
+	if($skipUnzip -ne $true){
         $testUnzipDest = Test-Path "$($installerPath)\EPM\Unzipped\"
         if($testUnzipDest -eq $true){
             Remove-Item -Path "$($installerPath)\EPM\Unzipped\" -Recurse -Force
@@ -110,6 +110,7 @@
                 Sleep -Seconds 15
             }
          }
+	 }
      } elseif($superSilentInstall -and $superSilentInstall -eq $true) {
         Write-Host "Looking for installation files"
         $expectedInstallationFiles = @('V74019-01.zip','V74050-01.zip','V975616-01.zip','V975624-01.zip','V975630-01.zip','V975632-01.zip','V975645-01.zip','V975647-01.zip','V980741-01.zip')
@@ -156,7 +157,7 @@
                     $installationFailures--
                 }
             }
-
+		
             if($break){Clear-Variable break}
             Write-Host ""
             Write-Host ""
@@ -169,7 +170,7 @@
                 $break = 'break'
             }
         }
-
+	if($skipUnzip -ne $true){
         $testUnzipDest = Test-Path "$($installerPath)\EPM\Unzipped\"
         if($testUnzipDest -eq $true){
             Remove-Item -Path "$($installerPath)\EPM\Unzipped\" -Recurse -Force
@@ -194,6 +195,7 @@
                 Write-Host "Unzipping.. $($unzipCompPercent)% Completed." -ForegroundColor Cyan
                 Sleep -Seconds 15
             }
+	   }
          }
 	 #Check amount of files in unzipped folder
 	 $unzippedFiles = Get-ChildItem -Path "$($installerPath)\EPM\Unzipped\" -Recurse -File -ErrorAction SilentlyContinue
