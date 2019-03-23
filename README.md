@@ -1,5 +1,5 @@
 # EPM InstallAutomation
-____Note: INTERACTIVE MODE IS CURRENTLY BROKEN____
+____Note: Interactive mode is currently broken____
 
 ### Summary:
 
