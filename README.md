@@ -168,7 +168,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
 #### 11.1.2.4.900
 1. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/standalone900.md">Standalone EPM __(Single Server Environment)__</a>
 2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedEssbase900.md">Distributed Essbase __(Two Server Environment)__</a>
-2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedHFM900.md">Distributed HFM __(Two Server Environment)__</a>
+2. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/distributedHFM900">Distributed HFM __(Two Server Environment)__</a>
 3. <a href="https://github.com/chasebank87/EPMSilent-InstallAutomation/blob/master/DistributedPlanning900.md">Distributed Planning & Essbase __(Three Server Environment)__</a>
 
 ### Features:
