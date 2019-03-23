@@ -35,7 +35,7 @@
             <listItem>
               <bean>
                 <property name="compactPort">9000</property>
-                <property name="compactServerName">$($epmDomain)</property>
+                <property name="compactServerName">EPMServer</property>
                 <property name="compactSslPort">9443</property>
                 <property name="component">EPMAWebTier</property>
                 <beanList name="contexts">
