@@ -7,6 +7,8 @@ Param (
 
   #params
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
+  [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$skipUnzip,
+  [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$install7zip,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$installnotepadPlus,
@@ -430,9 +432,13 @@ Param (
         if(!$installFR){
             $installFR = $false
         }
+	if(!$skipUnzip){
+	    $skipUnzip = $false
+	}
         if(!$configSQL){
             $configSQL = $false
         }
+
 
         
 
