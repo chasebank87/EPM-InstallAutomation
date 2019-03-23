@@ -714,7 +714,7 @@
 			        $inputEssbase = $ExecutionContext.InvokeCommand.ExpandString($inputEssbase)
                 }
                 if($installFR -eq $true){
-                    Write-Host "Adding Reporting anto Install List" -ForegroundColor Green
+                    Write-Host "Adding Reporting to Install List" -ForegroundColor Green
 			        $inputFR = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4.900\Install\Distributed\Central\fr" -Raw
 			        $inputFR = $ExecutionContext.InvokeCommand.ExpandString($inputFR)
                 }
