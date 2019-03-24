@@ -87,6 +87,7 @@
   start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -hfmDB EPMS_HFM -strategic $false -distributedHFM $true -remoteDeployment $true -version900
   ```
   #### FDM Server: (Fifth)
+  _____Due to FDMEE HsJavaService Stopped (Doc ID 2425930.1) You must manually deploy FDM, When configuring also select Foundation Common Settings or you will get a java service stopped working error._____
   1. Clone repo to a folder on your ***Essbase Server*** __(make sure it is as close to the base drive as possible, or you may get file path too long errors)__
   2. Unblock the __three__ powershell files in the powershell folder. __(Right click file.. Select Properties.. Click unblock)__
   3. Open Powershell as administrator
