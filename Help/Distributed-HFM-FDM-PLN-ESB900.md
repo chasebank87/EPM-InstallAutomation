@@ -84,7 +84,7 @@
   6. To run the script in silent mode
   * Determine what products you want __(SOA: Tax, and FCM are not supported)__ In the most common scenario only Planning and Foundation would be installed on this remote server.
   ```
-  start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -hfmDB EPMS_HFM -strategic $false -distributedHFM $true -remoteDeployment $true -version900
+  .\start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -hfmDB EPMS_HFM -strategic $false -distributedHFM $true -remoteDeployment $true -version900
   ```
   #### FDM Server: (Fifth)
   _____Due to FDMEE HsJavaService Stopped (Doc ID 2425930.1) You must manually deploy FDM, When configuring also select Foundation Common Settings or you will get a java service stopped working error._____
@@ -102,7 +102,7 @@
   6. To run the script in silent mode
   * Determine what products you want __(SOA: Tax, and FCM are not supported)__ In the most common scenario only Planning and Foundation would be installed on this remote server.
   ```
-  start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installFDM $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -fdmDB EPMS_FDM -strategic $false -distributedFDM $true -remoteDeployment $true -version900
+  .\start.ps1 -superSilentAll -installNetFrame $true -install7zip $true -installnotepadplus  $true -installfirefox $true -installepm $true -epmPath c:\Oracle\Middleware -installFoundation $true -installFDM $true -installHFM $true -dbServer sql.domain.local -dbPort 1433 -dbUser hypadmin -dbPassword Password! -wkspcAdmin admin -wkspcAdminPassword Password! -weblogicAdmin epm_admin -weblogicPort 7001 -weblogicHostname foundation.domain.local -wkspcPort 19000 -epmDomain EPMSystem -foundationDB EPMS_FND -fdmDB EPMS_FDM -strategic $false -distributedFDM $true -remoteDeployment $true -version900
   ```
   #### Foundation Server: (Sixth)
   1. Run the configuration GUI
