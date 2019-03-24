@@ -973,7 +973,7 @@
                 $calcConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($calcConfigureSilent)
             }
             if($configEssbase -ne $false -or $distributedEssbase -eq $true -and $remoteDeployment -eq $false){
-	        Write-Host "Adding EAS to config file" -ForegroundColor green
+	        Write-Host "Adding Central EAS to config file" -ForegroundColor green
                 $easConfigureSilent = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4.900\Config\Distributed\Central\eas" -Raw
                 $easConfigureSilent = $ExecutionContext.InvokeCommand.ExpandString($easConfigureSilent)
             }
