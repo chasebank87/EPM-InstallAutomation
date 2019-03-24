@@ -10,7 +10,7 @@
           <property name="adminHost">$($wlHost)</property>
           <property name="adminPassword">$($password)</property>
           <property name="adminPort">$($wlPort)</property>
-          <property name="adminUser"$($wlAdmin)</property>
+          <property name="adminUser">$($wlAdmin)</property>
           <beanList name="applications">
             <listItem>
               <bean>
