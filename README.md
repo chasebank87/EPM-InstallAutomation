@@ -68,6 +68,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -installTax ($true | $false)
           * -installStrategic ($true | $false)
           * -version900 (Switch | Using this switch will install 11.1.2.4.900 otherwise 11.1.2.4 will be installed)
+          * -skipUnzip ($true | $false Default: $false)
   #### -superSilentConfig
       * Required Sub Options:
           * -dbServer (String | Example: server.domain.local)
@@ -160,6 +161,7 @@ Use only one of the following main options: -superSilentInstall, -superSilentCon
           * -version900 (Switch | Using this switch will install/configure 11.1.2.4.900 otherwise 11.1.2.4 will be installed/configured)
           * -instance (String | Example: FND1)
           * -noDomain (Switch | Using this switch will configure EPM with hostname only not hostname and domain)
+          * -skipUnzip ($true | $false Default: $false)
           
 ### Environment Instructions:
 #### 11.1.2.4
