@@ -92,7 +92,7 @@
  
         try{
                 Write-Host "Unzipping Install Files.  This may take a few minutes." -ForegroundColor Cyan
-                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\11.1.2.4*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
+                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\11.1.2.4\*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
             }
         Catch {
                 $_ | Out-File "$($installerPath)\Logs\Unzip.Error.log" -Append
@@ -178,7 +178,7 @@
  
         try{
                 Write-Host "Unzipping Install Files.  This may take a few minutes." -ForegroundColor Cyan
-                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
+                $7zipProcess = Start-Process -FilePath """$($7zip)""" -ArgumentList "x ""$($installerPath)\EPM\11.1.2.4\*.zip"" -y -o""$($installerPath)\EPM\Unzipped\""" -WindowStyle Hidden -passthru
             }
         Catch {
                 $_ | Out-File "$($installerPath)\Logs\Unzip.Error.log" -Append
