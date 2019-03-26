@@ -1282,6 +1282,21 @@ if($inputEPMADB -eq $null) {
 
 #endregion 
 
+#region if any distributed -and remoteDeployment -eq false
+    if($distributedHFM -eq $true -or $distributedFDM -eq $true -or $distributedPLN -eq $true -or $distributedESB -eq $true -and $remoteDeployment -eq $false){
+    	try {
+	     Write-Host "Starting Admin Server for Remote Deployments" -ForegroundColor Cyan
+	     Start-Process -FilePath "$($epmInstallPath)\user_projects\domains\EPMSystem\bin\startWebLogic.cmd" -Verb RunAs -Verbose
+	} catch {
+	    $_ | Out-File "$($installerPath)\Logs\startAdminServer.Error.log" -Append
+            Get-Content "$($installerPath)\Logs\startAdminServer.Error.log" | Write-Host -ForegroundColor Red
+            Read-Host "Click enter to exit"
+            Exit
+	}
+    }
+
+#endregion 
+
 #region start epm and validate
 
     if($startEPM -eq $true){
