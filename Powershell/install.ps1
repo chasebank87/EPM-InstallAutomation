@@ -446,6 +446,11 @@
     }
 }
 
+    $inputHeader = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\header" -Raw
+    $inputHeader = $ExecutionContext.InvokeCommand.ExpandString($inputHeader)
+    $inputFooter = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\footer" -Raw
+    $inputFooter = $ExecutionContext.InvokeCommand.ExpandString($inputFooter)
+
     $data = "$($inputHeader)
 		$($inputFoundation)
 		$($inputessbase)
