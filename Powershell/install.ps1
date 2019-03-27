@@ -293,7 +293,7 @@
         }
     }
     if($break){Clear-Variable break}
-    foreach($i in $standaloneInstallFiles){
+    foreach($i in $installFiles){
         Clear-Variable installObject
         if($i -notin ('footer','header')){
             $answer = Ask-Install -product $i
