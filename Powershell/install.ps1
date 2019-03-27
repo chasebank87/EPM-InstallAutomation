@@ -444,6 +444,7 @@
             Set-Variable -Name "input$($i.name)" -Value ($ExecutionContext.InvokeCommand.ExpandString((Get-Variable -Name "input$($i.name)").Value)) -Force
         }
     }
+}
 
     $data = "$($inputHeader)
 		$($inputFoundation)
