@@ -19,6 +19,8 @@
     $ps2012 = "$($installerPath)\PS5\Win8.1AndW2K12R2-KB3191564-x64.msu"
     $wusa = "$env:systemroot\SysWOW64\wusa.exe"
     $tempVerbose = "$($installerPath)\Temp\Verbose"
+    $installFiles = @('foundation','essbase','raf','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
+    $installFiles900 = @('foundation','essbase','fr','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
 
 #endregion
 
