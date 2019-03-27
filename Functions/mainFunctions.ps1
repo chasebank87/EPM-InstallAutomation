@@ -219,3 +219,132 @@ Function Get-Software  {
   } 
 
 }  
+
+
+function Ask-Install ($product){
+    Write-Host "================ $($product) ================"
+    Write-Host "Do you want to install $($product)?"
+    Write-Host ""
+    Write-Host "1. Yes"
+    Write-Host "2. No"
+    Write-Host "3. Quit"
+    Write-Host "============"
+    
+
+    while($break -ne 'break'){
+        switch($answer = Read-Host "Default (2)"){
+            "" {
+                Write-Host "Default: Skipping $($product)." -ForegroundColor Yellow
+                if((Get-Variable "install$($product)" -ErrorAction SilentlyContinue)){
+                    Set-Variable -Name "install$($product)" -Value $false
+                } else {
+                    New-Variable -Name "install$($product)"
+                    Set-Variable -Name "install$($product)" -Value $false
+                }
+                $answer = 2
+                (Get-Variable -Name "install$($product)").Value
+                $answer
+                $break = 'break'
+            }
+            1 {
+                Write-Host "Adding $($product) to install list." -ForegroundColor Green
+                if((Get-Variable "install$($product)" -ErrorAction SilentlyContinue)){
+                    Set-Variable -Name "install$($product)" -Value $true
+                } else {
+                    New-Variable -Name "install$($product)"
+                    Set-Variable -Name "install$($product)" -Value $true
+                }
+                $answer = 1
+                (Get-Variable -Name "install$($product)").Value
+                $answer
+                $break = 'break'
+            }
+            2 {
+                Write-Host "Skipping $($product). User opted out." -ForegroundColor Yellow
+                if((Get-Variable "install$($product)" -ErrorAction SilentlyContinue)){
+                    Set-Variable -Name "install$($product)" -Value $false
+                } else {
+                    New-Variable -Name "install$($product)"
+                    Set-Variable -Name "install$($product)" -Value $false
+                }
+                $answer = 2
+                Return (Get-Variable -Name "install$($product)").Value
+                Return $answer
+                $break = 'break'
+            }
+            3 {
+                $answer = 3
+                Write-Host "Exiting.." -ForegroundColor Magenta
+                Return $answer
+                $break = 'break'
+            }
+            default {
+                Write-Host "Inavlid Entry. Please try again." -ForegroundColor Red
+            }
+        }
+    }
+    if($answer -eq 1 -and $product -in ('HFM','FDM','Essbase','Planning')){
+        Clear-Variable Break
+        Write-Host "================ $($product) ================"
+        Write-Host "Do you want $($product) to be distributed?"
+        Write-Host ""
+        Write-Host "1. Yes"
+        Write-Host "2. No"
+        Write-Host "3. Quit"
+        Write-Host "============"
+        while($break -ne 'break'){
+            switch($answer = Read-Host "Default (2)"){
+                "" {
+                    Write-Host "Default: $($product) is not distributed." -ForegroundColor Yellow
+                    if((Get-Variable "distributed$($product)" -ErrorAction SilentlyContinue)){
+                        Set-Variable -Name "distributed$($product)" -Value $false
+                    } else {
+                        New-Variable -Name "distributed$($product)"
+                        Set-Variable -Name "distributed$($product)" -Value $false
+                    }
+                    $answer = 2
+                    (Get-Variable -Name "install$($product)").Value
+                    $answer
+                    $break = 'break'
+                }
+                1 {
+                    Write-Host "$($product) is distributed." -ForegroundColor Green
+                    if((Get-Variable "distributed$($product)" -ErrorAction SilentlyContinue)){
+                        Set-Variable -Name "distributed$($product)" -Value $true
+                    } else {
+                        New-Variable -Name "distributed$($product)"
+                        Set-Variable -Name "distributed$($product)" -Value $true
+                    }
+                    $answer = 1
+                    (Get-Variable -Name "distributed$($product)").Value
+                    $answer
+                    $break = 'break'
+                }
+                2 {
+                    Write-Host "$($product) is not distributed." -ForegroundColor Yellow
+                    if((Get-Variable "distributed$($product)" -ErrorAction SilentlyContinue)){
+                        Set-Variable -Name "distributed$($product)" -Value $false
+                    } else {
+                        New-Variable -Name "distributed$($product)"
+                        Set-Variable -Name "distributed$($product)" -Value $false
+                    }
+                    $answer = 2
+                    Return (Get-Variable -Name "distributed$($product)").Value
+                    Return $answer
+                    $break = 'break'
+                }
+                3 {
+                    $answer = 3
+                    Write-Host "Exiting.." -ForegroundColor Magenta
+                    Return $answer
+                    $break = 'break'
+                }
+                default {
+                    Write-Host "Inavlid Entry. Please try again." -ForegroundColor Red
+                }
+            }
+        }
+    }
+}
+
+
