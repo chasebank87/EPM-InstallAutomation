@@ -474,6 +474,19 @@ Param (
     
 #endregion
 
+#region parse common settings file if remote server
+
+    if($remoteDeployment -eq $true){
+        $commonSettings = Import-Csv "$($installerPath)/Temp/commonSettings.csv"
+        foreach($i in $commonSettings){
+            $j = $i.PROPERTY_NAME.Replace('.','')
+            $j= $j.Replace('-','_ ')
+            Set-Variable -Name "common_$($j)" -Value "$($i.PROPERTY_VALUE)" 
+        }
+    }
+
+#endregion
+
 #region installer important info notice
     
     if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
@@ -571,9 +584,9 @@ Param (
 
 #endregion
 
-#region check if configSQL, if so start configureSQL.ps1
-
-    if($configSQL -eq $true){
+#region install powershell updated and sql module
+   
+    if($remoteDeployment -ne $true){
         Write-Host "Starting SQL configuration" -ForegroundColor Cyan
         if(Get-Command Install-Module -errorAction SilentlyContinue){
             Write-Host "Powershell is already the correct version. Continuing.." -ForegroundColor Cyan
@@ -621,6 +634,13 @@ Param (
             Install-PackageProvider -Name Nuget -Confirm:$false -Force
             Install-module -Name SqlServer -SkipPublisherCheck -Confirm:$False -Force
         }
+    }
+
+#endregion
+
+#region check if configSQL, if so start configureSQL.ps1
+
+    if($configSQL -eq $true){
         Try {
             Invoke-Expression -Command "$($installerPath)\Powershell\configureSQL.ps1" -Verbose
         } catch {
