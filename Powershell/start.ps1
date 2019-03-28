@@ -474,19 +474,6 @@ Param (
     
 #endregion
 
-#region parse common settings file if remote server
-
-    if($remoteDeployment -eq $true){
-        $commonSettings = Import-Csv "$($installerPath)/Temp/commonSettings.csv"
-        foreach($i in $commonSettings){
-            $j = $i.PROPERTY_NAME.Replace('.','')
-            $j= $j.Replace('-','_ ')
-            Set-Variable -Name "common_$($j)" -Value "$($i.PROPERTY_VALUE)" 
-        }
-    }
-
-#endregion
-
 #region installer important info notice
     
     if($superSilentInstall -or $superSilentInstall -or $superSilentConfig){
