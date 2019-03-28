@@ -1,104 +1,8 @@
 <product productXML="Foundation">
     <tasks>
-	  <task>FndCommonSetting</task>
       <task>relationalStorageConfiguration</task>
     </tasks>
     <bean name="main">
-	<bean name="customConfiguration">
-        <property name="AdminEmail">$($common_AdminEmail)</property>
-        <property name="adminPassword">$($common_adminPassword)</property>
-        <property name="adminUserName">$($common_adminUserName)</property>
-        <property name="AIF.groupcount">$($common_AIFgroupcount)</property>
-        <property name="AssertionKey">$($common_AssertionKey)</property>
-        <property name="AUDIT.PURGE.EARLIERTO.DAYS">$($common_AUDITPURGEEARLIERTODAYS)</property>
-        <property name="BPM.groupcount">$($common_BPMgroupcount)</property>
-        <property name="BPMA.groupcount">$($common_BPMAgroupcount)</property>
-        <property name="CES.PURGE.EARLIERTO.DAYS">$($common_CESPURGEEARLIERTODAYS)</property>
-        <property name="CESCreateObjectNoOfRetry">$($common_CESCreateObjectNoOfRetry)</property>
-        <property name="CESSendEmailNoOfRetry">$($common_CESSendEmailNoOfRetry)</property>
-        <property name="cloudMode">$($common_cloudMode)</property>
-        <property name="common_lwa_host">$($common_common_lwa_host)</property>
-        <property name="common_lwa_port">$($common_common_lwa_port)</property>
-        <property name="common_lwa_set">$($common_common_lwa_set)</property>
-        <property name="common_lwa_ssl_port">$($common_common_lwa_ssl_port)</property>
-        <property name="COMPATIBILITY">$($common_COMPATIBILITY)</property>
-        <property name="css.DN.migrationRequired">$($common_cssDNmigrationRequired)</property>
-        <property name="CSS.MIGRATION.STATE">$($common_CSSMIGRATIONSTATE)</property>
-        <property name="CSSHandlerKey1">$($common_CSSHandlerKey1)</property>
-        <property name="CSSHandlerKey2">$($common_CSSHandlerKey1)</property>
-        <property name="CSSProviderKey1">$($common_CSSProviderKey1)</property>
-        <property name="CSSProviderKey2">$($common_CSSProviderKey2)</property>
-        <property name="CSSTokenTimeout">$($common_CSSTokenTimeout)</property>
-        <property name="CSSTrustedServiceKey1">$($common_CSSTrustedServiceKey1)</property>
-        <property name="deltaTableCleanupInterval">$($common_deltaTableCleanupInterval)</property>
-        <property name="deltaTableLastCleanupTime">$($common_deltaTableLastCleanupTime)</property>
-        <property name="double-encoding">$($common_double_encoding)</property>
-        <property name="enable_SMTPServer_Authentication">$($common_enable_SMTPServer_Authentication)</property>
-        <property name="enable_ssl">$($common_enable_ssl)</property>
-        <property name="enable_ssl_Offloading">$($common_enable_ssl_Offloading)</property>
-        <property name="enable_windows_services">$($common_enable_windows_services)</property>
-        <property name="enable_windows_services_user_account">$($common_enable_windows_services_user_account)</property>
-        <property name="enableSslOffloading">$($common_enableSslOffloading)</property>
-        <property name="external_url_host">$($common_external_url_host)</property>
-        <property name="external_url_port">$($common_external_url_port)</property>
-        <property name="FCC.groupcount">$($common_FCCgroupcount)</property>
-        <property name="filesystem.artifact.path">$($common_filesystemartifactpath)</property>
-        <property name="fileSystem.friendlyNames">$($common_fileSystemfriendlyNames)</property>
-        <property name="Foundation_dbVersion">$($common_Foundation_dbVersion)</property>
-        <property name="HAVA.groupcount">$($common_HAVAgroupcount)</property>
-        <property name="HFM.client_timeout">$($common_HFMclient_timeout)</property>
-        <property name="HFM.groupcount">$($common_HFMgroupcount)</property>
-        <property name="HP.groupcount">$($common_HPgroupcount)</property>
-        <property name="HPM.groupcount">$($common_HPMgroupcount)</property>
-        <property name="hss.upgrade.state">$($common_hssupgradestate)</property>
-        <property name="hubLastCleanupTime">$($common_hubLastCleanupTime)</property>
-        <property name="isCmsPasswordSet">$($common_isCmsPasswordSet)</property>
-        <property name="isDocRepositoryEnabled">$($common_isDocRepositoryEnabled)</property>
-        <property name="isSSLForSMTP">$($common_isSSLForSMTP)</property>
-        <property name="lcm.options.aif.import.skipValidation">$($common_lcmoptionsaifimportskipValidation)</property>
-        <property name="lcm.options.bpm.import.OverwriteCatalogObjects">$($common_lcmoptionsbpmimportOverwriteCatalogObjects)/update</property>
-        <property name="lcm.options.bpma.import.replaceDimension">$($common_lcmoptionsbpmaimportreplaceDimension)</property>
-        <property name="lcm.options.esb.import.overWriteArtifact">$($common_lcmoptionsesbimportoverWriteArtifact)</property>
-        <property name="lcm.options.esbapp.import.overWriteArtifact">$($common_lcmoptionsesbappimportoverWriteArtifact)</property>
-        <property name="lcm.options.esbapp.import.restructureCube">$($common_lcmoptionsesbappimportrestructureCube)</property>
-        <property name="lcm.options.fcc.import.replaceOption">$($common_lcmoptionsfccimportreplaceOption)</property>
-        <property name="lcm.options.hava.export.exportJobOutput">$($common_lcmoptionshavaexportexportJobOutput)</property>
-        <property name="lcm.options.hava.import.excludeJobOutputOnImport">$($common_lcmoptionshavaimportexcludeJobOutputOnImport)</property>
-        <property name="lcm.options.hava.import.replaceNewerArtifactsOnlyImport">$($common_lcmoptionshavaimportreplaceNewerArtifactsOnlyImport)</property>
-        <property name="lcm.options.hfm.export.EnableDataMaskingInApplicationSnapshot">$($common_lcmoptionshfmexportEnableDataMaskingInApplicationSnapshot)</property>
-        <property name="lcm.options.hfm.export.IncludeDataAuditInApplicationSnapshot">$($common_lcmoptionshfmexportIncludeDataAuditInApplicationSnapshot)</property>
-        <property name="lcm.options.hfm.export.IncludeTaskAuditInApplicationSnapshot">$($common_lcmoptionshfmexportIncludeTaskAuditInApplicationSnapshot)</property>
-        <property name="lcm.options.hfm.import.ImportDimensionMode">$($common_lcmoptionshfmimportImportDimensionMode)</property>
-        <property name="lcm.options.hfm.import.ImportPhaseSubmissionAssignmentMode">$($common_lcmoptionshfmimportImportPhaseSubmissionAssignmentMode)</property>
-        <property name="lcm.options.hps.export.incremental">$($common_lcmoptionshpsexportincremental)</property>
-        <property name="lcm.options.hub.import.maxerrors">$($common_lcmoptionshubimportmaxerrors)</property>
-        <property name="lcm.options.hub.import.operation">$($common_lcmoptionshubimportoperation)</property>
-        <property name="lcm.options.hub.import.registryoperation">$($common_lcmoptionshubimportregistryoperation)</property>
-        <property name="lcm.options.tax.import.replaceOption">$($common_lcmoptionstaximportreplaceOption)</property>
-        <property name="lcmAdministrator">$($common_lcmAdministrator)</property>
-        <property name="lcmOptionsSet">$($common_lcmOptionsSet)</property>
-        <property name="localhost_name">$($weblogicHostname)</property>
-        <property name="LwaUpdateAll">$($common_LwaUpdateAll)</property>
-        <property name="mode">$($common_mode)</property>
-        <property name="MSR.PURGE.EARLIERTO.DAYS">$($common_MSRPURGEEARLIERTODAYS)</property>
-        <property name="org.quartz.jobStore.isClustered">$($common_orgquartzjobStoreisClustered)</property>
-        <property name="relativePaths">$($common_relativePaths)</property>
-        <property name="relativePathsInstance">$($common_relativePathsInstance)</property>
-        <property name="report.folder_path">$($common_reportfolder_path)</property>
-        <property name="schemaVersion">$($common_schemaVersion)</property>
-        <property name="SMTPHostName">$($common_SMTPHostName)</property>
-        <property name="SMTPMailServer">$($common_SMTPMailServer)</property>
-        <property name="SMTPPort">$($common_SMTPPort)</property>
-        <property name="SMTPPortIncoming">$($common_SMTPPortIncoming)</property>
-        <property name="SMTPServerPassword">$($common_SMTPServerPassword)</property>
-        <property name="SMTPServerUserID">$($common_SMTPServerUserID)</property>
-        <property name="windows_services_password">$($common_windows_services_password)</property>
-        <property name="windows_services_user">$($common_windows_services_user)</property>
-        <property name="workflowEngine.ces.location">$($common_workflowEngineceslocation)</property>
-        <property name="workflowEngine.ces.refreshInterval">$($common_workflowEnginecesrefreshInterval)</property>
-        <property name="workflowEngine.ces.stopSchedulerInitial">$($common_workflowEnginecesstopSchedulerInitial)</property>
-        <property name="zip.threshold">$($common_zipthreshold)</property>
-      </bean>
       <bean name="relationalStorageConfiguration">
         <bean name="MS_SQL_SERVER">
           <property name="createOrReuse">Reuse</property>
@@ -119,6 +23,4 @@
       <property name="shortcutFolderName">Foundation Services</property>
     </bean>
   </product>
-      
-
       
