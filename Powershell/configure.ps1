@@ -1311,19 +1311,6 @@ if($inputEPMADB -eq $null) {
 
 #endregion
 
-#region export common settings if not remote
-    
-    if($remoteDeployment -ne $true){
-        $commonSettings = @()
-        foreach($i in $dbProperties){
-            [PSObject]$property = Invoke-SQLcmd -ConnectionString "Server=$($dbServer);User Id=$($dbUser);Password=$($dbPassword);Database=$($foundationDB)" -Query "SELECT PROPERTY_NAME,PROPERTY_VALUE FROM HSS_COMPONENT_PROPERTY_VALUES WHERE PROPERTY_NAME = '$($i)'"
-            $commonSettings += $property
-        }
-        $commonSettings | Export-Csv "$($installerPAth)\Temp\commonSettings.csv"
-    }
-
-#endregion
-
 #region announce completion 
 	Write-Host '
 
