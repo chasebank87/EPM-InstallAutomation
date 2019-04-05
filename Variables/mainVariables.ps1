@@ -21,11 +21,6 @@
     $tempVerbose = "$($installerPath)\Temp\Verbose"    
     $installFiles = @('foundation','essbase','raf','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
     $installFiles900 = @('foundation','essbase','fr','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
-    $configOptions = @('dbServer','dbPort','dbUser','dbPassword','wkspcAdmin','wkspcAdminPassword','wkspcPort','weblogicAdmin','weblogicPort','weblogicHostname','epmDomain','strategic','epmaDB','calcDB','essbaseDB','rafDB','planningDB','disclosureDB','hfmDB','fdmDB','profitDB','startEPM','validate','distributedEssbase','distributedHFM','distributedPlanning','distributedFDM','remoteDeployment','instance','noDomain')
-    $configOptionsType = @('string','string','string','string','string','string','string','string','string','string','string','bool','string','string','string','string','string','string','string','string','string','bool','bool','bool','bool','bool','bool','bool','string','switch')
-    $configOptionsRequire = @('yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no')
-    $configOptions900 = @('dbServer','dbPort','dbUser','dbPassword','wkspcAdmin','wkspcAdminPassword','wkspcPort','weblogicAdmin','weblogicPort','weblogicHostname','epmDomain','strategic','epmaDB','calcDB','essbaseDB','frDB','planningDB','hfmDB','fdmDB','profitDB','startEPM','validate','distributedEssbase','distributedHFM','distributedPlanning','distributedFDM','remoteDeployment','instance','noDomain')
-
 #endregion
 
 
