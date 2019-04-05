@@ -348,3 +348,46 @@ function Ask-Install ($product){
 }
 
 
+function Ask-Config($option){
+    if($break){Clear-Variable break -ErrorAction SilentlyContinue}
+    Write-Host "================ $($option) ================"
+    Write-Host "Do you want to set config option $($option)?"
+    Write-Host ""
+    Write-Host "1. Yes"
+    Write-Host "2. No"
+    Write-Host "3. Quit"
+    Write-Host "============"
+    while($break -ne 'break'){
+        switch($answer = Read-Host "Default (2)"){
+            "" {
+                Write-Host "Default: Skipping config option $($option)." -ForegroundColor Yellow
+                $answer
+                $break = 'break'
+            }
+            1 {
+                Write-Host "Setting config option $($option)." -ForegroundColor Green
+                $answer
+                $break = 'break'
+            }
+            2 {
+                Write-Host "Skipping config option $($option)" -ForegroundColor Yellow
+                $answer
+                $break = 'break'
+            }
+            3 {
+                Write-Host "Exiting.." -ForegroundColor Magenta
+                $answer
+                $break = 'break'
+            }
+        }
+    }
+    if($break){Clear-Variable break -ErrorAction SilentlyContinue}
+    if($answer -eq 1){
+        Write-Host "================ $($option) ================"
+        Write-Host "Supply value for $($option)."
+        Write-Host ""
+        Write-Host "============"
+        $answer = Read-Host "Value"
+        $answer
+    }
+}
