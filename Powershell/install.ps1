@@ -225,7 +225,7 @@
 #region start epm install
 
     if(!$superSilentInstall -or $superSilentInstall -eq $false){
-        if($break){Clear-Variable break}
+        if($break){Clear-Variable break -ErrorAction SilentlyContinue}
         while($break -ne 'break'){
             $epmInstallPath = Read-Host "Please type the path where you want to install EPM. Example: C:\Oracle\Middleware"
             if(($epmInstallPath.Length - 1) -eq '\'){
@@ -251,7 +251,7 @@
             }
         }
 
-        if($break){Clear-Variable break}
+        if($break){Clear-Variable break -ErrorAction SilentlyContinue}
 
         #region build epm install array wiht user interaction
 
@@ -292,48 +292,48 @@
             }
         }
     }
-    if($break){Clear-Variable break}
+    if($break){Clear-Variable break -ErrorAction SilentlyContinue}
     foreach($i in $installFiles){
-        Clear-Variable installObject
+        Clear-Variable installObject -ErrorAction SilentlyContinue
         if($i -notin ('footer','header')){
             $answer = Ask-Install -product $i
         }
-        if($answer[1] -eq 1){
+        if($answer[1] -in ('1','2')){
             Set-Variable -Name "install$($i)" -Value $answer[0]
             Set-Variable -Name "distributed$($i)" -Value $answer[2]
             $installObject = New-Object -TypeName PSObject
-            $installObject | Add-Member -Name Name -Value $i -MemberType NoteProperty
+            $installObject | Add-Member -Name Name -Value $i -MemberType NoteProperty -Force
             if((Get-Variable -Name "install$($i)" -ErrorAction SilentlyContinue).Value -eq $true){
-                $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty
+                $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty -Force
                 if(Get-Variable -Name "distributed$($i)" -ErrorAction SilentlyContinue){
                     if((Get-Variable -Name "distributed$($i)").Value -eq $true){
-                        $installObject | Add-Member -Name Type -Value Distributed -MemberType NoteProperty
-                            $installObject | Add-Member -Name IsRemote -Value No -MemberType NoteProperty
+                        $installObject | Add-Member -Name Type -Value Distributed -MemberType NoteProperty -Force
+                            $installObject | Add-Member -Name IsRemote -Value No -MemberType NoteProperty -Force
                         } elseif($i -ne 'foundation') {
-                            $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty  
+                            $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty  -Force
                         }
                     } elseif((Get-Variable -Name 'distributed*').Value -contains $true -and $i -in ('hfm','essbase','planning','fdm')){
-                        $installObject | Add-Member -Name Type -Value Central -MemberType NoteProperty
+                        $installObject | Add-Member -Name Type -Value Central -MemberType NoteProperty -Force
                     } elseif((Get-Variable -Name 'distributed*').Value -notcontains $true){
-                        $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty
+                        $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty -Force
                     }
                 if((Get-Variable -Name "distributed*").Value -contains 'True' -and $i -notin ('hfm','essbase','planning','fdm')){
-                    $installObject | Add-Member -Name Type -Value 'Central' -MemberType NoteProperty  
+                    $installObject | Add-Member -Name Type -Value 'Central' -MemberType NoteProperty  -Force
                 }
 
             } else {
                 if($i -eq 'header' -or $i -eq 'footer'){
-                    $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty
-                    $installObject | Add-Member -Name Type -Value $i -MemberType NoteProperty
+                    $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty -Force
+                    $installObject | Add-Member -Name Type -Value $i -MemberType NoteProperty -Force
                 } else {
-                    $installObject | Add-Member -Name Install -Value 'No' -MemberType NoteProperty
-                    $installObject | Add-Member -Name Type -Value 'Skipped' -MemberType NoteProperty
+                    $installObject | Add-Member -Name Install -Value 'No' -MemberType NoteProperty -Force
+                    $installObject | Add-Member -Name Type -Value 'Skipped' -MemberType NoteProperty -Force
                 }
             }
             if($remoteDeployment -eq $true){
-                $installObject | Add-Member -Name Remote -Value Yes -MemberType NoteProperty
+                $installObject | Add-Member -Name Remote -Value Yes -MemberType NoteProperty -Force
             } else {
-                $installObject | Add-Member -Name Remote -Value No -MemberType NoteProperty
+                $installObject | Add-Member -Name Remote -Value No -MemberType NoteProperty -Force
             }
 
             $installArray += $installObject
@@ -344,60 +344,83 @@
 
 #endregion
   
-        if($break){Clear-Variable break}
-    } elseif($superSilentInstall -and $superSilentInstall -eq $true){
-        #region build epm install array
+        if($break){Clear-Variable break -ErrorAction SilentlyContinue}
+    } else {
+            #region check if epm path is okay
+            $epmInstallPath = $epmPath
+            if(($epmInstallPath.Length - 1) -eq '\'){
+                $epmInstallPath =  $epmInstallPath.TrimEnd()
+            }
+            $testEPMInstallPath = Test-Path -Path $epmInstallPath.Substring(0,3)
+            $testEPMInstallPathChildren = Get-ChildItem $epmInstallPath -ErrorAction SilentlyContinue
+            if($testEPMInstallPath -eq $false) {
+                Write-Host "Invalid Path. Exiting.." -ForegroundColor Red
+                Exit
+            }
+            else{
+                Write-Host "Valid Path. Continuing." -ForegroundColor Green
+            }
+            if($testEPMInstallPathChildren.count -gt 0 ) {
+                Write-Host "Path contains files. Cannot Continue." -ForegroundColor Red
+                Read-Host "Press enter to exit."
+                Exit
+            } 
+            else {
+                Write-Host "Path is ready to be used. Continuing." -ForegroundColor Green
+            }
+    }
 
+#region build epm install array
+    
     $installArray = @()
     foreach($i in $installFiles){
         if($installObject){Clear-Variable installObject}
         $installObject = New-Object -TypeName PSObject
-        $installObject | Add-Member -Name Name -Value $i -MemberType NoteProperty
+        $installObject | Add-Member -Name Name -Value $i -MemberType NoteProperty -Force
         if((Get-Variable -Name "install$($i)" -ErrorAction SilentlyContinue).Value -eq $true){
-            $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty
+            $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty -Force
             if(Get-Variable -Name "distributed$($i)" -ErrorAction SilentlyContinue){
                 if((Get-Variable -Name "distributed$($i)").Value -eq $true){
-                    $installObject | Add-Member -Name Type -Value Distributed -MemberType NoteProperty
-                     $installObject | Add-Member -Name IsRemote -Value No -MemberType NoteProperty
+                    $installObject | Add-Member -Name Type -Value Distributed -MemberType NoteProperty -Force
+                     $installObject | Add-Member -Name IsRemote -Value No -MemberType NoteProperty -Force
                     } else {
-                        $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty  
+                        $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty -Force  
                     }
                 } elseif((Get-Variable -Name 'distributed*').Value -contains $true -and $i -in ('hfm','essbase','planning','fdm')){
-                    $installObject | Add-Member -Name Type -Value Central -MemberType NoteProperty
+                    $installObject | Add-Member -Name Type -Value Central -MemberType NoteProperty -Force
                 } elseif((Get-Variable -Name 'distributed*').Value -notcontains $true){
-                    $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty
+                    $installObject | Add-Member -Name Type -Value Standalone -MemberType NoteProperty -Force
                 }
             if((Get-Variable -Name "distributed*").Value -contains 'True' -and $i -notin ('hfm','essbase','planning','fdm')){
-                $installObject | Add-Member -Name Type -Value 'Central' -MemberType NoteProperty  
+                $installObject | Add-Member -Name Type -Value 'Central' -MemberType NoteProperty -Force  
             }
 
         } else {
             if($i -eq 'header' -or $i -eq 'footer'){
-                $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty
-                $installObject | Add-Member -Name Type -Value $i -MemberType NoteProperty
+                $installObject | Add-Member -Name Install -Value 'Yes' -MemberType NoteProperty -Force
+                $installObject | Add-Member -Name Type -Value $i -MemberType NoteProperty -Force
             } else {
-                $installObject | Add-Member -Name Install -Value 'No' -MemberType NoteProperty
-                $installObject | Add-Member -Name Type -Value 'Skipped' -MemberType NoteProperty
+                $installObject | Add-Member -Name Install -Value 'No' -MemberType NoteProperty -Force
+                $installObject | Add-Member -Name Type -Value 'Skipped' -MemberType NoteProperty -Force
             }
         }
         if($remoteDeployment -eq $true){
-            $installObject | Add-Member -Name Remote -Value Yes -MemberType NoteProperty
+            $installObject | Add-Member -Name Remote -Value Yes -MemberType NoteProperty -Force
         } else {
-            $installObject | Add-Member -Name Remote -Value No -MemberType NoteProperty
+            $installObject | Add-Member -Name Remote -Value No -MemberType NoteProperty -Force
         }
 
         $installArray += $installObject
     }
 
+
 #endregion
 
 #region loop through epm install array and create install property file
     
-    #region loop through epm install array and create install property file
-    
     $installArrayWithPath = @()
     foreach($i in $installArray){
-        Clear-Variable installObject
+        Clear-Variable installObject -ErrorAction SilentlyContinue
         $installObject = New-Object -TypeName PSObject
         $installObject = $i
         if($i.Install -eq 'Yes'){
@@ -440,15 +463,20 @@
 
     foreach($i in $installArrayWithPath){
         if($i.Path -ne 'Null'){
-            New-Variable -Name "input$($i.name)" -Value (Get-Content -Path $i.Path -Raw) -Force
+            # for troubleshooting
+            #Write-Host "$($i.Name) path is $($i.path)" -ForegroundColor Green
+            New-Variable -Name "input$($i.name)" -Value (Get-Content -Path $i.Path -Raw -ErrorAction SilentlyContinue) -Force
             Set-Variable -Name "input$($i.name)" -Value ($ExecutionContext.InvokeCommand.ExpandString((Get-Variable -Name "input$($i.name)").Value)) -Force
+        } else {
+            # for troubleshooting    
+            #Write-Host "$($i.Name) path is $($i.path)" -ForegroundColor Yellow 
         }
     }
-}
 
-    $inputHeader = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\header" -Raw
+
+	$inputHeader = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\header" -Raw
     $inputHeader = $ExecutionContext.InvokeCommand.ExpandString($inputHeader)
-    $inputFooter = Get-Content -Path "$($installerPath)\Variables\Property Files\Install\Standalone\footer" -Raw
+	$inputFooter = Get-Content -Path "$($installerPath)\Variables\Property Files\11.1.2.4\Install\Standalone\footer" -Raw
     $inputFooter = $ExecutionContext.InvokeCommand.ExpandString($inputFooter)
 
     $data = "$($inputHeader)
@@ -471,6 +499,8 @@
     [System.IO.File]::WriteAllLines("$($installerPath)\Temp\silentInstall", $silentInstallFile, $Utf8NoBomEncoding)
 
 #endregion
+
+#region start install
 
     try {
     Write-Host "Installing EPM. This may take 10 - 20 Minutes." -ForegroundColor Cyan

@@ -1,4 +1,4 @@
-﻿#region variables
+#region variables
 
     $7zip = "C:\Program Files\7-Zip\7z.exe"
     $timestamp = Get-Date -Format MM-dd-yyyy-h:m:ss
@@ -18,9 +18,13 @@
     $ps2008 = "$($installerPath)\PS5\Win7AndW2K8R2-KB3191566-x64"
     $ps2012 = "$($installerPath)\PS5\Win8.1AndW2K12R2-KB3191564-x64.msu"
     $wusa = "$env:systemroot\SysWOW64\wusa.exe"
-    $tempVerbose = "$($installerPath)\Temp\Verbose"
-    $installFiles = @('foundation','essbase','raf','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
+    $tempVerbose = "$($installerPath)\Temp\Verbose"    
+	  $installFiles = @('foundation','essbase','raf','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
     $installFiles900 = @('foundation','essbase','fr','planning','disclosure','hfm','fdm','profit','fcm','tax','strategic','header','footer')
+    $configOptions = @('dbServer','dbPort','dbUser','dbPassword','wkspcAdmin','wkspcAdminPassword','wkspcPort','weblogicAdmin','weblogicPort','weblogicHostname','epmDomain','strategic','epmaDB','calcDB','essbaseDB','rafDB','planningDB','disclosureDB','hfmDB','fdmDB','profitDB','startEPM','validate','distributedEssbase','distributedHFM','distributedPlanning','distributedFDM','remoteDeployment','instance','noDomain')
+    $configOptionsType = @('string','string','string','string','string','string','string','string','string','string','string','bool','string','string','string','string','string','string','string','string','string','bool','bool','bool','bool','bool','bool','bool','string','switch')
+    $configOptionsRequire = @('yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','yes','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no','no')
+    $configOptions900 = @('dbServer','dbPort','dbUser','dbPassword','wkspcAdmin','wkspcAdminPassword','wkspcPort','weblogicAdmin','weblogicPort','weblogicHostname','epmDomain','strategic','epmaDB','calcDB','essbaseDB','frDB','planningDB','hfmDB','fdmDB','profitDB','startEPM','validate','distributedEssbase','distributedHFM','distributedPlanning','distributedFDM','remoteDeployment','instance','noDomain')
 
 #endregion
 

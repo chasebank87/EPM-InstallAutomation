@@ -1265,7 +1265,7 @@ if($inputEPMADB -eq $null) {
         Exit
     }
 
-#endregion
+#endregion 
 
 #region if any distributed -and remoteDeployment -eq false
     if($distributedHFM -eq $true -or $distributedFDM -eq $true -or $distributedPLN -eq $true -or $distributedESB -eq $true -and $remoteDeployment -eq $false){
@@ -1308,8 +1308,32 @@ if($inputEPMADB -eq $null) {
             }
         }
     }
-	
-	#announce completion 
+
+#endregion
+
+#region find all hyperion services
+
+    $hyperionServices = Get-Service -Name "HyS*"
+    $hyperionServices += Get-Service -Name "OracleProcess*"
+
+#endregion
+
+#region loop through all hyperion services and set to manual
+    
+    if($hyperionServices.Count -gt 0){
+        foreach($i in $hyperionServices){
+            if($i.StartType -ne 'Manual'){
+                Write-Host "Changing $($i.DisplayName) startup to manual." -ForegroundColor Cyan
+                Set-Service -Name $i.Name -StartupType Manual
+            } else {
+                Write-Host "$($i.DisplayName) already set to manual startup. Continuing.." -ForegroundColor Green
+            }
+        }
+    }
+
+#endregion
+
+#region announce completion 
 	Write-Host '
 
 

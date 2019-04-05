@@ -8,7 +8,7 @@
 #region create session to sql server
     
     #confirm the server collation is correct
-    $serverCollation = Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "SELECT CONVERT (varchar, SERVERPROPERTY('collation'))"
+    $serverCollation = Invoke-Sqlcmd -HostName $dbServer -Username $sqlAdmin -Password $sqlAdminPassword -Query "SELECT CONVERT (varchar, SERVERPROPERTY('collation'))"
     if($serverCollation.Column1 -eq 'SQL_Latin1_General_CP1_CI_AS'){
         Write-Host "SQL Server collation is set correctly. Continuing.." -ForegroundColor Green
     } else {
@@ -18,7 +18,7 @@
     }
 
     #confirm the sqlAdmin provides is a sysadmin
-    $sqlSysAdminUsers = Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "
+    $sqlSysAdminUsers = Invoke-Sqlcmd -HostName $dbServer -Username $sqlAdmin -Password $sqlAdminPassword -Query "
     SELECT   name,type_desc,is_disabled
     FROM     master.sys.server_principals
     WHERE    IS_SRVROLEMEMBER ('sysadmin',name) = 1
@@ -57,7 +57,7 @@
     #look for databases
     foreach($d in $databases){
         if($d -ne $null -and $d -ne ''){
-            $dbExistence = Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "
+            $dbExistence = Invoke-Sqlcmd -HostName $dbServer -Username $sqlAdmin -Password $sqlAdminPassword -Query "
             select * from sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb');"
             if($dbExistence.name -contains "$d"){
                 Write-Host "$d already exists. Skipping.." -ForegroundColor Yellow
@@ -75,7 +75,7 @@
                             GO"
                 #create
                 try {
-                    Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "$($create)"
+                    Invoke-Sqlcmd -HostName $dbServer -Username $sqlAdmin -Password $sqlAdminPassword -Query "$($create)"
                 } catch {
                     $_ | Out-File "$($installerPath)\Logs\create$($d).Error.log"
                     Get-Content "$($installerPath)\Logs\create$($d).Error.log" | Write-Host -ForegroundColor Red
@@ -84,7 +84,7 @@
                 }
                 #modify
                  try {
-                    Invoke-Sqlcmd -ConnectionString "Server=$($dbServer);User Id=$($sqlAdmin);Password=$($sqlAdminPassword);" -Query "$($modify)"
+                    Invoke-Sqlcmd -HostName $dbServer -Username $sqlAdmin -Password $sqlAdminPassword -Query "$($modify)"
                 } catch {
                     $_ | Out-File "$($installerPath)\Logs\modify$($d).Error.log"
                     Get-Content "$($installerPath)\Logs\modify$($d).Error.log" | Write-Host -ForegroundColor Red

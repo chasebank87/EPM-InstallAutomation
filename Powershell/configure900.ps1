@@ -1271,7 +1271,31 @@ if($inputEPMADB -eq $null) {
         }
     }
 	
-	#announce completion 
+#enderegion
+
+#region find all hyperion services
+
+    $hyperionServices = Get-Service -Name "HyS*"
+    $hyperionServices += Get-Service -Name "OracleProcess*"
+
+#endregion
+
+#region loop through all hyperion services and set to manual
+    
+    if($hyperionServices.Count -gt 0){
+        foreach($i in $hyperionServices){
+            if($i.StartType -ne 'Manual'){
+                Write-Host "Changing $($i.DisplayName) startup to manual." -ForegroundColor Cyan
+                Set-Service -Name $i.Name -StartupType Manual
+            } else {
+                Write-Host "$($i.DisplayName) already set to manual startup. Continuing.." -ForegroundColor Green
+            }
+        }
+    }
+
+#endregion
+
+#regeion announce completion 
 	Write-Host '
 
 
@@ -1285,3 +1309,5 @@ if($inputEPMADB -eq $null) {
  ' -ForegroundColor magenta
 
 #endregion
+
+
