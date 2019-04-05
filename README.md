@@ -3,7 +3,7 @@ ____Note: Interactive mode is currently broken____
 
 ### Summary:
 
-The goal of this utility was to make the installation and configuration of Hyperion EPM easier and quicker for Hyperion Administrators. While the project is young and in early development this very early version has a lot to offer for very specific situations. __Scroll down to the bottom of this page to find the instructions for your particular environemt layout__
+The goal of this utility was to make the installation and configuration of Hyperion EPM easier and quicker for Hyperion Administrators. While the project is young and in early development this very early version has a lot to offer for very specific situations. __Scroll down to the bottom of this page to find the instructions for your particular environment layout__
 
 ### Limitations:
 
