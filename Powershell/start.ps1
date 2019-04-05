@@ -4,8 +4,10 @@ Param (
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [switch]$superSilentInstall,
   [Parameter(ParameterSetName='superSilentConfig',Mandatory=$False)] [switch]$superSilentConfig,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)] [switch]$superSilentAll,
+  [Parameter(ParameterSetName='interactive',Mandatory=$False)] [switch]$interactive,
 
   #params
+  [Parameter(ParameterSetName='interactive',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
   [Parameter(ParameterSetName='superSilentInstall',Mandatory=$False)] [bool]$skipUnzip,
   [Parameter(ParameterSetName='superSilentAll',Mandatory=$False)]
@@ -176,9 +178,9 @@ Param (
 #region check execution policy
 
     $executionPolicy = Get-ExecutionPolicy
-    if($executionPolicy -ne 'Unrestricted'){
-        Write-Host "Execution Policy is not set correctly. Changing to Unrestricted.." -ForegroundColor Cyan
-        Set-ExecutionPolicy Unrestricted -Force
+    if($executionPolicy -ne 'Bypass'){
+        Write-Host "Execution Policy is not set correctly. Changing to Bypass.." -ForegroundColor Cyan
+        Set-ExecutionPolicy Bypass -Force
     } else {
         Write-Host "Execution Policy is correct. Continuing" -ForegroundColor Green
     }
@@ -538,7 +540,7 @@ Param (
         $restartPrompt = Read-Host "Restart (Y or N)"
         if($restartPrompt -like '*y*'){
             Write-Host "Restarting server.." -ForegroundColor Cyan
-            Restart-Computer
+            Restart-Computer -Force
         } elseif($restartPrompt -like '*n*'){
             Write-Host "Exiting.." -ForegroundColor Cyan
             Exit
@@ -562,8 +564,11 @@ Param (
 
 #endregion
 
-#region set mainVariables and mainFunctions
-    
+#region set mainVariables and mainFunctions and unblock files
+
+    foreach($i in (Get-ChildItem "$($installerPath)\Powershell")){
+        Unblock-File -Path $i.FullName
+    }    
     Unblock-File -Path "$($installerPath)\Variables\mainVariables.ps1"
     Unblock-File -Path "$($installerPath)\Functions\mainfunctions.ps1"
     . "$($installerPath)\Variables\mainVariables.ps1"
@@ -571,9 +576,9 @@ Param (
 
 #endregion
 
-#region install powershell updated and sql module
-   
-    if($remoteDeployment -ne $true){
+#region check if configSQL, if so start configureSQL.ps1
+
+    if($configSQL -eq $true){
         Write-Host "Starting SQL configuration" -ForegroundColor Cyan
         if(Get-Command Install-Module -errorAction SilentlyContinue){
             Write-Host "Powershell is already the correct version. Continuing.." -ForegroundColor Cyan
@@ -592,7 +597,7 @@ Param (
                 }
                 Write-Host "We need to restart to commit the update for powershell. Restarting.." -ForegroundColor Yellow
                 Read-Host "Click enter to restart"
-                Restart-Computer
+                Restart-Computer -Force
             } elseif($osVersion -like '*2012*') {
                 Write-Host "Updating Powershell for Windows 2012" -ForegroundColor Cyan
                 Unblock-File $ps2012
@@ -606,7 +611,7 @@ Param (
                 }
                 Write-Host "We need to restart to commit the update for powershell. Restarting.." -ForegroundColor Yellow
                 Read-Host "Click enter to restart"
-                Restart-Computer
+                Restart-Computer -Force
             } else {
                 Write-Host "Current OS Version is not supported." -ForegroundColor Red
                 Read-Host "Click enter to exit"
@@ -621,13 +626,6 @@ Param (
             Install-PackageProvider -Name Nuget -Confirm:$false -Force
             Install-module -Name SqlServer -SkipPublisherCheck -Confirm:$False -Force
         }
-    }
-
-#endregion
-
-#region check if configSQL, if so start configureSQL.ps1
-
-    if($configSQL -eq $true){
         Try {
             Invoke-Expression -Command "$($installerPath)\Powershell\configureSQL.ps1" -Verbose
         } catch {
