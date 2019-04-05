@@ -7,7 +7,7 @@ ___Note: Interactive mode not supported yet for multiple server deployments. Sil
 ### Steps:
   #### Foundation Server: (First)
   1. Clone repo to a folder on your ***Foundation Server*** __(make sure it is as close to the base drive as possible, or you may get file path too long errors)__
-  2. Unblock the __three__ powershell files in the powershell folder. __(Right click file.. Select Properties.. Click unblock)__
+  2. Unblock the start.ps1 file in the powershell folder. (Right click file.. Select Properties.. Click unblock)
   3. Open Powershell as administrator
   4. Set Execution policy to __Unrestricted__
   ```powershell
