@@ -150,6 +150,12 @@ Param (
 
 #endregion
 
+#region start timer
+
+    $stopwatch = [system.diagnostics.stopwatch]::StartNew()
+
+#endregion
+
 #region check 32 bit or 64 bit
 
     if([System.IntPtr]::Size -eq 4){
@@ -730,6 +736,13 @@ Param (
             $epmStatus | Add-Member -MemberType NoteProperty -Name Installed -Value $true
         }
     }
+
+#endregion
+
+#region report time taken for pre installation and configuration tasks
+    
+    $trackOne = $stopwatch.Elapsed
+    Write-Host "Pre installation and configuration tasks took $($stopwatch.Elapsed.Hours) hours, $($stopwatch.Elapsed.Minutes) minutes, and $($stopwatch.Elapsed.Seconds) seconds." -ForegroundColor Magenta
 
 #endregion
 
