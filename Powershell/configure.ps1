@@ -1267,6 +1267,15 @@ if($inputEPMADB -eq $null) {
 
 #endregion 
 
+#region report time for config
+
+    $trackThreeHours = $stopwatch.Elapsed.Hours - ($trackOne.Hours + $trackTwoHours)
+    $trackThreeMinutes = $stopwatch.Elapsed.Minutes - ($trackOne.Minutes + $trackTwoMinutes)
+    $trackThreeSeconds = $stopwatch.Elapsed.Seconds - ($trackOne.Seconds + $trackTwoSeconds)
+    Write-Host "Configuration took $trackThreeHours hours, $trackThreeMinutes minutes, and $trackThreeSeconds seconds." -ForegroundColor Magenta  
+
+#endregion
+
 #region if any distributed -and remoteDeployment -eq false
     if($distributedHFM -eq $true -or $distributedFDM -eq $true -or $distributedPLN -eq $true -or $distributedESB -eq $true -and $remoteDeployment -eq $false){
     	try {
