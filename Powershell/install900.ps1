@@ -516,6 +516,15 @@
 
 #endregion
 
+#region report time for install
+    
+    $trackTwoHours = $stopwatch.Elapsed.Hours - $trackOne.Hours
+    $trackTwoMinutes = $stopwatch.Elapsed.Minutes - $trackOne.Minutes
+    $trackTwoSeconds = $stopwatch.Elapsed.Seconds - $trackOne.Seconds
+    Write-Host "Installation took $trackTwoHours hours, $trackTwoMinutes minutes, and $trackTwoSeconds seconds." -ForegroundColor Magenta
+
+#endregion
+
 #region configuration
       
       if(!$superSilentConfig -or $superSilentConfig -eq $false){
