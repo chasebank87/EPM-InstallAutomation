@@ -483,7 +483,7 @@
     $data = "$($inputHeader)
 		$($inputFoundation)
 		$($inputessbase)
-		$($inputraf)
+		$($inputfr)
 		$($inputFCM)
 		$($inputTax)
 		$($inputHSF)
